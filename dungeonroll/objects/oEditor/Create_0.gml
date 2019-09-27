@@ -16,8 +16,15 @@ enum editor_cursor_state {
 tool_mode = editor_tool.cursor
 cursor_state = editor_cursor_state.normal
 
-tool_datas = [[0, 0, "커서", -1], [32, 0, "추가", -1], [64, 0, "삭제", -1], [96, 0, "붓", -1], [128, 0, "장식물", -1]]
+tool_frame_width = 88
+tool_frame_height = 54
+tool_datas = [["커서", -1], ["추가", -1], ["삭제", -1], ["붓", -1], ["장식물", -1]]
 tool_number = array_length_1d(tool_datas)
+
+tool_captions = ["마우스 커서", "노드 추가", "노드 삭제", "스프라이트 배치", "장식물 배치"]
+tool_caption_draw_y = tool_frame_height * 0.5
 
 editor_width = display_get_gui_width()
 editor_height = display_get_gui_height()
+
+draw_set_font(fontEditor)

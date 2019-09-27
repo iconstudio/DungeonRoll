@@ -154,7 +154,7 @@
             "Key": "9dd55c04-0bd3-4061-9d92-4fad6463b075",
             "Value": {
                 "id": "efaff36d-9a59-4ac8-a7c5-6627b8bed62a",
-                "resourcePath": "fonts\\font0\\font0.yy",
+                "resourcePath": "fonts\\fontEditor\\fontEditor.yy",
                 "resourceType": "GMFont"
             }
         },
