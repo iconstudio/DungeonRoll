@@ -4,7 +4,9 @@
     "mvc": "1.0",
     "IsDnDProject": false,
     "configs": [
-        
+        "default",
+        "default;mobile",
+        "default;desktop"
     ],
     "option_ecma": false,
     "parentProject": {
@@ -68,6 +70,14 @@
                 "id": "3679bf26-8e3f-4511-9668-1f606cc1d0f7",
                 "resourcePath": "views\\4185ebbc-5267-43a9-bbc7-d1c3bbea2649.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "42fad146-b883-4028-adc7-e021b15c8404",
+            "Value": {
+                "id": "d1b28cc2-244f-4b6e-a83d-215e94ceffa6",
+                "resourcePath": "objects\\oGlobal\\oGlobal.yy",
+                "resourceType": "GMObject"
             }
         },
         {

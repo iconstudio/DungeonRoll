@@ -20,7 +20,7 @@ tool_mode = editor_tool.cursor
 cursor_state = editor_cursor_state.normal
 
 tool_frame_width = floor(editor_width * 0.2)
-tool_frame_height = 54
+tool_frame_height = 108
 tool_datas = [["커서", -1], ["추가", -1], ["삭제", -1], ["붓", -1], ["장식물", -1]]
 tool_number = array_length_1d(tool_datas)
 

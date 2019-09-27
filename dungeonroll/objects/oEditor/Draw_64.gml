@@ -15,5 +15,4 @@ for (i = 0; i < tool_number; ++i) {
 
 draw_set_halign(2)
 draw_set_valign(2)
-tool_data = tool_captions[tool_mode]
-draw_text(editor_width - 16, editor_height - 16, tool_captions[tool_mode])
+draw_text(floor(editor_width - 16), floor(editor_height - 16), tool_captions[tool_mode])
