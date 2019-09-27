@@ -143,6 +143,22 @@
             }
         },
         {
+            "Key": "98a46368-4f40-4041-b3a1-c085a0a16a3e",
+            "Value": {
+                "id": "b0afbae4-b6ee-4c85-9609-551f0487aad6",
+                "resourcePath": "rooms\\roomEditor\\roomEditor.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "9dd55c04-0bd3-4061-9d92-4fad6463b075",
+            "Value": {
+                "id": "efaff36d-9a59-4ac8-a7c5-6627b8bed62a",
+                "resourcePath": "fonts\\font0\\font0.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "a5b8f894-7782-48c8-958d-8c8aa4706654",
             "Value": {
                 "id": "79b77d1d-a0fc-4407-8bc0-174895d1dc3d",
