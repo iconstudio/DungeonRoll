@@ -5,10 +5,24 @@ global.flag_is_browser = (os_browser == browser_not_a_browser)
 device_mouse_dbclick_enable(false)
 
 #region 화면
+display_reset(8, true)
+
 // 9 : 16
 var default_width = 496
 var default_height = 912
+
 window_set_fullscreen(true)
+var display_width = display_get_width()
+var display_height = display_get_height()
+
+window_set_size(display_width, display_height)
+var window_width = window_get_width()
+var window_height = window_get_height()
+
+display_set_gui_size(display_width, display_height)
+var gui_width = display_get_gui_width()
+var gui_height = display_get_gui_height()
+display_set_gui_maximize()
 
 if global.flag_is_mobile {
 	
@@ -17,12 +31,6 @@ if global.flag_is_mobile {
 } else {
 	
 }
-
-var window_width = window_get_width()
-var window_height = window_get_height()
-display_set_gui_size(display_get_width(), display_get_height())
-var gui_width = display_get_gui_width()
-var gui_height = display_get_gui_height()
 
 global.resolutions_default = [default_width, default_height]
 global.resolutions = [window_width, window_height]
