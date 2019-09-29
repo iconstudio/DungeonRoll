@@ -57,6 +57,14 @@
             }
         },
         {
+            "Key": "2453474f-b06d-487b-ab2d-ed659f201d28",
+            "Value": {
+                "id": "47e59fc3-e1dd-4696-bfdd-d853e751d131",
+                "resourcePath": "shaders\\shaderSharpen\\shaderSharpen.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "302866ea-4bd4-4884-b97b-b5a3829c33e3",
             "Value": {
                 "id": "1ab415cb-c1c3-4e2c-9245-e3397f03ccb0",
@@ -185,6 +193,14 @@
             }
         },
         {
+            "Key": "ab43d86d-c315-4d59-8d3c-facd466703a1",
+            "Value": {
+                "id": "4f4ac139-9ccc-4710-9241-085f4a065841",
+                "resourcePath": "objects\\oEditorNode\\oEditorNode.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ac7d0e1c-91d9-49d5-9367-4af05b543ec3",
             "Value": {
                 "id": "8d4bb0c3-60a7-4ffc-aea7-9c75dfdc3ac1",
@@ -220,7 +236,7 @@
             "Key": "c1e1e65e-4109-42d0-86ad-8aab6e5bedc5",
             "Value": {
                 "id": "10d019b7-02eb-49a6-87b0-abca211ca162",
-                "resourcePath": "sprites\\sBlock\\sBlock.yy",
+                "resourcePath": "sprites\\sNode\\sNode.yy",
                 "resourceType": "GMSprite"
             }
         },
