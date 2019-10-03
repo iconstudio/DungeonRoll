@@ -297,6 +297,14 @@
             }
         },
         {
+            "Key": "ae00af94-bb29-43ce-a3af-d49de4dce656",
+            "Value": {
+                "id": "9a356ec4-738d-46f0-8525-3f210a5f240d",
+                "resourcePath": "sprites\\sTileExample\\sTileExample.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "bc576367-0bb4-4a00-8580-7dfd9a422279",
             "Value": {
                 "id": "a86d35ff-2892-438b-b19c-5827df8f7057",
