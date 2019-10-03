@@ -113,6 +113,14 @@
             }
         },
         {
+            "Key": "59ff79da-260d-40b5-825c-2bfa3735329f",
+            "Value": {
+                "id": "8285eed9-adc4-4579-b50e-28a61f43d909",
+                "resourcePath": "scripts\\editor_menu_add\\editor_menu_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5bb92daa-9e7e-4553-b81c-6ffe08cfc86f",
             "Value": {
                 "id": "058af5e7-94d6-4a35-ac36-952618829f00",
@@ -142,6 +150,14 @@
                 "id": "33448dac-d0ba-4c91-ac3d-ce507b7cf109",
                 "resourcePath": "sprites\\sBackground\\sBackground.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
+            "Value": {
+                "id": "0eba107a-2eb3-4de1-9cca-ce7f04efa7af",
+                "resourcePath": "scripts\\seconds\\seconds.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -295,10 +311,19 @@
                 "resourcePath": "options\\mac\\options_mac.yy",
                 "resourceType": "GMMacOptions"
             }
+        },
+        {
+            "Key": "f8569e5e-88c0-428e-8c0b-c4294870532a",
+            "Value": {
+                "id": "18d322ea-4107-4a93-9056-86f967883f9b",
+                "resourcePath": "fonts\\fontEditorMenu\\fontEditorMenu.yy",
+                "resourceType": "GMFont"
+            }
         }
     ],
     "script_order": [
-        
+        "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
+        "59ff79da-260d-40b5-825c-2bfa3735329f"
     ],
     "tutorial": ""
 }
