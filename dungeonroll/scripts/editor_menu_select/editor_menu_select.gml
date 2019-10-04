@@ -15,3 +15,4 @@ if argument0 != menu_mode {
 
 menu_mode_previous = menu_mode
 menu_mode = argument0
+menu_option = 0

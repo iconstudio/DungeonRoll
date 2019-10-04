@@ -3,9 +3,14 @@ cursor_x = device_mouse_x(0)
 cursor_y = device_mouse_y(0)
 cursor_gui_x = device_mouse_x_to_gui(0)
 cursor_gui_y = device_mouse_y_to_gui(0)
+var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
+var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
+var cursor_innered = point_in_rectangle(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
+// 커서 상태 및 메뉴 요소 갱신
 menu_frame_indicator_on = -1
-if cursor_gui_x < 0 or cursor_gui_y < 0 or global.resolutions_gui[0] < cursor_gui_x or global.resolutions_gui[1] < cursor_gui_y {
+//if cursor_gui_x < 0 or cursor_gui_y < 0 or global.resolutions_gui[0] < cursor_gui_x or global.resolutions_gui[1] < cursor_gui_y {
+if !cursor_innered {
 	cursor_state = editor_cursor_state.on_outside
 } else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height {
 	cursor_state = editor_cursor_state.on_ui
@@ -59,16 +64,16 @@ if cursor_gui_x < 0 or cursor_gui_y < 0 or global.resolutions_gui[0] < cursor_gu
 	cursor_state = editor_cursor_state.normal
 
 	if !view_mover_dragging {
-		if menu_mode == editor_menu.node_add {
-			cursor_node_x = mouse_x div 16 * 16
-			cursor_node_y = mouse_y div 16 * 16
+		if menu_mode == editor_menu.node_modify {
+			cursor_node_x = cursor_x div 16 * 16
+			cursor_node_y = cursor_y div 16 * 16
 		}
 
 		if menu_mode == editor_menu.cursor
 			window_set_cursor(cr_default)
-		else if menu_mode == editor_menu.node_add
+		else if menu_mode == editor_menu.node_modify
 			window_set_cursor(cr_none)
-		else if menu_mode == editor_menu.node_delete
+		else if menu_mode == editor_menu.node_release
 			window_set_cursor(cr_cross)
 		else
 			window_set_cursor(cr_handpoint)
@@ -111,14 +116,59 @@ if menu_frame_indicator_y <= cursor_gui_y or cursor_state != editor_cursor_state
 	}
 }
 
-// 숫자 키로 메뉴 항목 선택
+// 시점 이동 중이 아닐 때
 if !view_mover_dragging {
+	// 숫자 키로 메뉴 항목 선택
 	for (var i = editor_menu.cursor; i <= editor_menu.doodad; ++i) {
 		if keyboard_check_pressed(49 + i) {
 			// 마우스가 가리키는 항목의 설명을 우선한다.
 			var description_previous = menu_mode_description
 			editor_menu_select(i)
 			menu_mode_description = description_previous
+		}
+	}
+
+	if cursor_state == editor_cursor_state.normal
+	and menu_mode == editor_menu.node_modify
+	and point_in_rectangle(cursor_node_x, cursor_node_y, 0, 0, room_width, room_height) {
+		node_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorNode)
+
+		if cursor_left_pressed { // 노드 추가
+			if instance_exists(node_on_cursor) {
+				// 단방향 노드만 지원
+				if instance_exists(node_on_cursor.next) {
+					node_modify_link_add = false
+					node_selected = noone
+				} else {
+					node_modify_link_add = true
+					node_selected = node_on_cursor
+				}
+			} else {
+				if node_modify_link_add and instance_exists(node_selected) {
+					var node_last = node_selected
+					node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
+					node_last.next = node_selected
+					node_selected.before = node_last
+				} else {
+					node_modify_link_add = true
+					node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
+				}
+			}
+		} else if cursor_right_pressed { // 노드 삭제
+			if instance_exists(node_on_cursor) {
+				with node_on_cursor {
+					if instance_exists(before)
+						before.next = noone
+					if instance_exists(next)
+						next.before = noone
+				}
+
+				instance_destroy(node_on_cursor)
+			}
+
+			// 선택 해제
+			node_modify_link_add = false
+			node_selected = noone
 		}
 	}
 }
@@ -139,8 +189,8 @@ if menu_frame_indicator_x_time < menu_frame_indicator_x_period {
 if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
 	if view_mover_x_begin != -1 and view_mover_y_begin != -1 {
 		camera_set_view_pos(view_camera
-		, view_pos_x_begin - (cursor_x - view_mover_x_begin)
-		, view_pos_y_begin - (cursor_y - view_mover_y_begin))
+		, max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
+		, max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])))
 	}
 }
 

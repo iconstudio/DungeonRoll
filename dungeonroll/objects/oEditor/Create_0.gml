@@ -1,8 +1,8 @@
 /// @description 지도 편집기 초기화
 enum editor_menu {
 	cursor = 0,
-	node_add,
-	node_delete,
+	node_modify,
+	node_release,
 	brush,
 	doodad
 }
@@ -15,10 +15,13 @@ enum editor_cursor_state {
 
 editor_width = global.resolutions_gui[0]
 editor_height = global.resolutions_gui[1]
+editor_nodes_size_w = 29
+editor_nodes_size_h = 58
 
 menu_number = 0
 menu_mode = editor_menu.cursor
 menu_mode_previous = menu_mode
+menu_option = 0
 
 menu_frame_width_addition = 32
 menu_frame_draw_width_appended = 0
@@ -71,11 +74,15 @@ cursor_gui_y = 0
 cursor_node_x = 0
 cursor_node_y = 0
 
+node_modify_link_add = false
 node_selected = noone
+node_on_cursor = noone
 
 camera_set_view_pos(view_camera, 0, 0)
 view_mover_dragging = false
 view_pos_x_begin = 0
 view_pos_y_begin = 0
+view_pos_x_limit = [0, room_width - camera_get_view_width(view_camera)]
+view_pos_y_limit = [0, room_height - camera_get_view_height(view_camera)]
 view_mover_x_begin = -1
 view_mover_y_begin = -1
