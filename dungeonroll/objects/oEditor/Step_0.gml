@@ -28,7 +28,7 @@ if !cursor_innered {
 				// 표시기 위치 정하기
 				menu_frame_indicator_frame_left = frame_left
 				menu_frame_indicator_frame_right = frame_right
-				
+
 				// 메뉴 설명 바꾸기
 				menu_mode_description = menu_data[2]
 
@@ -128,47 +128,53 @@ if !view_mover_dragging {
 		}
 	}
 
-	if cursor_state == editor_cursor_state.normal
-	and menu_mode == editor_menu.node_modify
-	and point_in_rectangle(cursor_node_x, cursor_node_y, 0, 0, room_width, room_height) {
-		node_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorNode)
+	if cursor_state == editor_cursor_state.normal and point_in_rectangle(cursor_node_x, cursor_node_y, 0, 0, room_width, room_height) {
+		if menu_mode == editor_menu.node_modify { //
+			node_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorNode)
 
-		if cursor_left_pressed { // 노드 추가
-			if instance_exists(node_on_cursor) {
-				// 단방향 노드만 지원
-				if instance_exists(node_on_cursor.next) {
-					node_modify_link_add = false
-					node_selected = noone
+			if cursor_left_pressed { // 노드 추가
+				if instance_exists(node_on_cursor) {
+					// 단방향 노드만 지원
+					if instance_exists(node_on_cursor.next) {
+						node_modify_link_add = false
+						node_selected = noone
+					} else {
+						node_modify_link_add = true
+						node_selected = node_on_cursor
+					}
 				} else {
-					node_modify_link_add = true
-					node_selected = node_on_cursor
+					if node_modify_link_add and instance_exists(node_selected) {
+						var node_last = node_selected
+						node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
+						node_last.next = node_selected
+						node_selected.before = node_last
+					} else {
+						node_modify_link_add = true
+						node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
+					}
 				}
-			} else {
-				if node_modify_link_add and instance_exists(node_selected) {
-					var node_last = node_selected
-					node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
-					node_last.next = node_selected
-					node_selected.before = node_last
-				} else {
-					node_modify_link_add = true
-					node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
-				}
-			}
-		} else if cursor_right_pressed { // 노드 삭제
-			if instance_exists(node_on_cursor) {
-				with node_on_cursor {
-					if instance_exists(before)
-						before.next = noone
-					if instance_exists(next)
-						next.before = noone
+			} else if cursor_right_pressed { // 노드 삭제
+				if instance_exists(node_on_cursor) {
+					with node_on_cursor {
+						if instance_exists(before)
+							before.next = noone
+						if instance_exists(next)
+							next.before = noone
+					}
+
+					instance_destroy(node_on_cursor)
 				}
 
-				instance_destroy(node_on_cursor)
+				// 선택 해제
+				node_modify_link_add = false
+				node_selected = noone
 			}
-
-			// 선택 해제
-			node_modify_link_add = false
-			node_selected = noone
+		} else if menu_mode == editor_menu.node_release { //
+			
+		} else if menu_mode == editor_menu.brush { //
+			
+		} else if menu_mode == editor_menu.doodad { //
+			
 		}
 	}
 }
