@@ -170,7 +170,20 @@ if !view_mover_dragging {
 				node_selected = noone
 			}
 		} else if menu_mode == editor_menu.node_release { //
-			
+			if cursor_left_pressed {
+				node_modify_link_add = true
+
+				if instance_exists(node_on_cursor) {
+					if instance_exists(node_on_cursor.next) and instance_exists(node_on_cursor.before) {
+						node_on_cursor.next.before = node_on_cursor.before
+						node_on_cursor.before.next = node_on_cursor.next
+					}
+
+					instance_destroy(node_on_cursor)
+				}
+			} else if cursor_right_pressed {
+				editor_menu_select(editor_menu.cursor)
+			}
 		} else if menu_mode == editor_menu.brush { //
 			
 		} else if menu_mode == editor_menu.doodad { //
