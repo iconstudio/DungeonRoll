@@ -201,6 +201,14 @@
             }
         },
         {
+            "Key": "62481464-9ad7-4e99-9d56-b6dc7121271e",
+            "Value": {
+                "id": "f7b9ce4d-568b-4255-bd1e-f12355d09adf",
+                "resourcePath": "sprites\\sTilesetGreen\\sTilesetGreen.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
             "Value": {
                 "id": "0eba107a-2eb3-4de1-9cca-ce7f04efa7af",
@@ -270,6 +278,14 @@
                 "id": "321f2d15-7168-4f9b-a37e-062a6cb6f22a",
                 "resourcePath": "scripts\\ease_out_quartic\\ease_out_quartic.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a589e6eb-282b-43d5-a2bb-e4c25c776be3",
+            "Value": {
+                "id": "6f152e36-5cd7-462d-9891-9a14d6b04ff0",
+                "resourcePath": "tilesets\\tileset1\\tileset1.yy",
+                "resourceType": "GMTileSet"
             }
         },
         {
@@ -430,6 +446,22 @@
                 "id": "18d322ea-4107-4a93-9056-86f967883f9b",
                 "resourcePath": "fonts\\fontEditorMenu\\fontEditorMenu.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "f9410717-44f6-4e53-8938-e3f4c640cbf4",
+            "Value": {
+                "id": "8b99708b-ad03-42ee-9884-f8d9b002bed8",
+                "resourcePath": "sprites\\sTilesetGrass\\sTilesetGrass.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "faa50849-5916-4591-8e20-b8652179adf4",
+            "Value": {
+                "id": "0494fd39-872b-4e7f-bf65-4c66a1f58099",
+                "resourcePath": "tilesets\\tilesetGrass\\tilesetGrass.yy",
+                "resourceType": "GMTileSet"
             }
         }
     ],

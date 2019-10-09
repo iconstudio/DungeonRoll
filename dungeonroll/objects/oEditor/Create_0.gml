@@ -15,8 +15,8 @@ enum editor_cursor_state {
 
 editor_width = global.resolutions_gui[0]
 editor_height = global.resolutions_gui[1]
-editor_nodes_size_w = 29
-editor_nodes_size_h = 58
+editor_nodes_size_w = room_width div 16
+editor_nodes_size_h = room_height div 16
 
 menu_number = 0
 menu_mode = editor_menu.cursor
@@ -80,9 +80,14 @@ node_on_cursor = noone
 
 camera_set_view_pos(view_camera, 0, 0)
 view_mover_dragging = false
+
+var hborder = camera_get_view_border_x(view_camera)
+var vborder = camera_get_view_border_y(view_camera)
+x = hborder
+y = vborder
+view_pos_x_limit = [hborder, room_width - hborder]
+view_pos_y_limit = [vborder, room_height - vborder]
 view_pos_x_begin = 0
 view_pos_y_begin = 0
-view_pos_x_limit = [0, room_width - camera_get_view_width(view_camera)]
-view_pos_y_limit = [0, room_height - camera_get_view_height(view_camera)]
 view_mover_x_begin = -1
 view_mover_y_begin = -1

@@ -207,9 +207,11 @@ if menu_frame_indicator_x_time < menu_frame_indicator_x_period {
 // 시점 이동
 if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
 	if view_mover_x_begin != -1 and view_mover_y_begin != -1 {
-		camera_set_view_pos(view_camera
-		, max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
-		, max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])))
+		//camera_set_view_pos(view_camera
+		//, max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
+		//, max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])))
+		x = max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
+		y = max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1]))
 	}
 }
 
@@ -217,8 +219,10 @@ if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
 if cursor_state == editor_cursor_state.normal and !view_mover_dragging and device_mouse_check_button_pressed(0, mb_middle) {
 	view_mover_dragging = true
 
-	view_pos_x_begin = camera_get_view_x(view_camera)
-	view_pos_y_begin = camera_get_view_y(view_camera)
+	//view_pos_x_begin = camera_get_view_x(view_camera)
+	//view_pos_y_begin = camera_get_view_y(view_camera)
+	view_pos_x_begin = x
+	view_pos_y_begin = y
 	view_mover_x_begin = cursor_x
 	view_mover_y_begin = cursor_y
 }
