@@ -23,6 +23,8 @@ if menu_frame_extended {
 
 // 커서 상태 및 메뉴 요소 갱신
 menu_frame_indicator_on = -1
+menu_submenu_indicator_frame_draw = false
+
 if !cursor_innered {
 	cursor_state = editor_cursor_state.on_outside
 } else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height_max {
@@ -84,29 +86,10 @@ if !cursor_innered {
 			var frame_left = menu_data[5] - frame_width_half
 			var frame_right = menu_data[5] + frame_width_half
 			if frame_left <= cursor_gui_x and cursor_gui_x < frame_right {
-				// 새로운 메뉴 가리키기
-				if menu_frame_indicator_frame_previous != i {
-					menu_frame_indicator_frame_time = 0
-
-					menu_frame_indicator_frame_previous = i
-				}
-
-				if i == menu_mode {
-					menu_frame_indicator_on = i
-
-					if menu_frame_indicator_time < menu_frame_indicator_period
-						menu_frame_indicator_time++
-					else
-						menu_frame_indicator_time = menu_frame_indicator_period
-				}
-
-				if menu_frame_indicator_frame_time < menu_frame_indicator_frame_period
-					menu_frame_indicator_frame_time++
-				else
-					menu_frame_indicator_frame_time = menu_frame_indicator_frame_period
+				menu_submenu_indicator_frame_draw = true
 
 				if !doubletap and cursor_left_pressed {
-					editor_menu_select(i)
+					
 				}
 			}
 		}

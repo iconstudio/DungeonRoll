@@ -54,6 +54,7 @@ menu_frame_indicator_frame_time = 0
 menu_frame_indicator_frame_period = seconds(0.09)
 
 menu_submenu_y = menu_item_frame_height
+menu_submenu_indicator_frame_draw = false
 menu_submenu_indicator_frame_left = 0
 menu_submenu_indicator_frame_right = 0
 
