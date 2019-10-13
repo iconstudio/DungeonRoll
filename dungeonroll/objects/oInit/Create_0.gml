@@ -47,6 +47,29 @@ if global.flag_is_mobile {
 }
 #endregion
 
+#region 편집기
+enum editor_menu {
+	cursor = 0,
+	node_modify,
+	brush,
+	doodad
+}
+
+enum editor_cursor_state {
+	normal,
+	on_ui,
+	on_outside
+}
+
+enum editor_background {
+	black,
+	grid_inverse,
+	grid_yellow,
+	grid_red,
+	grid_white
+}
+#endregion
+
 instance_create_layer(0, 0, layer, oGlobal)
 
 alarm[0] = 1

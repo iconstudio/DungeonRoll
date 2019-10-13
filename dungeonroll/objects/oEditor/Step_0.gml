@@ -7,16 +7,33 @@ var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
 var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
 var cursor_innered = point_in_rectangle(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
+menu_frame_height = lerp(menu_frame_height_min, menu_frame_height_max, ease_out_cubic(menu_frame_extend_time / menu_frame_extend_period))
+// 보조 메뉴 표시줄 갱신
+if menu_frame_extended {
+	if menu_frame_extend_time < menu_frame_extend_period
+		menu_frame_extend_time++
+	else
+		menu_frame_extend_time = menu_frame_extend_period
+} else {
+	if 0 < menu_frame_extend_time
+		menu_frame_extend_time--
+	else
+		menu_frame_extend_time = 0
+}
+
 // 커서 상태 및 메뉴 요소 갱신
 menu_frame_indicator_on = -1
-//if cursor_gui_x < 0 or cursor_gui_y < 0 or global.resolutions_gui[0] < cursor_gui_x or global.resolutions_gui[1] < cursor_gui_y {
 if !cursor_innered {
 	cursor_state = editor_cursor_state.on_outside
-} else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height {
+} else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height_max {
 	cursor_state = editor_cursor_state.on_ui
 
-	// 마우스로 메뉴 항목 선택
-	if cursor_gui_y < menu_frame_indicator_y {
+	// 마우스로 주 메뉴 항목 선택
+	if cursor_gui_y < menu_frame_height_min {
+		// 보조 메뉴 표시줄 토글
+		if doubletap
+			menu_frame_extended = !menu_frame_extended
+
 		var i, menu_data
 		for (i = 0; i < menu_number; ++i) {
 			menu_data = menu_items[i]
@@ -53,8 +70,44 @@ if !cursor_innered {
 				else
 					menu_frame_indicator_frame_time = menu_frame_indicator_frame_period
 
-				if device_mouse_check_button_pressed(0, mb_left)
+				if !doubletap and cursor_left_pressed {
 					editor_menu_select(i)
+				}
+			}
+		}
+	} else if menu_frame_extended and cursor_gui_y < menu_frame_height { // 보조 메뉴 선택
+		var menu_data = menu_items[menu_mode], submenu_data
+		for (var j = 0; j < menu_submenu_number[menu_mode]; ++j) {
+			submenu_data = menu_submenus[menu_mode, j]
+
+			var frame_width_half = menu_data[4] * 0.5
+			var frame_left = menu_data[5] - frame_width_half
+			var frame_right = menu_data[5] + frame_width_half
+			if frame_left <= cursor_gui_x and cursor_gui_x < frame_right {
+				// 새로운 메뉴 가리키기
+				if menu_frame_indicator_frame_previous != i {
+					menu_frame_indicator_frame_time = 0
+
+					menu_frame_indicator_frame_previous = i
+				}
+
+				if i == menu_mode {
+					menu_frame_indicator_on = i
+
+					if menu_frame_indicator_time < menu_frame_indicator_period
+						menu_frame_indicator_time++
+					else
+						menu_frame_indicator_time = menu_frame_indicator_period
+				}
+
+				if menu_frame_indicator_frame_time < menu_frame_indicator_frame_period
+					menu_frame_indicator_frame_time++
+				else
+					menu_frame_indicator_frame_time = menu_frame_indicator_frame_period
+
+				if !doubletap and cursor_left_pressed {
+					editor_menu_select(i)
+				}
 			}
 		}
 	}
@@ -73,8 +126,6 @@ if !cursor_innered {
 			window_set_cursor(cr_default)
 		else if menu_mode == editor_menu.node_modify
 			window_set_cursor(cr_none)
-		else if menu_mode == editor_menu.node_release
-			window_set_cursor(cr_cross)
 		else
 			window_set_cursor(cr_handpoint)
 	} else {
@@ -97,12 +148,11 @@ if menu_frame_indicator_y <= cursor_gui_y or cursor_state != editor_cursor_state
 			menu_frame_indicator_time--
 		else
 			menu_frame_indicator_time = 0
-
-		if 0 < menu_frame_indicator_frame_time
-			menu_frame_indicator_frame_time--
-		else
-			menu_frame_indicator_frame_time = 0
 	}
+	if 0 < menu_frame_indicator_frame_time
+		menu_frame_indicator_frame_time--
+	else
+		menu_frame_indicator_frame_time = 0
 
 	// 메뉴 설명 원래대로 돌리기
 	var menu_data = menu_items[menu_mode]
@@ -135,7 +185,10 @@ if !view_mover_dragging {
 			if cursor_left_pressed { // 노드 추가
 				if instance_exists(node_on_cursor) {
 					// 단방향 노드만 지원
-					if instance_exists(node_on_cursor.next) {
+					if node_modify_link_add and instance_exists(node_selected) and !instance_exists(node_on_cursor.before) {
+						node_selected.next = node_on_cursor
+						node_on_cursor.before = node_selected
+					} else if instance_exists(node_on_cursor.next) {
 						node_modify_link_add = false
 						node_selected = noone
 					} else {
@@ -169,25 +222,14 @@ if !view_mover_dragging {
 				node_modify_link_add = false
 				node_selected = noone
 			}
-		} else if menu_mode == editor_menu.node_release { //
-			if cursor_left_pressed {
-				node_modify_link_add = true
-
-				if instance_exists(node_on_cursor) {
-					if instance_exists(node_on_cursor.next) and instance_exists(node_on_cursor.before) {
-						node_on_cursor.next.before = node_on_cursor.before
-						node_on_cursor.before.next = node_on_cursor.next
-					}
-
-					instance_destroy(node_on_cursor)
-				}
-			} else if cursor_right_pressed {
+		} else if menu_mode == editor_menu.brush { //
+			if cursor_right_pressed {
 				editor_menu_select(editor_menu.cursor)
 			}
-		} else if menu_mode == editor_menu.brush { //
-			
 		} else if menu_mode == editor_menu.doodad { //
-			
+			if cursor_right_pressed {
+				editor_menu_select(editor_menu.cursor)
+			}
 		}
 	}
 }
@@ -211,9 +253,11 @@ if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
 		//, max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
 		//, max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])))
 		x = max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
-		y = max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1]))
+		y = min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])
 	}
 }
+view_pos_y_limit[0] = view_pos_vborder - menu_frame_height
+y = max(view_pos_y_limit[0], y)
 
 // 휠로 시점 이동 시작
 if cursor_state == editor_cursor_state.normal and !view_mover_dragging and device_mouse_check_button_pressed(0, mb_middle) {
