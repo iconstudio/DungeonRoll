@@ -19,5 +19,6 @@ menu_submenu_number[menu_number] = 0
 menu_submenus[menu_number] = []
 
 menu_frame_draw_width_appended += menu_draw_width_one
+menu_submenu_draw_width_appended = 0
 
 return menu_number++

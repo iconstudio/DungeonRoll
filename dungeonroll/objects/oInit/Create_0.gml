@@ -52,8 +52,11 @@ enum editor_menu {
 	cursor = 0,
 	node_modify,
 	brush,
-	doodad
+	doodad,
+	instance,
+	setting
 }
+global.editor_menu_last = editor_menu.setting
 
 enum editor_cursor_state {
 	normal,

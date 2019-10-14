@@ -18,6 +18,9 @@ menu_submenus[menu, menu_submenu_number[menu]] = [caption // 0
 , icon // 1
 , callback // 2
 , icon_width // 3
-, submenu_width] // 4
+, submenu_width // 4
+, menu_submenu_draw_width_appended + menu_submenu_width_addition] // 5
+
+menu_submenu_draw_width_appended += submenu_width
 
 return menu_submenu_number[menu]++

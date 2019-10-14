@@ -21,8 +21,10 @@ menu_frame_color = $f1f2f3
 menu_frame_caption_y = menu_item_frame_height * 0.5
 
 menu_submenu_width_addition = 16
+menu_submenu_draw_width_appended = 0
 menu_submenu_icon_width_addition = 4
 
+// 메뉴 추가
 event_user(1)
 
 var menu_data = menu_items[0]
@@ -41,8 +43,8 @@ menu_frame_indicator_x_target = menu_frame_indicator_x_begin
 menu_frame_indicator_x = menu_frame_indicator_x_begin
 menu_frame_indicator_x_period = seconds(0.4)
 menu_frame_indicator_x_time = menu_frame_indicator_x_period
-menu_frame_indicator_y = menu_item_frame_height - menu_frame_indicator_height
 menu_frame_indicator_height = 4
+menu_frame_indicator_y = menu_item_frame_height - menu_frame_indicator_height
 menu_frame_indicator_color = $d49227
 
 // 주 메뉴를 사각형으로 감싸서 강조
@@ -54,11 +56,16 @@ menu_frame_indicator_frame_time = 0
 menu_frame_indicator_frame_period = seconds(0.09)
 
 menu_submenu_y = menu_item_frame_height
+menu_submenu_caption_y = menu_tool_frame_height * 0.5
 menu_submenu_indicator_frame_draw = false
 menu_submenu_indicator_frame_left = 0
 menu_submenu_indicator_frame_right = 0
+menu_submenu_indicator_frame_alpha = 0
+menu_submenu_indicator_frame_time = 0
+menu_submenu_indicator_frame_period = menu_frame_indicator_frame_period
 
 menu_frame_extended = false // 보조 메뉴가 열려있는가
+menu_frame_submenu_show = false // 보조 메뉴 그리기 여부
 menu_frame_extend_time = 0
 menu_frame_extend_period = seconds(0.07)
 menu_frame_height = menu_frame_height_min
@@ -78,12 +85,13 @@ node_on_cursor = noone
 camera_set_view_pos(view_camera, 0, 0)
 view_mover_dragging = false
 
+view_border = 16
 view_pos_hborder = camera_get_view_border_x(view_camera)
 view_pos_vborder = camera_get_view_border_y(view_camera)
 x = view_pos_hborder
 y = view_pos_vborder
-view_pos_x_limit = [view_pos_hborder, room_width - view_pos_hborder]
-view_pos_y_limit = [view_pos_vborder - menu_frame_height, room_height - view_pos_vborder]
+view_pos_x_limit = [view_pos_hborder - view_border, room_width - view_pos_hborder + view_border]
+view_pos_y_limit = [view_pos_vborder - menu_frame_height - view_border, room_height - view_pos_vborder + view_border]
 view_pos_x_begin = 0
 view_pos_y_begin = 0
 view_mover_x_begin = -1

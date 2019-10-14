@@ -7,18 +7,41 @@ var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
 var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
 var cursor_innered = point_in_rectangle(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
-menu_frame_height = lerp(menu_frame_height_min, menu_frame_height_max, ease_out_cubic(menu_frame_extend_time / menu_frame_extend_period))
 // 보조 메뉴 표시줄 갱신
+var menu_frame_extend_ratio = menu_frame_extend_time / menu_frame_extend_period
 if menu_frame_extended {
+	menu_frame_height = lerp(menu_frame_height_min, menu_frame_height_max, ease_out_cubic(menu_frame_extend_ratio))
+
+	menu_frame_submenu_show = true
 	if menu_frame_extend_time < menu_frame_extend_period
 		menu_frame_extend_time++
 	else
 		menu_frame_extend_time = menu_frame_extend_period
-} else {
-	if 0 < menu_frame_extend_time
+} else { // 닫기
+	menu_frame_height = lerp(menu_frame_height_min, menu_frame_height_max, menu_frame_extend_ratio)
+
+	if 0 < menu_frame_extend_time {
 		menu_frame_extend_time--
-	else
+	} else {
+		menu_frame_submenu_show = false
 		menu_frame_extend_time = 0
+		menu_submenu_indicator_frame_time = 0
+	}
+}
+
+// 보조 메뉴 강조
+menu_submenu_indicator_frame_alpha = menu_submenu_indicator_frame_time / menu_submenu_indicator_frame_period
+if menu_submenu_indicator_frame_draw {
+	if menu_submenu_indicator_frame_time < menu_submenu_indicator_frame_period
+		menu_submenu_indicator_frame_time++
+	else
+		menu_submenu_indicator_frame_time = menu_submenu_indicator_frame_period
+} else {
+	if 0 < menu_submenu_indicator_frame_time {
+		menu_submenu_indicator_frame_time--
+	} else {
+		menu_submenu_indicator_frame_time = 0
+	}
 }
 
 // 커서 상태 및 메뉴 요소 갱신
@@ -36,13 +59,12 @@ if !cursor_innered {
 		if doubletap
 			menu_frame_extended = !menu_frame_extended
 
-		var i, menu_data
-		for (i = 0; i < menu_number; ++i) {
-			menu_data = menu_items[i]
-
+		for (var i = 0; i < menu_number; ++i) {
+			var menu_data = menu_items[i]
 			var frame_width_half = menu_data[4] * 0.5
 			var frame_left = menu_data[5] - frame_width_half
 			var frame_right = menu_data[5] + frame_width_half
+
 			if frame_left <= cursor_gui_x and cursor_gui_x < frame_right {
 				// 표시기 위치 정하기
 				menu_frame_indicator_frame_left = frame_left
@@ -78,20 +100,22 @@ if !cursor_innered {
 			}
 		}
 	} else if menu_frame_extended and cursor_gui_y < menu_frame_height { // 보조 메뉴 선택
-		var menu_data = menu_items[menu_mode], submenu_data
+		var submenu_data, submenu_x = 0
 		for (var j = 0; j < menu_submenu_number[menu_mode]; ++j) {
 			submenu_data = menu_submenus[menu_mode, j]
+			var frame_left = submenu_x
+			var frame_right = submenu_x + submenu_data[4]
 
-			var frame_width_half = menu_data[4] * 0.5
-			var frame_left = menu_data[5] - frame_width_half
-			var frame_right = menu_data[5] + frame_width_half
 			if frame_left <= cursor_gui_x and cursor_gui_x < frame_right {
 				menu_submenu_indicator_frame_draw = true
+				menu_submenu_indicator_frame_left = frame_left
+				menu_submenu_indicator_frame_right = frame_right
 
 				if !doubletap and cursor_left_pressed {
 					
 				}
 			}
+			submenu_x = frame_right
 		}
 	}
 
@@ -105,7 +129,7 @@ if !cursor_innered {
 			cursor_node_y = cursor_y div 16 * 16
 		}
 
-		if menu_mode == editor_menu.cursor
+		if menu_mode == editor_menu.cursor or menu_mode == editor_menu.setting
 			window_set_cursor(cr_default)
 		else if menu_mode == editor_menu.node_modify
 			window_set_cursor(cr_none)
@@ -152,7 +176,7 @@ if menu_frame_indicator_y <= cursor_gui_y or cursor_state != editor_cursor_state
 // 시점 이동 중이 아닐 때
 if !view_mover_dragging {
 	// 숫자 키로 메뉴 항목 선택
-	for (var i = editor_menu.cursor; i <= editor_menu.doodad; ++i) {
+	for (var i = editor_menu.cursor; i <= global.editor_menu_last; ++i) {
 		if keyboard_check_pressed(49 + i) {
 			// 마우스가 가리키는 항목의 설명을 우선한다.
 			var description_previous = menu_mode_description
@@ -213,6 +237,10 @@ if !view_mover_dragging {
 			if cursor_right_pressed {
 				editor_menu_select(editor_menu.cursor)
 			}
+		} else if menu_mode == editor_menu.instance { //
+			if cursor_right_pressed {
+				editor_menu_select(editor_menu.cursor)
+			}
 		}
 	}
 }
@@ -239,7 +267,7 @@ if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
 		y = min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])
 	}
 }
-view_pos_y_limit[0] = view_pos_vborder - menu_frame_height
+view_pos_y_limit[0] = view_pos_vborder - menu_frame_height - view_border
 y = max(view_pos_y_limit[0], y)
 
 // 휠로 시점 이동 시작
