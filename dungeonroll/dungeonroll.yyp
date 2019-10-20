@@ -33,6 +33,14 @@
     },
     "resources": [
         {
+            "Key": "082fa91b-f592-4b82-bf4d-83bfa4923b1a",
+            "Value": {
+                "id": "fc7693d1-f5bf-4e8f-a5d5-04a5610353eb",
+                "resourcePath": "sprites\\sTileDirt\\sTileDirt.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "08c3296d-e9e3-4804-a6d6-2fb6dd12990b",
             "Value": {
                 "id": "cfa72d6d-1d33-473d-a6df-cf462f1032c8",
