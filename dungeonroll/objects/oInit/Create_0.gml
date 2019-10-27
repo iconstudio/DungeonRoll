@@ -5,7 +5,9 @@ global.flag_is_browser = (os_browser == browser_not_a_browser)
 device_mouse_dbclick_enable(false)
 
 #region 화면
+surface_depth_disable(true)
 display_reset(8, true)
+display_set_timing_method(tm_countvsyncs)
 
 // 9 : 16
 var default_width = 496
@@ -25,11 +27,11 @@ var gui_height = display_get_gui_height()
 display_set_gui_maximize()
 
 if global.flag_is_mobile {
-	
+	display_set_sleep_margin(4)
 } else if global.flag_is_browser {
-	
+	display_set_sleep_margin(30)
 } else {
-	
+	display_set_sleep_margin(20)
 }
 
 global.resolutions_default = [default_width, default_height]

@@ -81,6 +81,14 @@
             }
         },
         {
+            "Key": "2031d621-cb78-4e62-a47f-509bba4ca826",
+            "Value": {
+                "id": "24731e98-9d0c-4ba8-a1bc-8e215539e37f",
+                "resourcePath": "shaders\\shaderDefault\\shaderDefault.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "212d309c-d8f6-41f5-a8d5-f8ccfa1094f3",
             "Value": {
                 "id": "9d0eaa5b-65e2-4646-991e-0b888450a753",
