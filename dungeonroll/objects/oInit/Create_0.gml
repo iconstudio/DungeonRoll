@@ -5,6 +5,11 @@ global.flag_is_browser = (os_browser == browser_not_a_browser)
 device_mouse_dbclick_enable(false)
 
 #region 화면
+application_surface_enable(true)
+//application_surface_draw_enable(false)
+global.application_texture = -1
+global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
+
 surface_depth_disable(true)
 display_reset(8, true)
 display_set_timing_method(tm_countvsyncs)

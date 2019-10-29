@@ -112,7 +112,8 @@ if !cursor_innered {
 				menu_submenu_indicator_frame_right = frame_right
 
 				if !doubletap and cursor_left_pressed {
-					
+					if script_exists(submenu_data[2])
+						script_execute(submenu_data[2])
 				}
 			}
 			submenu_x = frame_right
@@ -257,6 +258,7 @@ if menu_frame_indicator_x_time < menu_frame_indicator_x_period {
 	menu_frame_indicator_x_time = menu_frame_indicator_x_period
 }
 sidepanel_y = menu_frame_height + sidepanel_pos_margin
+sidepanel_item_y_begin = sidepanel_y + sidepanel_item_margin
 
 // 시점 이동
 if view_mover_dragging and device_mouse_check_button(0, mb_middle) {

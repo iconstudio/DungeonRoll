@@ -7,6 +7,8 @@ height = global.resolutions_gui[1]
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
 background = editor_background.grid_inverse
+global.editor_surface = -1
+editor_get_surface()
 
 #region attributes
 menu_number = 0
@@ -77,16 +79,24 @@ menu_frame_extend_period = seconds(0.07)
 menu_frame_height = menu_frame_height_min
 
 sidepanel_opened = false // 우측 객체 / 스프라이트 선택 창이 열려있는가
-sidepanel_item_size = 32
+sidepanel_item_size = 48
 sidepanel_item_margin = 6
-sidepanel_item_count_horizontal = 5
-sidepanel_item_count_vertical = 8
+sidepanel_item_inner_size = sidepanel_item_size + sidepanel_item_margin
+sidepanel_item_count_horizontal = 4
+sidepanel_item_count_vertical = 6
+sidepanel_item_count = sidepanel_item_count_horizontal * sidepanel_item_count_vertical
+/// sidepanel_items[sprite, index, speed]
+sidepanel_items = array_create(sidepanel_item_count, [noone, 0, 0])
 
 sidepanel_pos_margin = 10
-sidepanel_width = (sidepanel_item_size + sidepanel_item_margin) * (sidepanel_item_count_horizontal + 1)
-sidepanel_height = (sidepanel_item_size + sidepanel_item_margin) * (sidepanel_item_count_vertical + 1)
+sidepanel_y = menu_frame_height + sidepanel_pos_margin
+sidepanel_width = (sidepanel_item_size + sidepanel_item_margin) * sidepanel_item_count_horizontal + sidepanel_item_margin
+sidepanel_height = (sidepanel_item_size + sidepanel_item_margin) * sidepanel_item_count_vertical + sidepanel_item_margin
 sidepanel_x = gui_begin_x + width - sidepanel_pos_margin - sidepanel_width
+sidepanel_item_x_begin = sidepanel_x + sidepanel_item_margin
+sidepanel_item_y_begin = sidepanel_y + sidepanel_item_margin
 
+#region cursor
 cursor_state = editor_cursor_state.normal
 cursor_x = 0
 cursor_y = 0
@@ -94,6 +104,7 @@ cursor_gui_x = 0
 cursor_gui_y = 0
 cursor_node_x = 0
 cursor_node_y = 0
+#endregion
 
 node_modify_link_add = false
 node_selected = noone

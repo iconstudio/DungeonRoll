@@ -7,6 +7,7 @@ draw_set_halign(1)
 draw_set_valign(1)
 if menu_frame_submenu_show {
 	draw_set_color(menu_frame_color)
+	//editor_draw_blured(0, menu_item_frame_height, 0, menu_item_frame_height, width, menu_frame_height - menu_item_frame_height)
 	draw_rectangle(0, menu_item_frame_height, width, menu_frame_height, false)
 	
 	// 보조 메뉴 강조 사각형 그리기
@@ -71,5 +72,14 @@ draw_set_valign(2)
 draw_text(floor(width - 16), floor(height - 16), menu_mode_description)
 
 // 개체 선택 틀 그리기
-draw_set_color(menu_frame_color)
-draw_rectangle(sidepanel_x, sidepanel_y, sidepanel_x + sidepanel_width, sidepanel_y + sidepanel_height, false)
+if sidepanel_opened {
+	draw_set_color(menu_frame_color)
+	draw_rectangle(sidepanel_x, sidepanel_y, sidepanel_x + sidepanel_width, sidepanel_y + sidepanel_height, false)
+	draw_set_color(0)
+	for (var i = 0 ; i < sidepanel_item_count; ++i) {
+		var item_draw_x = sidepanel_item_x_begin + sidepanel_item_inner_size * (i - floor(i / sidepanel_item_count_horizontal) * sidepanel_item_count_horizontal)
+		var item_draw_y = sidepanel_item_y_begin + floor(i / sidepanel_item_count_horizontal) * sidepanel_item_inner_size
+
+		draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, false)
+}
+}
