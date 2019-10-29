@@ -1,7 +1,7 @@
 /// @description 지도 편집기 초기화
 doubletap = false
-gui_begin_x = global.resolutions_default[0] -  global.resolutions_gui[0] // 음수
-gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
+gui_begin_x = global.resolutions[0] -  global.resolutions_gui[0] // 음수
+//gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
 width = global.resolutions_gui[0]
 height = global.resolutions_gui[1]
 nodes_size_w = room_width div 16
@@ -79,12 +79,13 @@ menu_frame_height = menu_frame_height_min
 sidepanel_opened = false // 우측 객체 / 스프라이트 선택 창이 열려있는가
 sidepanel_item_size = 32
 sidepanel_item_margin = 6
-sidepanel_item_count_horizontal = 4
-sidepanel_item_count_vertical = 6
+sidepanel_item_count_horizontal = 5
+sidepanel_item_count_vertical = 8
 
 sidepanel_pos_margin = 10
-sidepanel_x = gui_begin_x + width - sidepanel_pos_margin
-sidepanel_y = menu_frame_height + sidepanel_pos_margin
+sidepanel_width = (sidepanel_item_size + sidepanel_item_margin) * (sidepanel_item_count_horizontal + 1)
+sidepanel_height = (sidepanel_item_size + sidepanel_item_margin) * (sidepanel_item_count_vertical + 1)
+sidepanel_x = gui_begin_x + width - sidepanel_pos_margin - sidepanel_width
 
 cursor_state = editor_cursor_state.normal
 cursor_x = 0

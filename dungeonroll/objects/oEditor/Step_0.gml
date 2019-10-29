@@ -256,6 +256,7 @@ if menu_frame_indicator_x_time < menu_frame_indicator_x_period {
 
 	menu_frame_indicator_x_time = menu_frame_indicator_x_period
 }
+sidepanel_y = menu_frame_height + sidepanel_pos_margin
 
 // 시점 이동
 if view_mover_dragging and device_mouse_check_button(0, mb_middle) {

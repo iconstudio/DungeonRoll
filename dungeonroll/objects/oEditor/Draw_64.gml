@@ -69,3 +69,7 @@ draw_set_color($ffffff)
 draw_set_halign(2)
 draw_set_valign(2)
 draw_text(floor(width - 16), floor(height - 16), menu_mode_description)
+
+// 개체 선택 틀 그리기
+draw_set_color(menu_frame_color)
+draw_rectangle(sidepanel_x, sidepanel_y, sidepanel_x + sidepanel_width, sidepanel_y + sidepanel_height, false)

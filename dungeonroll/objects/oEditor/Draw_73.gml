@@ -5,7 +5,7 @@ switch background {
 		gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color)
 		for (var i = 0; i < nodes_size_w; ++i) {
 			for (var j = 0; j < nodes_size_h; ++j)
-				draw_sprite(sEditorGrid, 0, i * 16, j * 16)
+				draw_sprite_ext(sEditorGrid, 0, i * 16, j * 16, 1, 1, 0, $ffffff, 0.5)
 		}
 		gpu_set_blendmode(bm_normal)
 	break
@@ -17,7 +17,7 @@ switch background {
 	case editor_background.grid_red:
 		for (var i = 0; i < nodes_size_w; ++i) {
 			for (var j = 0; j < nodes_size_h; ++j)
-				draw_sprite_ext(sEditorGrid, 0, i * 16, j * 16, 1, 1, 0, color_background, 1)
+				draw_sprite_ext(sEditorGrid, 0, i * 16, j * 16, 1, 1, 0, color_background, 0.5)
 		}
 	break
 
