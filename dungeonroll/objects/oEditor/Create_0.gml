@@ -78,15 +78,22 @@ menu_frame_extend_time = 0
 menu_frame_extend_period = seconds(0.07)
 menu_frame_height = menu_frame_height_min
 
-sidepanel_opened = false // 우측 객체 / 스프라이트 선택 창이 열려있는가
+sidepanel_opened = true // 우측 객체 / 스프라이트 선택 창이 열려있는가
 sidepanel_item_size = 48
 sidepanel_item_margin = 6
 sidepanel_item_inner_size = sidepanel_item_size + sidepanel_item_margin
 sidepanel_item_count_horizontal = 4
 sidepanel_item_count_vertical = 6
 sidepanel_item_count = sidepanel_item_count_horizontal * sidepanel_item_count_vertical
-/// sidepanel_items[sprite, index, speed]
-sidepanel_items = array_create(sidepanel_item_count, [noone, 0, 0])
+/// sidepanel_tiles[sprite, index, speed, name]
+sidepanel_tiles = array_create(sidepanel_item_count, [noone, 0, 0, ""])
+/// sidepanel_tiles[object, sprite, type, name]
+sidepanel_objects = array_create(sidepanel_item_count, [-1, noone, 0, ""])
+sidepanel_items = -1
+sidepanel_tile_index = 0
+sidepanel_object_index = 0
+editor_item_tile_select(0)
+editor_item_tile_add(sTileDirt, 0, 0, "흙 1")
 
 sidepanel_pos_margin = 10
 sidepanel_y = menu_frame_height + sidepanel_pos_margin
@@ -95,6 +102,12 @@ sidepanel_height = (sidepanel_item_size + sidepanel_item_margin) * sidepanel_ite
 sidepanel_x = gui_begin_x + width - sidepanel_pos_margin - sidepanel_width
 sidepanel_item_x_begin = sidepanel_x + sidepanel_item_margin
 sidepanel_item_y_begin = sidepanel_y + sidepanel_item_margin
+sidepanel_items_positions = []
+for (var i = 0 ; i < sidepanel_item_count; ++i) {
+	var item_draw_x = sidepanel_item_inner_size * (i - floor(i / sidepanel_item_count_horizontal) * sidepanel_item_count_horizontal)
+	var item_draw_y = floor(i / sidepanel_item_count_horizontal) * sidepanel_item_inner_size
+	sidepanel_items_positions[i] = [item_draw_x, item_draw_y]
+}
 
 #region cursor
 cursor_state = editor_cursor_state.normal

@@ -1,5 +1,5 @@
 /// @description 노드 커서, 격자 그리기
-var color_background = $ff
+var color_background = $80
 switch background {
 	case editor_background.grid_inverse:
 		gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color)
@@ -11,9 +11,9 @@ switch background {
 	break
 
 	case editor_background.grid_white:
-		color_background += $ffff00
+		color_background = $fafafa
 	case editor_background.grid_yellow:
-		color_background += $0080
+		color_background += $8000
 	case editor_background.grid_red:
 		for (var i = 0; i < nodes_size_w; ++i) {
 			for (var j = 0; j < nodes_size_h; ++j)

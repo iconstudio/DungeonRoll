@@ -73,13 +73,30 @@ draw_text(floor(width - 16), floor(height - 16), menu_mode_description)
 
 // 개체 선택 틀 그리기
 if sidepanel_opened {
+	var draw_items = is_array(sidepanel_items)
+
 	draw_set_color(menu_frame_color)
 	draw_rectangle(sidepanel_x, sidepanel_y, sidepanel_x + sidepanel_width, sidepanel_y + sidepanel_height, false)
 	draw_set_color(0)
 	for (var i = 0 ; i < sidepanel_item_count; ++i) {
-		var item_draw_x = sidepanel_item_x_begin + sidepanel_item_inner_size * (i - floor(i / sidepanel_item_count_horizontal) * sidepanel_item_count_horizontal)
-		var item_draw_y = sidepanel_item_y_begin + floor(i / sidepanel_item_count_horizontal) * sidepanel_item_inner_size
+		var item_positions = sidepanel_items_positions[i]
+		var item_draw_x = sidepanel_item_x_begin + item_positions[0]
+		var item_draw_y = sidepanel_item_y_begin + item_positions[1]
 
 		draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, false)
-}
+
+		if draw_items {
+			if menu_mode == editor_menu.brush { // 타일 목록 그리기
+				var item = sidepanel_tiles[i]
+				if item[0] != noone {
+					draw_sprite(item[0], item[1], item_draw_x, item_draw_y)
+				}
+			} else if menu_mode == editor_menu.instance { // 개체 목록 그리기
+				var item = sidepanel_objects[i]
+				if item[0] != -1 {
+					draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
+				}
+			} 
+		}
+	}
 }

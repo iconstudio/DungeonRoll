@@ -1,8 +1,8 @@
 {
-    "id": "5e119ef9-bcce-4108-b8e9-9fbca029d8ec",
+    "id": "58fca663-d271-4d56-b0fc-b15970e8f863",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "editor_menu_select",
+    "name": "editor_item_tile_select",
     "IsCompatibility": false,
     "IsDnD": false
 }
