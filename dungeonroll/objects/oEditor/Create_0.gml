@@ -6,7 +6,8 @@ width = global.resolutions_gui[0]
 height = global.resolutions_gui[1]
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
-background = editor_background.grid_inverse
+background = editor_background.grid_yellow
+grid_color = c_yellow
 global.editor_surface = -1
 editor_get_surface()
 
@@ -87,12 +88,15 @@ sidepanel_item_count_vertical = 6
 sidepanel_item_count = sidepanel_item_count_horizontal * sidepanel_item_count_vertical
 /// sidepanel_tiles[sprite, index, speed, name]
 sidepanel_tiles = array_create(sidepanel_item_count, [noone, 0, 0, ""])
-/// sidepanel_tiles[object, sprite, type, name]
+/// sidepanel_doodads[object, sprite, type, name]
+sidepanel_doodads = array_create(sidepanel_item_count, [-1, noone, 0, ""])
+/// sidepanel_objects[object, sprite, type, name]
 sidepanel_objects = array_create(sidepanel_item_count, [-1, noone, 0, ""])
 sidepanel_items = -1
 sidepanel_tile_index = 0
 sidepanel_object_index = 0
 editor_item_tile_select(0)
+editor_item_object_select(0)
 editor_item_tile_add(sTileDirt, 0, 0, "흙 1")
 
 sidepanel_pos_margin = 10

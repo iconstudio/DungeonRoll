@@ -96,6 +96,9 @@ if !cursor_innered {
 
 				if !doubletap and cursor_left_pressed {
 					editor_menu_select(i)
+
+					if script_exists(menu_data[3])
+						script_execute(menu_data[3])
 				}
 			}
 		}
@@ -117,6 +120,32 @@ if !cursor_innered {
 				}
 			}
 			submenu_x = frame_right
+		}
+	} else {
+		// 우측 보조 창 선택
+		var is_brush = menu_mode == editor_menu.brush
+		var is_instance = menu_mode == editor_menu.instance
+		var item_draw_x_begin = sidepanel_item_x_begin + sidepanel_item_margin
+		var item_draw_y_begin = sidepanel_item_y_begin + sidepanel_item_margin
+
+		if is_brush or is_instance and (point_in_rectangle(cursor_gui_x, cursor_gui_y, item_draw_x_begin, item_draw_y_begin, item_draw_x_begin + sidepanel_width, item_draw_y_begin + sidepanel_height)) {
+			cursor_state = editor_cursor_state.on_ui
+
+			if cursor_left_pressed {
+				for (var i = 0 ; i < sidepanel_item_count; ++i) {
+					if is_brush { // 타일 선택하기
+						var item = sidepanel_tiles[i]
+						if item[0] != noone {
+							editor_item_tile_select(i)
+						}
+					} else if is_instance { // 개체 선택하기
+						var item = sidepanel_objects[i]
+						if item[0] != -1 {
+							editor_item_object_select(i)
+						}
+					} 
+				}
+			}
 		}
 	}
 

@@ -9,7 +9,7 @@ if menu_frame_submenu_show {
 	draw_set_color(menu_frame_color)
 	//editor_draw_blured(0, menu_item_frame_height, 0, menu_item_frame_height, width, menu_frame_height - menu_item_frame_height)
 	draw_rectangle(0, menu_item_frame_height, width, menu_frame_height, false)
-	
+
 	// 보조 메뉴 강조 사각형 그리기
 	if 0 < menu_submenu_indicator_frame_alpha {
 		draw_set_alpha(menu_submenu_indicator_frame_alpha)
@@ -86,17 +86,39 @@ if sidepanel_opened {
 		draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, false)
 
 		if draw_items {
-			if menu_mode == editor_menu.brush { // 타일 목록 그리기
-				var item = sidepanel_tiles[i]
-				if item[0] != noone {
-					draw_sprite(item[0], item[1], item_draw_x, item_draw_y)
-				}
-			} else if menu_mode == editor_menu.instance { // 개체 목록 그리기
-				var item = sidepanel_objects[i]
-				if item[0] != -1 {
-					draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
-				}
-			} 
+			var draw_focusrect = false
+			switch menu_mode {
+				case editor_menu.brush: // 타일 목록 그리기
+					var item = sidepanel_tiles[i]
+					if item[0] != noone {
+						draw_sprite(item[0], item[1], item_draw_x, item_draw_y)
+					}
+					draw_focusrect = i == sidepanel_tile_index
+				break
+
+				case editor_menu.doodad: // 장식물 목록 그리기
+					var item = sidepanel_doodads[i]
+					if item[0] != -1 {
+						draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
+					}
+					draw_focusrect = i == sidepanel_object_index
+				break
+
+				case editor_menu.instance: // 개체 목록 그리기
+					var item = sidepanel_objects[i]
+					if item[0] != -1 {
+						draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
+					}
+					draw_focusrect = i == sidepanel_object_index
+				break
+			}
+
+			if draw_focusrect {
+				draw_set_color($ff)
+				draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, true)
+				draw_rectangle(item_draw_x + 1, item_draw_y + 1, item_draw_x + sidepanel_item_size - 1, item_draw_y + sidepanel_item_size - 1, true)
+				draw_set_color(0)
+			}
 		}
 	}
 }

@@ -11,7 +11,7 @@ switch background {
 	break
 
 	case editor_background.grid_white:
-		color_background = $fafafa
+		color_background = $fa8afa
 	case editor_background.grid_yellow:
 		color_background += $8000
 	case editor_background.grid_red:

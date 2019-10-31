@@ -209,6 +209,14 @@
             }
         },
         {
+            "Key": "51227e2f-8d76-4863-bc95-54b4a9ff0ff4",
+            "Value": {
+                "id": "0b4a7716-a7fe-41e6-93b7-6c67410f38b6",
+                "resourcePath": "scripts\\editor_item_object_select\\editor_item_object_select.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "58fca663-d271-4d56-b0fc-b15970e8f863",
             "Value": {
                 "id": "7a862228-71ec-4deb-945c-639e2b3581ba",
@@ -305,6 +313,14 @@
             }
         },
         {
+            "Key": "8427047f-9ef8-4c77-89f3-9c20623d07b6",
+            "Value": {
+                "id": "a4f88869-916a-4057-9fd3-baeab3104e15",
+                "resourcePath": "options\\ios\\options_ios.yy",
+                "resourceType": "GMiOSOptions"
+            }
+        },
+        {
             "Key": "869bce05-087c-4c87-9a61-09368b0ee217",
             "Value": {
                 "id": "eec4ab8c-0825-4277-a0ec-f68350f47d97",
@@ -318,6 +334,14 @@
                 "id": "9098260f-6159-4f71-be35-cb5892a1e222",
                 "resourcePath": "views\\9291d654-9dd8-4d45-8363-b897720c88fb.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "93566aad-c3b3-48a9-8fa7-9c5ee19f74ac",
+            "Value": {
+                "id": "a571278d-7234-410b-9f6a-a47d453977b9",
+                "resourcePath": "options\\tvos\\options_tvos.yy",
+                "resourceType": "GMtvOSOptions"
             }
         },
         {
@@ -342,6 +366,14 @@
                 "id": "efaff36d-9a59-4ac8-a7c5-6627b8bed62a",
                 "resourcePath": "fonts\\fontEditor\\fontEditor.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "a128950b-5063-4876-b4a6-b99dbd2ea6d1",
+            "Value": {
+                "id": "9702badb-78a9-4a97-8489-cc157fe420b4",
+                "resourcePath": "options\\amazonfire\\options_amazonfire.yy",
+                "resourceType": "GMAmazonFireOptions"
             }
         },
         {
@@ -422,6 +454,14 @@
                 "id": "9a356ec4-738d-46f0-8525-3f210a5f240d",
                 "resourcePath": "sprites\\sTileExample\\sTileExample.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "b6caf1b5-de28-4553-bd80-0c707dc3b759",
+            "Value": {
+                "id": "3b6f73c2-fbe8-4b90-af16-463ab2c021df",
+                "resourcePath": "scripts\\editor_callback_menu_object\\editor_callback_menu_object.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -529,6 +569,14 @@
             }
         },
         {
+            "Key": "d5b97ff0-2661-4fb1-815d-b53b446efdf5",
+            "Value": {
+                "id": "7c5524bd-13ae-4f8d-a594-8f1e2e946449",
+                "resourcePath": "scripts\\editor_callback_menu_tile\\editor_callback_menu_tile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d5de092b-e678-4982-bfde-259456a1cbf5",
             "Value": {
                 "id": "49900656-e66c-4712-86de-73c901269f78",
@@ -550,6 +598,14 @@
                 "id": "f22d8e10-4488-42a9-ba8f-c3ba68978034",
                 "resourcePath": "scripts\\editor_draw_blured\\editor_draw_blured.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e42bf5cc-3f46-4d67-a6d0-a4885a11ac3f",
+            "Value": {
+                "id": "7201b765-3bc2-4c43-89bc-ff57fb186e5a",
+                "resourcePath": "options\\android\\options_android.yy",
+                "resourceType": "GMAndroidOptions"
             }
         },
         {
@@ -606,9 +662,12 @@
         "c196703f-1ed7-4e0d-85de-db283fcdbc4d",
         "5e119ef9-bcce-4108-b8e9-9fbca029d8ec",
         "58fca663-d271-4d56-b0fc-b15970e8f863",
+        "51227e2f-8d76-4863-bc95-54b4a9ff0ff4",
         "f64b373a-3c87-4e9d-b002-06d6f0ecd421",
         "b9aeae02-1e78-492c-94ed-d95d9ebfa301",
         "e1a565cb-7e1f-4378-b1f9-ea29faaf4b54",
+        "d5b97ff0-2661-4fb1-815d-b53b446efdf5",
+        "b6caf1b5-de28-4553-bd80-0c707dc3b759",
         "ce4aca60-e504-4245-aefe-1fe73ae5d1e9",
         "869bce05-087c-4c87-9a61-09368b0ee217",
         "15888e26-6ad7-4b6e-85c9-872041edba92",
