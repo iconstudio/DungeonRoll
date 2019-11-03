@@ -11,6 +11,8 @@ if argument0 != menu_mode {
 	menu_frame_indicator_x_time = 0
 
 	menu_mode_description = menu_data[2]
+	if script_exists(menu_data[3])
+		script_execute(menu_data[3])
 
 	menu_submenu_indicator_frame_time = 0
 }

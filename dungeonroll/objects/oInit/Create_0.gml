@@ -6,7 +6,7 @@ device_mouse_dbclick_enable(false)
 
 #region 화면
 application_surface_enable(true)
-//application_surface_draw_enable(false)
+application_surface_draw_enable(false)
 global.application_texture = -1
 global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
 
@@ -14,25 +14,22 @@ surface_depth_disable(true)
 display_reset(8, true)
 display_set_timing_method(tm_countvsyncs)
 
-// 9 : 16
-var default_width = 496
-var default_height = 912
+// 16 : 9
+var default_width = 1600
+var default_height = 900
 
-window_set_fullscreen(true)
 var display_width = display_get_width()
 var display_height = display_get_height()
-
-window_set_size(display_width, display_height)
 var window_width = window_get_width()
 var window_height = window_get_height()
-
-display_set_gui_size(display_width, display_height)
 var gui_width = display_get_gui_width()
 var gui_height = display_get_gui_height()
 display_set_gui_maximize()
 
 if global.flag_is_mobile {
 	display_set_sleep_margin(4)
+	window_set_fullscreen(true)
+	os_powersave_enable(false)
 } else if global.flag_is_browser {
 	display_set_sleep_margin(30)
 } else {

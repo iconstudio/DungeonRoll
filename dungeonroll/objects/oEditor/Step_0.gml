@@ -1,11 +1,13 @@
 /// @description 입력 및 갱신
-cursor_x = device_mouse_x(0)
-cursor_y = device_mouse_y(0)
+cursor_x = device_mouse_x(0) - map_x
+cursor_y = device_mouse_y(0) - map_y
 cursor_gui_x = device_mouse_x_to_gui(0)
 cursor_gui_y = device_mouse_y_to_gui(0)
+var cursor_left_check = device_mouse_check_button(0, mb_left)
 var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
 var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
-var cursor_innered = point_in_rectangle(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
+var cursor_editor_innered = point_in_rectangle_fixed(cursor_x, cursor_y, 0, 0, map_real_width, map_real_height)
+var cursor_innered = point_in_rectangle_fixed(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
 // 보조 메뉴 표시줄 갱신
 var menu_frame_extend_ratio = menu_frame_extend_time / menu_frame_extend_period
@@ -50,7 +52,7 @@ menu_submenu_indicator_frame_draw = false
 
 if !cursor_innered {
 	cursor_state = editor_cursor_state.on_outside
-} else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height_max {
+} else if !view_mover_dragging and 0 <= cursor_gui_y and cursor_gui_y < menu_frame_height {
 	cursor_state = editor_cursor_state.on_ui
 
 	// 마우스로 주 메뉴 항목 선택
@@ -96,9 +98,6 @@ if !cursor_innered {
 
 				if !doubletap and cursor_left_pressed {
 					editor_menu_select(i)
-
-					if script_exists(menu_data[3])
-						script_execute(menu_data[3])
 				}
 			}
 		}
@@ -121,32 +120,6 @@ if !cursor_innered {
 			}
 			submenu_x = frame_right
 		}
-	} else {
-		// 우측 보조 창 선택
-		var is_brush = menu_mode == editor_menu.brush
-		var is_instance = menu_mode == editor_menu.instance
-		var item_draw_x_begin = sidepanel_item_x_begin + sidepanel_item_margin
-		var item_draw_y_begin = sidepanel_item_y_begin + sidepanel_item_margin
-
-		if is_brush or is_instance and (point_in_rectangle(cursor_gui_x, cursor_gui_y, item_draw_x_begin, item_draw_y_begin, item_draw_x_begin + sidepanel_width, item_draw_y_begin + sidepanel_height)) {
-			cursor_state = editor_cursor_state.on_ui
-
-			if cursor_left_pressed {
-				for (var i = 0 ; i < sidepanel_item_count; ++i) {
-					if is_brush { // 타일 선택하기
-						var item = sidepanel_tiles[i]
-						if item[0] != noone {
-							editor_item_tile_select(i)
-						}
-					} else if is_instance { // 개체 선택하기
-						var item = sidepanel_objects[i]
-						if item[0] != -1 {
-							editor_item_object_select(i)
-						}
-					} 
-				}
-			}
-		}
 	}
 
 	window_set_cursor(cr_default)
@@ -155,18 +128,63 @@ if !cursor_innered {
 
 	if !view_mover_dragging {
 		if menu_mode == editor_menu.node_modify {
-			cursor_node_x = cursor_x div 16 * 16
-			cursor_node_y = cursor_y div 16 * 16
+			cursor_node_x = (cursor_x) * map_scale_reverse div 16 * 16
+			cursor_node_y = (cursor_y) * map_scale_reverse div 16 * 16
 		}
 
-		if menu_mode == editor_menu.cursor or menu_mode == editor_menu.setting
-			window_set_cursor(cr_default)
-		else if menu_mode == editor_menu.node_modify
-			window_set_cursor(cr_none)
-		else
-			window_set_cursor(cr_handpoint)
-	} else {
-		window_set_cursor(cr_drag)
+		window_set_cursor(cr_default)
+		if menu_mode == editor_menu.cursor or menu_mode == editor_menu.setting {
+
+		} else if menu_mode == editor_menu.node_modify {
+			if cursor_editor_innered
+				window_set_cursor(cr_none)
+		} else {
+			// 우측 보조 창 선택
+			if sidepanel_opened {
+				var is_brush = menu_mode == editor_menu.brush
+				var is_doodad = menu_mode == editor_menu.doodad
+				var is_instance = menu_mode == editor_menu.instance
+				var item_x_begin = sidepanel_x
+				var item_y_begin = sidepanel_y
+
+				if (is_brush or is_doodad or is_instance)
+				and point_in_rectangle_fixed(cursor_gui_x, cursor_gui_y, item_x_begin, item_y_begin, item_x_begin + sidepanel_width, item_y_begin + sidepanel_height) {
+					cursor_state = editor_cursor_state.on_ui
+
+					for (var i = 0 ; i < sidepanel_item_count; ++i) {
+						var item_positions = sidepanel_items_positions[i]
+						var item_x = sidepanel_item_x_begin + item_positions[0]
+						var item_y = sidepanel_item_y_begin + item_positions[1]
+
+						if point_in_rectangle_fixed(cursor_gui_x, cursor_gui_y, item_x, item_y, item_x + sidepanel_item_size, item_y + sidepanel_item_size) {
+							window_set_cursor(cr_handpoint)
+
+							if cursor_left_pressed {
+								if is_brush { // 타일 선택하기
+									var item = sidepanel_tiles[i]
+									if item[0] != -1
+										editor_item_tile_select(i)
+									else
+										break
+								} else if is_doodad { // 장식물 선택하기
+									var item = sidepanel_doodads[i]
+									if item[0] != -1
+										editor_item_doodad_select(i)
+									 else
+										break
+								} else if is_instance { // 개체 선택하기
+									var item = sidepanel_objects[i]
+									if item[0] != -1
+										editor_item_object_select(i)
+									 else
+										break
+								}
+							} // IF (cursor_left_pressed) 최적화를 포기하는 대신 시각적 피드백을 줌
+						} // IF (point_in_rectangle_fixed)
+					} // FOR (sidepanel_item_count)
+				}
+			} // IF (sidepanel_opened)
+		} // ELSE
 	}
 }
 
@@ -215,7 +233,9 @@ if !view_mover_dragging {
 		}
 	}
 
-	if cursor_state == editor_cursor_state.normal and point_in_rectangle(cursor_node_x, cursor_node_y, 0, 0, room_width, room_height) {
+	if cursor_state == editor_cursor_state.normal
+	and cursor_editor_innered
+	and point_in_rectangle_fixed(cursor_node_x, cursor_node_y, 0, 0, room_width, room_height) {
 		if menu_mode == editor_menu.node_modify { //
 			node_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorNode)
 
@@ -289,34 +309,52 @@ if menu_frame_indicator_x_time < menu_frame_indicator_x_period {
 sidepanel_y = menu_frame_height + sidepanel_pos_margin
 sidepanel_item_y_begin = sidepanel_y + sidepanel_item_margin
 
+/*
+view_pos_y_limit[0] = view_pos_vborder - view_border - menu_frame_height
+
 // 시점 이동
-if view_mover_dragging and device_mouse_check_button(0, mb_middle) {
+var view_xview_new = camera_get_view_x(view_camera)
+var view_yview_new = camera_get_view_y(view_camera)
+
+// 휠로 시점 이동 도중
+if view_mover_dragging and device_mouse_check_button(0, view_mover_key) {
 	if view_mover_x_begin != -1 and view_mover_y_begin != -1 {
-		//camera_set_view_pos(view_camera
-		//, max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
-		//, max(view_pos_y_limit[0], min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])))
-		x = max(view_pos_x_limit[0], min(view_pos_x_begin - (cursor_x - view_mover_x_begin), view_pos_x_limit[1]))
-		y = min(view_pos_y_begin - (cursor_y - view_mover_y_begin), view_pos_y_limit[1])
+		view_xview_target = view_pos_x_begin - (cursor_x - view_mover_x_begin)
+		view_yview_target = view_pos_y_begin - (cursor_y - view_mover_y_begin)
 	}
 }
-view_pos_y_limit[0] = view_pos_vborder - menu_frame_height - view_border
-y = max(view_pos_y_limit[0], y)
 
 // 휠로 시점 이동 시작
-if cursor_state == editor_cursor_state.normal and !view_mover_dragging and device_mouse_check_button_pressed(0, mb_middle) {
-	view_mover_dragging = true
+if cursor_state == editor_cursor_state.normal and !view_mover_dragging {
+	var touch_pressed = (view_moveable_with_touch and cursor_left_pressed)
+	var middle_pressed = device_mouse_check_button_pressed(0, mb_middle)
+	if touch_pressed or middle_pressed {
+		if middle_pressed
+			view_mover_key = mb_middle
+		else if touch_pressed
+			view_mover_key = mb_left
+		view_mover_dragging = true
 
-	//view_pos_x_begin = camera_get_view_x(view_camera)
-	//view_pos_y_begin = camera_get_view_y(view_camera)
-	view_pos_x_begin = x
-	view_pos_y_begin = y
-	view_mover_x_begin = cursor_x
-	view_mover_y_begin = cursor_y
+		view_pos_x_begin = camera_get_view_x(view_camera)
+		view_pos_y_begin = camera_get_view_y(view_camera)
+		view_mover_x_begin = cursor_x
+		view_mover_y_begin = cursor_y
+	}
 }
 
-if device_mouse_check_button_released(0, mb_middle) {
+if device_mouse_check_button_released(0, view_mover_key) {
 	view_mover_dragging = false
 
 	view_mover_x_begin = -1
 	view_mover_y_begin = -1
+}
+
+// 실질적 시점 이동
+if view_xview_new != view_xview_target or view_yview_new != view_yview_target {
+	view_xview_adjusted = view_xview_new + (view_xview_target - view_xview_new) * 0.3
+	view_yview_adjusted = view_yview_new + (view_yview_target - view_yview_new) * 0.3
+
+	camera_set_view_pos(view_camera
+	, max(view_pos_x_limit[0], min(view_xview_adjusted, view_pos_x_limit[1]))
+	, max(view_pos_y_limit[0], min(view_yview_adjusted, view_pos_y_limit[1])))
 }

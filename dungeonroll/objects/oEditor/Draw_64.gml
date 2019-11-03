@@ -24,7 +24,7 @@ if menu_frame_submenu_show {
 		var submenu_content_draw_x = submenu_data[5]
 
 		if sprite_exists(submenu_data[1]) {
-			draw_sprite(submenu_data[1], 0, submenu_content_draw_x, menu_frame_height - menu_item_frame_height)
+			draw_sprite(submenu_data[1], 0, submenu_content_draw_x, menu_frame_height - menu_submenu_icon_y)
 			submenu_content_draw_x += submenu_data[3] + menu_submenu_icon_width_addition
 		}
 		if submenu_data[0] != "" {
@@ -71,49 +71,62 @@ draw_set_halign(2)
 draw_set_valign(2)
 draw_text(floor(width - 16), floor(height - 16), menu_mode_description)
 
+// 좌표 표기하기
+draw_set_halign(0)
+draw_text(floor(16), floor(height - 16), "(" + string(floor(cursor_x * map_scale_reverse)) + ", " + string(floor(cursor_y * map_scale_reverse)) + ")")
+
 // 개체 선택 틀 그리기
 if sidepanel_opened {
-	var draw_items = is_array(sidepanel_items)
+	var draw_items_ok = is_array(sidepanel_items)
 
+	draw_set_alpha(0.8)
 	draw_set_color(menu_frame_color)
 	draw_rectangle(sidepanel_x, sidepanel_y, sidepanel_x + sidepanel_width, sidepanel_y + sidepanel_height, false)
+
+	draw_set_alpha(1)
 	draw_set_color(0)
-	for (var i = 0 ; i < sidepanel_item_count; ++i) {
+	for (var i = 0; i < sidepanel_item_count; ++i) {
 		var item_positions = sidepanel_items_positions[i]
 		var item_draw_x = sidepanel_item_x_begin + item_positions[0]
 		var item_draw_y = sidepanel_item_y_begin + item_positions[1]
 
 		draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, false)
 
-		if draw_items {
-			var draw_focusrect = false
+		if draw_items_ok {
+			var draw_item_focused = false, draw_item = -1, draw_item_sprite = -1, draw_item_index = 0, draw_item_x, draw_item_y
 			switch menu_mode {
 				case editor_menu.brush: // 타일 목록 그리기
-					var item = sidepanel_tiles[i]
-					if item[0] != noone {
-						draw_sprite(item[0], item[1], item_draw_x, item_draw_y)
-					}
-					draw_focusrect = i == sidepanel_tile_index
+					draw_item = sidepanel_tiles[i]
+					draw_item_sprite = draw_item[0]
+					draw_item_index = draw_item[1]
+					draw_item_x = item_draw_x
+					draw_item_y = item_draw_y
+					draw_item_focused = i == sidepanel_tile_index
 				break
 
 				case editor_menu.doodad: // 장식물 목록 그리기
-					var item = sidepanel_doodads[i]
-					if item[0] != -1 {
-						draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
-					}
-					draw_focusrect = i == sidepanel_object_index
+					draw_item = sidepanel_doodads[i]
+					draw_item_sprite = draw_item[0]
+					draw_item_index = 0
+					draw_item_x = item_draw_x + sidepanel_item_size * 0.5
+					draw_item_y = item_draw_y + sidepanel_item_size * 0.5
+					draw_item_focused = i == sidepanel_doodad_index
 				break
 
 				case editor_menu.instance: // 개체 목록 그리기
-					var item = sidepanel_objects[i]
-					if item[0] != -1 {
-						draw_sprite(item[1], 0, item_draw_x + sidepanel_item_size * 0.5, item_draw_y + sidepanel_item_size * 0.5)
-					}
-					draw_focusrect = i == sidepanel_object_index
+					draw_item = sidepanel_objects[i]
+					draw_item_sprite = draw_item[0]
+					draw_item_index = 0
+					draw_item_x = item_draw_x + sidepanel_item_size * 0.5
+					draw_item_y = item_draw_y + sidepanel_item_size * 0.5
+					draw_item_focused = i == sidepanel_object_index
 				break
 			}
 
-			if draw_focusrect {
+			if draw_item_sprite != -1
+				draw_sprite_stretched(draw_item_sprite, draw_item_index, draw_item_x, draw_item_y, sidepanel_item_size + 1, sidepanel_item_size + 1)
+
+			if draw_item_focused {
 				draw_set_color($ff)
 				draw_rectangle(item_draw_x, item_draw_y, item_draw_x + sidepanel_item_size, item_draw_y + sidepanel_item_size, true)
 				draw_rectangle(item_draw_x + 1, item_draw_y + 1, item_draw_x + sidepanel_item_size - 1, item_draw_y + sidepanel_item_size - 1, true)

@@ -4,6 +4,6 @@
 /// @param img_index { integer }
 /// @param img_speed { real }
 /// @param name { string }
-sidepanel_tiles[sidepanel_tile_index] = [argument0, argument1, argument2, argument3]
+sidepanel_tiles[sidepanel_tiles_count] = [argument0, argument1, argument2, argument3]
 
-return sidepanel_tile_index++
+return sidepanel_tiles_count++
