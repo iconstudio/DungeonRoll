@@ -95,8 +95,8 @@ if sidepanel_opened {
 		if draw_items_ok {
 			var draw_item_focused = false, draw_item = -1, draw_item_sprite = -1, draw_item_index = 0, draw_item_x, draw_item_y
 			switch menu_mode {
-				case editor_menu.brush: // 타일 목록 그리기
-					draw_item = sidepanel_tiles[i]
+				case editor_menu.tile: // 타일 목록 그리기
+					draw_item = editor_item_tile_get(i)
 					draw_item_sprite = draw_item[0]
 					draw_item_index = draw_item[1]
 					draw_item_x = item_draw_x
@@ -105,21 +105,19 @@ if sidepanel_opened {
 				break
 
 				case editor_menu.doodad: // 장식물 목록 그리기
-					draw_item = sidepanel_doodads[i]
-					draw_item_sprite = draw_item[0]
+					draw_item_sprite = editor_item_doodad_get_sprite(i)
 					draw_item_index = 0
 					draw_item_x = item_draw_x + sidepanel_item_size * 0.5
 					draw_item_y = item_draw_y + sidepanel_item_size * 0.5
 					draw_item_focused = i == sidepanel_doodad_index
 				break
 
-				case editor_menu.instance: // 개체 목록 그리기
-					draw_item = sidepanel_objects[i]
-					draw_item_sprite = draw_item[0]
+				case editor_menu.entity: // 개체 목록 그리기
+					draw_item_sprite = editor_item_object_get_sprite(i)
 					draw_item_index = 0
 					draw_item_x = item_draw_x + sidepanel_item_size * 0.5
 					draw_item_y = item_draw_y + sidepanel_item_size * 0.5
-					draw_item_focused = i == sidepanel_object_index
+					draw_item_focused = i == sidepanel_entity_index
 				break
 			}
 

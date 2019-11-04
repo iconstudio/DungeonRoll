@@ -10,8 +10,12 @@ map_width = room_width * map_scale
 map_height = room_height * map_scale
 map_real_width = room_width * map_scale
 map_real_height = room_height * map_scale
-map_x = floor((global.resolutions[0] - map_width) * 0.5)
-map_y = floor((global.resolutions[1] - map_height) * 0.5)
+map_x_origin = floor((global.resolutions[0] - map_width) * 0.5)
+map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
+map_x = map_x_origin
+map_y = map_y_origin
+cursor_sprite = -1
+
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
 background = editor_background.grid_yellow
@@ -100,9 +104,9 @@ sidepanel_tiles_count = 0
 /// sidepanel_doodads[sprite, object, type, name]
 sidepanel_doodads = array_create(sidepanel_item_count, [-1, -1, 0, ""])
 sidepanel_doodads_count = 0
-/// sidepanel_objects[sprite, object, type, name]
-sidepanel_objects = array_create(sidepanel_item_count, [-1, -1, 0, ""])
-sidepanel_objects_count = 0
+/// sidepanel_entities[sprite, object, type, name]
+sidepanel_entities = array_create(sidepanel_item_count, [-1, -1, 0, ""])
+sidepanel_entities_count = 0
 editor_item_tile_select(0)
 editor_item_doodad_select(0)
 editor_item_object_select(0)
@@ -149,7 +153,8 @@ view_mover_dragging = false
 view_moveable_with_touch = (global.flag_is_mobile)
 view_mover_key = mb_middle
 
-view_border = 0
+view_border = 32
+/* legacy
 view_pos_hborder = camera_get_view_border_x(view_camera)
 view_pos_vborder = camera_get_view_border_y(view_camera)
 view_pos_x_limit = [view_pos_hborder - view_border, room_width - view_pos_hborder + view_border]
@@ -157,10 +162,15 @@ view_pos_y_limit = [view_pos_vborder - view_border - menu_frame_height, room_hei
 camera_set_view_pos(view_camera, 0, 0)
 view_xview_target = camera_get_view_x(view_camera)
 view_yview_target = camera_get_view_y(view_camera)
+*/
+view_limit = [map_x_origin - view_border, map_y_origin - view_border, map_x_origin + view_border, map_y_origin + view_border]
+view_xview_target = map_x_origin
+view_yview_target = map_y_origin
 view_xview_adjusted = view_xview_target
 view_yview_adjusted = view_yview_target
 view_pos_x_begin = 0
 view_pos_y_begin = 0
+view_pos_speed = 70 / seconds(1)
 view_mover_x_begin = -1
 view_mover_y_begin = -1
 #endregion

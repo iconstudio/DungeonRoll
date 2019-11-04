@@ -55,9 +55,9 @@ if global.flag_is_mobile {
 enum editor_menu {
 	cursor = 0,
 	node_modify,
-	brush,
+	tile,
 	doodad,
-	instance,
+	entity,
 	setting
 }
 global.editor_menu_last = editor_menu.setting
