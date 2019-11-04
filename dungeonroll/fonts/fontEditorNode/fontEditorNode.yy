@@ -9,17 +9,17 @@
     "bold": false,
     "charset": 0,
     "first": 0,
-    "fontName": "Gulim",
+    "fontName": "Batang",
     "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
             "Value": {
-                "id": "b930e304-9052-44a1-b988-4ed248dc4355",
+                "id": "145b6bfe-6759-4dde-a6e5-ee7a62392b23",
                 "modelName": "GMGlyph",
                 "mvc": "1.0",
                 "character": 32,
-                "h": 18,
+                "h": 20,
                 "offset": 0,
                 "shift": 5,
                 "w": 5,
@@ -30,14 +30,14 @@
         {
             "Key": 9647,
             "Value": {
-                "id": "2be8504f-c2ac-41eb-9086-2de628f0d823",
+                "id": "cb4b2d92-8eaf-4917-bbe8-3066dda7c656",
                 "modelName": "GMGlyph",
                 "mvc": "1.0",
                 "character": 9647,
-                "h": 18,
+                "h": 20,
                 "offset": 3,
-                "shift": 16,
-                "w": 10,
+                "shift": 17,
+                "w": 11,
                 "x": 9,
                 "y": 2
             }
@@ -45,46 +45,46 @@
         {
             "Key": 45149,
             "Value": {
-                "id": "3d6b2227-4d56-4862-a78a-ad87300f10b3",
+                "id": "20a5a124-0804-420f-82c3-3df1f7aa80f7",
                 "modelName": "GMGlyph",
                 "mvc": "1.0",
                 "character": 45149,
-                "h": 18,
+                "h": 20,
                 "offset": 0,
                 "shift": 16,
                 "w": 16,
-                "x": 21,
+                "x": 22,
                 "y": 2
             }
         },
         {
             "Key": 49884,
             "Value": {
-                "id": "33478b3c-b90e-4a15-998c-313b2b4e5a7c",
+                "id": "5ba4ebeb-32f3-4739-9725-adf6a85bc6c2",
                 "modelName": "GMGlyph",
                 "mvc": "1.0",
                 "character": 49884,
-                "h": 18,
+                "h": 20,
                 "offset": 0,
                 "shift": 16,
                 "w": 16,
-                "x": 39,
+                "x": 40,
                 "y": 2
             }
         },
         {
             "Key": 51089,
             "Value": {
-                "id": "a9c1744d-68e0-4141-bb06-c0e6bec0ce37",
+                "id": "ab515f1d-b974-4855-ad48-8979afeb7a62",
                 "modelName": "GMGlyph",
                 "mvc": "1.0",
                 "character": 51089,
-                "h": 18,
+                "h": 20,
                 "offset": 0,
                 "shift": 16,
                 "w": 16,
                 "x": 2,
-                "y": 22
+                "y": 24
             }
         }
     ],
@@ -117,7 +117,7 @@
         }
     ],
     "sampleText": "abcdef ABCDEF\\u000a0123456789 .,<>\"'&!?\\u000athe quick brown fox jumps over the lazy dog\\u000aTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG\\u000aDefault character: ▯ (9647)",
-    "size": 12,
+    "size": 13,
     "styleName": "Regular",
     "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f"
 }

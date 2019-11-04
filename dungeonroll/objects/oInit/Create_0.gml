@@ -18,14 +18,6 @@ display_set_timing_method(tm_countvsyncs)
 var default_width = 1600
 var default_height = 900
 
-var display_width = display_get_width()
-var display_height = display_get_height()
-var window_width = window_get_width()
-var window_height = window_get_height()
-var gui_width = display_get_gui_width()
-var gui_height = display_get_gui_height()
-display_set_gui_maximize()
-
 if global.flag_is_mobile {
 	display_set_sleep_margin(4)
 	window_set_fullscreen(true)
@@ -35,6 +27,13 @@ if global.flag_is_mobile {
 } else {
 	display_set_sleep_margin(20)
 }
+display_set_gui_maximize()
+var display_width = display_get_width()
+var display_height = display_get_height()
+var window_width = window_get_width()
+var window_height = window_get_height()
+var gui_width = display_get_gui_width()
+var gui_height = display_get_gui_height()
 
 global.resolutions_default = [default_width, default_height]
 global.resolutions = [window_width, window_height]

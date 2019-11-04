@@ -2,8 +2,8 @@
 var color_background = $80
 switch background {
 	case editor_background.black:
-		// 아무것도 그리지 않음.
-		exit
+		// 아무것도 그리지 않음
+	exit
 
 	case editor_background.grid_inverse:
 		gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color)

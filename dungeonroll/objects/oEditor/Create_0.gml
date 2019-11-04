@@ -14,7 +14,8 @@ map_x_origin = floor((global.resolutions[0] - map_width) * 0.5)
 map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
 map_x = map_x_origin
 map_y = map_y_origin
-cursor_sprite = -1
+cursor_editor_innered = false
+cursor_innered = true
 
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
@@ -111,7 +112,8 @@ editor_item_tile_select(0)
 editor_item_doodad_select(0)
 editor_item_object_select(0)
 editor_item_tile_add(sTileDirt, 0, 0, "흙 1")
-sidepanel_items = sidepanel_tiles
+sidepanel_cursor = -1
+sidepanel_cursor_index = 0
 #endregion
 
 #region sidepanel.attribute
