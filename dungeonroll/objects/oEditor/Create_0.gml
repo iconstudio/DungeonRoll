@@ -97,7 +97,7 @@ menu_frame_height = menu_frame_height_min
 #region sidepanel.contents
 sidepanel_opened = false // 우측 선택 창이 열려있는가
 sidepanel_item_count_horizontal = 4
-sidepanel_item_count_vertical = 6
+sidepanel_item_count_vertical = 8
 sidepanel_item_count = sidepanel_item_count_horizontal * sidepanel_item_count_vertical
 /// sidepanel_tiles[sprite, index, speed, name]
 sidepanel_tiles = array_create(sidepanel_item_count, [-1, 0, 0, ""])
@@ -112,6 +112,13 @@ editor_item_tile_select(0)
 editor_item_doodad_select(0)
 editor_item_object_select(0)
 editor_item_tile_add(sTileDirt, 0, 0, "흙 1")
+editor_item_tile_add(sTileDirt, 0, 0, "흙 2")
+editor_item_tile_add(sTileDirt, 0, 0, "흙 3")
+editor_item_tile_add(sTileDirt, 0, 0, "흙 4")
+editor_item_tile_add(sTileDirt, 0, 0, "돌 1")
+editor_item_tile_add(sTileDirt, 0, 0, "돌 2")
+editor_item_tile_add(sTileDirt, 0, 0, "돌 3")
+editor_item_tile_add(sTileDirt, 0, 0, "돌 4")
 sidepanel_cursor = -1
 sidepanel_cursor_index = 0
 #endregion

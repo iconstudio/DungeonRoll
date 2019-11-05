@@ -169,31 +169,33 @@ if !cursor_innered {
 
 							if is_tile { // 타일 선택하기
 								sidepanel_cursor_new = editor_item_tile_get_sprite(i)
-								if sidepanel_cursor_new != -1
-									editor_item_tile_select(i)
-								else
+								if sidepanel_cursor_new == -1
 									break
 								sidepanel_cursor_index_new = editor_item_tile_get_img_index(i)
 							} else if is_doodad { // 장식물 선택하기
 								sidepanel_cursor_new = editor_item_doodad_get_sprite(i)
 								sidepanel_cursor_index_new = 0
-								if sidepanel_cursor_new != -1
-									editor_item_doodad_select(i)
-								else
+								if sidepanel_cursor_new == -1
 									break
 							} else if is_entity { // 개체 선택하기
 								sidepanel_cursor_new = editor_item_object_get_sprite(i)
 								sidepanel_cursor_index_new = 0
-								if sidepanel_cursor_new != -1
-									editor_item_object_select(i)
-								else
+								if sidepanel_cursor_new == -1
 									break
 							}
-							window_set_cursor(cr_handpoint)
+							if sidepanel_cursor_new != -1
+								window_set_cursor(cr_handpoint)
 
 							if cursor_left_pressed {
 								sidepanel_cursor = sidepanel_cursor_new
 								sidepanel_cursor_index = sidepanel_cursor_index_new
+
+								if is_tile
+									editor_item_tile_select(i)
+								else if is_doodad
+									editor_item_doodad_select(i)
+								else if is_entity
+									editor_item_object_select(i)
 							} // IF (cursor_left_pressed)
 						} // IF (point_in_rectangle_fixed)
 					} // FOR (sidepanel_item_count)
