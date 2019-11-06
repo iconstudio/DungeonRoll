@@ -1,8 +1,8 @@
 {
-    "id": "cf7a9fe4-1f3c-4495-a6dc-1379f09ea47a",
+    "id": "ed563b40-dd96-4a39-9d1d-32d35d362268",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "editor_item_tile_get_img_index",
+    "name": "editor_item_tile_get_img_speed",
     "IsCompatibility": false,
     "IsDnD": false
 }

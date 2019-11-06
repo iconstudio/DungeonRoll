@@ -5,11 +5,12 @@ gui_begin_x = global.resolutions[0] - global.resolutions_gui[0] // 음수
 width = global.resolutions_gui[0]
 height = global.resolutions_gui[1]
 map_scale = 1.25
+map_scale_limit = [1.0, 4.0]
 map_scale_reverse = 1 / map_scale
 map_width = room_width * map_scale
 map_height = room_height * map_scale
-map_real_width = room_width * map_scale
-map_real_height = room_height * map_scale
+map_real_width = room_width
+map_real_height = room_height
 map_x_origin = floor((global.resolutions[0] - map_width) * 0.5)
 map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
 map_x = map_x_origin
@@ -112,9 +113,9 @@ editor_item_tile_select(0)
 editor_item_doodad_select(0)
 editor_item_object_select(0)
 editor_item_tile_add(sTileDirt, 0, 0, "흙 1")
-editor_item_tile_add(sTileDirt, 0, 0, "흙 2")
-editor_item_tile_add(sTileDirt, 0, 0, "흙 3")
-editor_item_tile_add(sTileDirt, 0, 0, "흙 4")
+editor_item_tile_add(sTileDirt, 1, 0, "흙 2")
+editor_item_tile_add(sTileDirt, 1, 0, "흙 3")
+editor_item_tile_add(sTileDirt, 1, 0, "흙 4")
 editor_item_tile_add(sTileDirt, 0, 0, "돌 1")
 editor_item_tile_add(sTileDirt, 0, 0, "돌 2")
 editor_item_tile_add(sTileDirt, 0, 0, "돌 3")

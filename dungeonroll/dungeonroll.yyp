@@ -1089,6 +1089,14 @@
             }
         },
         {
+            "Key": "ed563b40-dd96-4a39-9d1d-32d35d362268",
+            "Value": {
+                "id": "7b7314af-a188-40db-be3d-7a3bc05d74ee",
+                "resourcePath": "scripts\\editor_item_tile_get_img_speed\\editor_item_tile_get_img_speed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ef9732f3-2d0e-4bfe-9de0-4abb605b2541",
             "Value": {
                 "id": "6483e0ce-d5f8-4a28-9109-e53f99d4b9d0",
@@ -1196,6 +1204,7 @@
         "6cbc38dc-9d98-457b-983c-a4c927910a61",
         "14e8294f-1e44-450a-ad48-a783584e3043",
         "cf7a9fe4-1f3c-4495-a6dc-1379f09ea47a",
+        "ed563b40-dd96-4a39-9d1d-32d35d362268",
         "61291ac9-3b8b-457a-b246-317e9d85b8ef",
         "499011fb-ccc5-4a34-9119-89b7ac7478ab",
         "b9aeae02-1e78-492c-94ed-d95d9ebfa301",

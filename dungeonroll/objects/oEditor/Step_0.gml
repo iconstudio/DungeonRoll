@@ -324,13 +324,23 @@ if !view_mover_dragging {
 				if cursor_left_check {
 					var tile_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorTile)
 					var tile_new_sprite = editor_item_tile_get_sprite(sidepanel_tile_index)
+					var tile_new_img_index = editor_item_tile_get_img_index(sidepanel_tile_index)
+					var tile_new_img_speed = editor_item_tile_get_img_speed(sidepanel_tile_index)
 
 					if instance_exists(tile_on_cursor) {
-						if tile_on_cursor.sprite_index != tile_new_sprite { // 다른 스프라이트를 사용하면 바꾸기
+						if tile_on_cursor.sprite_index != tile_new_sprite
+						or tile_on_cursor.image_index != tile_new_img_index 
+						or tile_on_cursor.image_speed != tile_new_img_speed { // 완전히 같은 타일이 아니면 교체하기
 							tile_on_cursor.sprite_index = tile_new_sprite
+							tile_on_cursor.image_index = tile_new_img_index
+							tile_on_cursor.image_speed = tile_new_img_speed
 						}
 					} else {
-						(instance_create_layer(cursor_node_x, cursor_node_y, "Tiles", oEditorTile)).sprite_index = tile_new_sprite
+						 with instance_create_layer(cursor_node_x, cursor_node_y, "Tiles", oEditorTile) {
+							 sprite_index = tile_new_sprite
+							 image_index = tile_new_img_index
+							 image_speed = tile_new_img_speed
+						 }
 					}
 				}
 			}
