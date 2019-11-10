@@ -129,11 +129,27 @@
             }
         },
         {
+            "Key": "1565de31-c769-40f3-aac1-61cbced7c7e1",
+            "Value": {
+                "id": "182d5427-6df2-4d0c-945b-412add54d10e",
+                "resourcePath": "objects\\drawManager\\drawManager.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "15888e26-6ad7-4b6e-85c9-872041edba92",
             "Value": {
                 "id": "f741344f-e381-4c58-9287-18bbb62e433c",
                 "resourcePath": "scripts\\editor_callback_grid_yellow\\editor_callback_grid_yellow.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "17fc76d6-3382-4462-85f9-4ba5fa22ee8e",
+            "Value": {
+                "id": "32fcacbb-ecc2-4fc6-9af2-1082b27d3150",
+                "resourcePath": "shaders\\ColourDistortion\\ColourDistortion.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -166,6 +182,14 @@
                 "id": "16d00724-9c81-4a80-935d-54c90c274f43",
                 "resourcePath": "sprites\\sprite0\\sprite0.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "1e90f9fa-16ec-4a27-92a6-4129fac6c475",
+            "Value": {
+                "id": "a6315255-a1a7-4519-877e-9339e5ed5ec9",
+                "resourcePath": "notes\\호환성 보고서_101119_723132313.yy",
+                "resourceType": "GMNotes"
             }
         },
         {
@@ -297,6 +321,14 @@
             }
         },
         {
+            "Key": "3db7c188-ad9b-4cf7-ad18-5b073adff37e",
+            "Value": {
+                "id": "d725c394-b4cb-41a3-b47b-fc55377cf47a",
+                "resourcePath": "extensions\\FXAA_Shader\\FXAA_Shader.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "416c7bf8-a597-42df-bdfc-2a748ceba687",
             "Value": {
                 "id": "c52b6da7-93c3-4551-9abb-94dfd6e3a8c7",
@@ -381,6 +413,14 @@
             "Value": {
                 "id": "ee39e47f-ad22-48e1-9b53-ebf79c05457f",
                 "resourcePath": "objects\\oInit\\oInit.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "50c68abb-5fee-4afa-8cf3-63d30670e86b",
+            "Value": {
+                "id": "06657180-9767-43f1-b418-70e84d3ef9be",
+                "resourcePath": "objects\\postprocess\\postprocess.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -577,6 +617,14 @@
             }
         },
         {
+            "Key": "7fdce62e-f4dc-4954-99d4-77dd91619469",
+            "Value": {
+                "id": "eeed5570-bac9-465e-85c7-84f949e4b67a",
+                "resourcePath": "notes\\호환성 보고서_101119_60422422.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "82b6b6ab-0007-44e2-9da2-b455a9a07f9d",
             "Value": {
                 "id": "071a1427-efb0-43d4-87b6-f2ca3b0767a0",
@@ -622,6 +670,14 @@
                 "id": "c9a19bce-0745-4c52-92ed-414c640aa022",
                 "resourcePath": "sprites\\sprite13\\sprite13.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "919e035c-4855-44bf-b0c4-80d9bb66264e",
+            "Value": {
+                "id": "c428d37b-a90c-436a-8a85-02d49ebfcf9c",
+                "resourcePath": "shaders\\shaderFXAA\\shaderFXAA.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -1030,6 +1086,14 @@
                 "id": "bc445cd4-eeda-4d9a-b5cd-48bc2a9a4962",
                 "resourcePath": "views\\dc788d8f-75a0-4c51-a897-d46ad00dd453.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "dcbdd5a1-6ce3-4469-9808-946c45f778ba",
+            "Value": {
+                "id": "69432784-59d2-4eea-ba77-a6d8e0710747",
+                "resourcePath": "shaders\\OuterBlur\\OuterBlur.yy",
+                "resourceType": "GMShader"
             }
         },
         {

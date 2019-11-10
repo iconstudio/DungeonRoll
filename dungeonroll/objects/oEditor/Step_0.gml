@@ -7,7 +7,7 @@ var cursor_left_check = device_mouse_check_button(0, mb_left)
 var cursor_right_check = device_mouse_check_button(0, mb_right)
 var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
 var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
-cursor_editor_innered = point_in_rectangle_fixed(cursor_x, cursor_y, 0, 0, map_real_width, map_real_height)
+cursor_editor_innered = point_in_rectangle_fixed(cursor_x, cursor_y, 0, 0, map_width, map_height)
 cursor_innered = point_in_rectangle_fixed(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
 #region submenu.bar

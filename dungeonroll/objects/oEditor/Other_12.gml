@@ -1,6 +1,5 @@
 /// @description 시점 이동
 var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
-
 var view_xview_new = map_x
 var view_yview_new = map_y
 
