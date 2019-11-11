@@ -59,21 +59,23 @@ for (var i = 0; i < menu_number; ++i) {
 	var is_selected = (i == menu_mode)
 
 	if is_selected
-		draw_set_font(fontEditorMenu)
+		draw_set_font(fontEditorBold)
 	draw_text(menu_data[5], menu_frame_caption_y, menu_data[0])
 	if is_selected
 		draw_set_font(fontEditor)
 }
 
+var y_bottom = floor(height - 16)
 // 주 메뉴 설명 그리기
 draw_set_color($ffffff)
 draw_set_halign(2)
 draw_set_valign(2)
-draw_text(floor(width - 16), floor(height - 16), menu_mode_description)
+draw_text(floor(width - 16), y_bottom, menu_mode_description)
 
-// 좌표 표기하기
+// 좌표와 비율 표기하기
 draw_set_halign(0)
-draw_text(floor(16), floor(height - 16), "(" + string(floor(cursor_x * map_scale_reverse)) + ", " + string(floor(cursor_y * map_scale_reverse)) + ")")
+draw_text(16, y_bottom, "(" + string(floor(cursor_x * map_scale_reverse)) + ", " + string(floor(cursor_y * map_scale_reverse)) + ")")
+draw_text(16, y_bottom - 28, string(floor(map_scale * 100)) + "%")
 
 // 개체 선택 틀 그리기
 if sidepanel_opened {

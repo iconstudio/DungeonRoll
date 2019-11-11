@@ -7,7 +7,12 @@ device_mouse_dbclick_enable(false)
 #region 화면
 application_surface_enable(true)
 application_surface_draw_enable(false)
-global.application_texture = -1
+global.application_texture = surface_get_texture(application_surface)
+global.application_offset = application_get_position()
+global.application_texel_width = texture_get_texel_width(global.application_texture)
+global.application_texel_height = texture_get_texel_height(global.application_texture)
+global.shaderFXAA_texel = shader_get_uniform(shaderFXAA, "u_texel")
+global.shaderFXAA_strength = shader_get_uniform(shaderFXAA, "u_strength")
 global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
 
 surface_depth_disable(true)
@@ -68,13 +73,30 @@ enum editor_cursor_state {
 }
 
 enum editor_background {
-	black,
+	black = 0,
 	grid_inverse,
 	grid_yellow,
 	grid_red,
 	grid_white
 }
+global.editor_grid_color = [0, $ffffff, $00ffff, $80, $b3b3b3]
+global.editor_grid_color_info = array_create(5, [])
+for (var i = 0; i < 5; ++i) {
+	var color = global.editor_grid_color[i]
+	global.editor_grid_color_info[i] = [color_get_hue(color), color_get_saturation(color), color_get_value(color)]
+}
+
 #endregion
+
+#region 쉐이더
+global.shader_supported = shaders_are_supported()
+if global.shader_supported {
+	if !shader_is_compiled(shaderFXAA)
+		show_debug_message("shaderFXAA is not complied. Be careful!")
+}
+
+#endregion
+
 
 instance_create_layer(0, 0, layer, oGlobal)
 

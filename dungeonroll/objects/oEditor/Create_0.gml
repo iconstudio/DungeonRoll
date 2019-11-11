@@ -4,7 +4,7 @@ gui_begin_x = global.resolutions[0] - global.resolutions_gui[0] // 음수
 //gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
 width = global.resolutions_gui[0]
 height = global.resolutions_gui[1]
-map_scale = 1.25
+map_scale = 1.5
 map_scale_limit = [1.0, 4.0]
 map_scale_reverse = 1 / map_scale
 map_width = room_width * map_scale
@@ -21,18 +21,24 @@ cursor_innered = true
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
 background = editor_background.grid_yellow
-//grid_color = c_yellow
+background_target = background
+background_begin = background
+grid_color = global.editor_grid_color[background]
+grid_fade_period = seconds(0.4)
+grid_fade_time = grid_fade_period
 global.editor_surface = -1
 editor_get_surface()
 
 #region attributes
+// 주 메뉴: [0항목의 제목, 1제목 너비, 2설명, 3콜백, 4항목의 전체 너비, 5제목이 그려질 x 좌표]
+// 보조 메뉴: [0항목의 제목, 1아이콘, 2콜백, 3아이콘의 너비, 4항목의 전체 너비, 5항목의 x 좌표]
 menu_number = 0
 menu_mode = editor_menu.cursor
 menu_mode_previous = menu_mode
 menu_option = 0
 
 menu_item_frame_height = 40
-menu_tool_frame_height = 40
+menu_tool_frame_height = 48
 menu_frame_width_addition = 32
 menu_frame_draw_width_appended = 0
 menu_frame_height_min = menu_item_frame_height
