@@ -12,9 +12,9 @@ var icon = argument[2]
 var icon_width = sprite_exists(icon) ? sprite_get_width(icon) : 0
 var callback = argument[3]
 var submenu_width = menu_submenu_width_addition * 2 + caption_width + icon_width
-if icon_width != 0
+if icon_width != 0 and caption_width != 0
 	submenu_width += menu_submenu_icon_width_addition
-var shorcut = argument_count > 5 ? argument[4] : -1
+var shorcut = 4 < argument_count ? argument[4] : -1
 
 menu_submenus[menu, menu_submenu_number[menu]] = [caption // 0
 , icon // 1

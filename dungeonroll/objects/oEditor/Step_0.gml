@@ -136,7 +136,7 @@ if !cursor_innered {
 	cursor_state = editor_cursor_state.normal
 
 	if !view_mover_dragging {
-		if menu_mode == editor_menu.cursor or menu_mode == editor_menu.setting {
+		if menu_mode == editor_menu.file or menu_mode == editor_menu.setting {
 
 		} else {
 			cursor_node_x = (cursor_x) * map_scale_reverse div 16 * 16
@@ -244,7 +244,7 @@ if menu_frame_indicator_y <= cursor_gui_y or cursor_state != editor_cursor_state
 // 시점 이동 중이 아닐 때
 if !view_mover_dragging {
 	// 숫자 키로 메뉴 항목 선택
-	for (var i = editor_menu.cursor; i <= global.editor_menu_last; ++i) {
+	for (var i = 0; i <= global.editor_menu_last; ++i) {
 		if keyboard_check_pressed(49 + i) {
 			// 마우스가 가리키는 항목의 설명을 우선한다.
 			var description_previous = menu_mode_description
@@ -346,11 +346,11 @@ if !view_mover_dragging {
 			}
 		} else if menu_mode == editor_menu.doodad { //
 			if cursor_right_pressed {
-				editor_menu_select(editor_menu.cursor)
+				editor_menu_select(editor_menu.file)
 			}
 		} else if menu_mode == editor_menu.entity { //
 			if cursor_right_pressed {
-				editor_menu_select(editor_menu.cursor)
+				editor_menu_select(editor_menu.file)
 			}
 		}
 	}

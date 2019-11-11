@@ -10,13 +10,13 @@ var callback = argument2
 
 var menu_draw_width_one = menu_frame_width_addition * 2 + caption_width
 menu_items[menu_number] = [caption // 0
-, caption_width, // 1
-description // 2
+, caption_width // 1
+, description // 2
 , callback // 3
 , menu_draw_width_one // 4, menu_item_width
 , menu_frame_draw_width_appended + menu_draw_width_one * 0.5] // 5, menu_draw_x
 menu_submenu_number[menu_number] = 0
-menu_submenus[menu_number] = []
+menu_submenus[menu_number, 0] = array_create(6, 0)
 
 menu_frame_draw_width_appended += menu_draw_width_one
 menu_submenu_draw_width_appended = 0

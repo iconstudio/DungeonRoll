@@ -57,13 +57,14 @@ if global.flag_is_mobile {
 
 #region 편집기
 enum editor_menu {
-	cursor = 0,
+	file = 0,
 	node_modify,
 	tile,
 	doodad,
 	entity,
 	setting
 }
+
 global.editor_menu_last = editor_menu.setting
 
 enum editor_cursor_state {

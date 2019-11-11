@@ -15,8 +15,7 @@ map_x_origin = floor((global.resolutions[0] - map_width) * 0.5)
 map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
 map_x = map_x_origin
 map_y = map_y_origin
-cursor_editor_innered = false
-cursor_innered = true
+map_modified = false
 
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
@@ -33,7 +32,7 @@ editor_get_surface()
 // 주 메뉴: [0항목의 제목, 1제목 너비, 2설명, 3콜백, 4항목의 전체 너비, 5제목이 그려질 x 좌표]
 // 보조 메뉴: [0항목의 제목, 1아이콘, 2콜백, 3아이콘의 너비, 4항목의 전체 너비, 5항목의 x 좌표]
 menu_number = 0
-menu_mode = editor_menu.cursor
+menu_mode = editor_menu.file
 menu_mode_previous = menu_mode
 menu_option = 0
 
@@ -46,7 +45,7 @@ menu_frame_height_max = menu_item_frame_height + menu_tool_frame_height
 menu_frame_color = $f1f2f3
 menu_frame_caption_y = menu_item_frame_height * 0.5
 
-menu_submenu_width_addition = 16
+menu_submenu_width_addition = (menu_tool_frame_height - menu_frame_width_addition) * 0.5
 menu_submenu_draw_width_appended = 0
 menu_submenu_icon_width_addition = 8
 #endregion
@@ -55,7 +54,7 @@ menu_submenu_icon_width_addition = 8
 event_user(1)
 
 #region indicators
-var menu_data = menu_items[0]
+var menu_data = menu_items[menu_mode]
 menu_mode_description = menu_data[2]
 
 // 주 메뉴를 색깔있는 표시기로 강조
@@ -151,6 +150,8 @@ for (var i = 0; i < sidepanel_item_count; ++i) {
 #endregion
 
 #region cursor
+cursor_editor_innered = false
+cursor_innered = true
 cursor_state = editor_cursor_state.normal
 cursor_x = 0
 cursor_y = 0
