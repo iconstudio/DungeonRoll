@@ -20,6 +20,8 @@ if view_mover_dragging and device_mouse_check_button(0, view_mover_key) {
 	if view_mover_vertical != 0
 		view_yview_target += view_mover_vertical * view_pos_speed
 }
+view_xview_target = clamp(view_xview_target, view_limit[0], view_limit[2])
+view_yview_target = clamp(view_yview_target, view_limit[1], view_limit[3])
 
 // 휠로 시점 이동 시작
 if cursor_state == editor_cursor_state.normal and !view_mover_dragging {
@@ -55,5 +57,3 @@ if view_yview_adjusted != view_xview_target or view_yview_adjusted != view_yview
 	map_x = view_xview_adjusted
 	map_y = view_yview_adjusted
 }
-map_x = clamp(map_x, view_limit[0], view_limit[2])
-map_y = clamp(map_y, view_limit[1], view_limit[3])

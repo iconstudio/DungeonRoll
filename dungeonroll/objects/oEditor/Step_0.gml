@@ -147,7 +147,7 @@ if !cursor_innered {
 			else
 				window_set_cursor(cr_default)
 
-			#region sidepanel
+			#region palette
 			// 우측 보조 창 선택
 			if sidepanel_opened {
 				var is_tile = menu_mode == editor_menu.tile

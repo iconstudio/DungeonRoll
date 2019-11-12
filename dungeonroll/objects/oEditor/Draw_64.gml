@@ -51,6 +51,9 @@ var indicator_right = menu_frame_indicator_x + menu_frame_indicator_width_half_a
 draw_set_color(menu_frame_indicator_color)
 draw_rectangle(indicator_left, menu_frame_indicator_y, indicator_right, menu_frame_indicator_y + menu_frame_indicator_height, false)
 
+// 주 메뉴 틀 그림자 그리기
+draw_sprite(sEditorMenuShadow, 0, 0, menu_frame_height + 1)
+
 // 주 메뉴 그리기
 draw_set_color(0)
 draw_set_halign(1)

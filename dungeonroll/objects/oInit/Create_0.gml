@@ -1,4 +1,5 @@
 /// @description 초기화
+global.version = "1.0.0.0"
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios)
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 
@@ -9,11 +10,6 @@ application_surface_enable(true)
 application_surface_draw_enable(false)
 global.application_texture = surface_get_texture(application_surface)
 global.application_offset = application_get_position()
-global.application_texel_width = texture_get_texel_width(global.application_texture)
-global.application_texel_height = texture_get_texel_height(global.application_texture)
-global.shaderFXAA_texel = shader_get_uniform(shaderFXAA, "u_texel")
-global.shaderFXAA_strength = shader_get_uniform(shaderFXAA, "u_strength")
-global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
 
 surface_depth_disable(true)
 display_reset(8, true)
@@ -95,9 +91,28 @@ if global.shader_supported {
 	if !shader_is_compiled(shaderFXAA)
 		show_debug_message("shaderFXAA is not complied. Be careful!")
 }
+global.shaderFXAA_texel = shader_get_uniform(shaderFXAA, "u_texel")
+global.shaderFXAA_strength = shader_get_uniform(shaderFXAA, "u_strength")
+global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
 
 #endregion
 
+enum node_type {
+	normal = 0,
+	monster_spawner, // uses data (integer)
+	monster_spanwer_once, // uses data (integer)
+	random_harrass_encounter, // uses data (real), lesser bad encounter
+	random_good_encounter, // uses data (real)
+	random_upgrade_encounter, // uses data (integer)
+	random_bad_encounter,  // uses data (real), bad encounter
+	random_encounter, // uses data (integer), all encounter
+	random_give_good, // uses data (integer)
+	random_debuff, // uses data (integer), what kind of debuff (reduce dices, cannot move, etc...)
+	dice_upgrade, // uses data (integer), what kind of dice
+	dice_move_upgrade, // uses data (integer), for only moving dice
+	text_popup, // uses data for caption (string), if it is array, than is transmission
+	campaign_encounter // uses variety attributes
+}
 
 instance_create_layer(0, 0, layer, oGlobal)
 

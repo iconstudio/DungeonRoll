@@ -1,7 +1,31 @@
 /// @description 지도 편집기 초기화
-doubletap = false
-gui_begin_x = global.resolutions[0] - global.resolutions_gui[0] // 음수
-//gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
+#region external
+/*
+			지도 파일 구조
+			- *: if nothing than it is 0
+			- 노드는 서로 연결된 노드끼리만 엮인 노드 사슬 목록 안에 노드의 목록이 들어있는 구조이다.
+		+------------------------------------------------------------------------------------------------------------------------------+
+		|  version (string)
+		|  caption (string)
+		|  author (string)
+		|  date (string)
+		|  size of node chain list (integer)
+		|  size of tile list (integer)
+		|  size of doodad list (integer)
+		|  size of entity list (integer)
+		|  crypto key (hash string of author+date+all sizes)
+		|  *node chain list [[size of node list (integer), *node list [[x, y, type (integer), level], [x, y, type, level], ...]], ...]
+		|  *tile list [[index0 from palette (integer, not a sprite), x, y, img_index], [index1, x, y, img_index], ...]
+		|  *doodad list [[index0 from palette (integer, not a sprite), x, y], [index1, x, y], ...]
+		|  *entity list [[index0 from palette (integer, not an object), x, y], [index1, x, y], ...]
+		|  
+		|  eof
+		+------------------------------------------------------------------------------------------------------------------------------+
+		
+*/
+map_extension = ".rollmap"
+#endregion
+
 width = global.resolutions_gui[0]
 height = global.resolutions_gui[1]
 map_scale = 1.5
@@ -16,6 +40,13 @@ map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
 map_x = map_x_origin
 map_y = map_y_origin
 map_modified = false
+doubletap = false
+gui_begin_x = global.resolutions[0] - global.resolutions_gui[0] // 음수
+//gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
+
+#region tasks
+undo_list = ds_list_create()
+#endregion
 
 nodes_size_w = room_width div 16
 nodes_size_h = room_height div 16
@@ -28,7 +59,7 @@ grid_fade_time = grid_fade_period
 global.editor_surface = -1
 editor_get_surface()
 
-#region attributes
+#region menus.attributes
 // 주 메뉴: [0항목의 제목, 1제목 너비, 2설명, 3콜백, 4항목의 전체 너비, 5제목이 그려질 x 좌표]
 // 보조 메뉴: [0항목의 제목, 1아이콘, 2콜백, 3아이콘의 너비, 4항목의 전체 너비, 5항목의 x 좌표]
 menu_number = 0
@@ -53,7 +84,7 @@ menu_submenu_icon_width_addition = 8
 // 메뉴 추가
 event_user(1)
 
-#region indicators
+#region menus.indicators
 var menu_data = menu_items[menu_mode]
 menu_mode_description = menu_data[2]
 
@@ -72,7 +103,7 @@ menu_frame_indicator_x_period = seconds(0.4)
 menu_frame_indicator_x_time = menu_frame_indicator_x_period
 menu_frame_indicator_height = 4
 menu_frame_indicator_y = menu_item_frame_height - menu_frame_indicator_height
-menu_frame_indicator_color = $d49227
+menu_frame_indicator_color = $d77800 //$d49227
 
 // 주 메뉴를 사각형으로 감싸서 강조
 menu_frame_indicator_frame_previous = menu_mode // 마우스 전용
@@ -100,7 +131,7 @@ menu_frame_extend_time = 0
 menu_frame_extend_period = seconds(0.07)
 menu_frame_height = menu_frame_height_min
 
-#region sidepanel.contents
+#region palette.contents
 sidepanel_opened = false // 우측 선택 창이 열려있는가
 sidepanel_item_count_horizontal = 4
 sidepanel_item_count_vertical = 8
@@ -130,7 +161,7 @@ sidepanel_cursor = -1
 sidepanel_cursor_index = 0
 #endregion
 
-#region sidepanel.attribute
+#region palette.attribute
 sidepanel_item_size = 48
 sidepanel_item_margin = 6
 sidepanel_item_inner_size = sidepanel_item_size + sidepanel_item_margin
