@@ -1,7 +1,7 @@
 /// @description 초기화
-global.version = "1.0.0.0"
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios)
 global.flag_is_browser = (os_browser == browser_not_a_browser)
+global.network_available = os_is_network_connected()
 
 device_mouse_dbclick_enable(false)
 
@@ -52,6 +52,12 @@ if global.flag_is_mobile {
 #endregion
 
 #region 편집기
+enum editor_buffer_state {
+	none,
+	loading,
+	saving
+}
+
 enum editor_menu {
 	file = 0,
 	node_modify,

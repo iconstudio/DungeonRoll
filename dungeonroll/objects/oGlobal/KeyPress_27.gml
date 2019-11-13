@@ -1,1 +1,2 @@
-game_end()
+if room != roomEditor
+	game_end()

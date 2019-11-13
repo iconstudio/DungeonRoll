@@ -64,7 +64,7 @@ if !cursor_innered {
 	// 마우스로 주 메뉴 항목 선택
 	if cursor_gui_y < menu_frame_height_min {
 		// 보조 메뉴 표시줄 토글
-		if doubletap
+		if cursor_doubletap
 			menu_frame_extended = !menu_frame_extended
 
 		for (var i = 0; i < menu_number; ++i) {
@@ -102,7 +102,7 @@ if !cursor_innered {
 				else
 					menu_frame_indicator_frame_time = menu_frame_indicator_frame_period
 
-				if !doubletap and cursor_left_pressed {
+				if !cursor_doubletap and cursor_left_pressed {
 					editor_menu_select(i)
 				}
 			}
@@ -121,7 +121,7 @@ if !cursor_innered {
 				menu_submenu_indicator_frame_left = frame_left
 				menu_submenu_indicator_frame_right = frame_right
 
-				if !doubletap and cursor_left_pressed {
+				if !cursor_doubletap and cursor_left_pressed {
 					if script_exists(submenu_data[2])
 						script_execute(submenu_data[2])
 				}
@@ -267,11 +267,13 @@ if !view_mover_dragging {
 						if node_on_cursor.first // 이을 다음 노드가 처음 노드라면 뒤에 올 선택한 노드는 처음 노드가 아니다.
 							node_selected.first = false
 						node_on_cursor.before = node_selected
+						editor_check_modified()
 					} else if instance_exists(node_on_cursor.next) {
 						node_modify_link_add = false
 						node_selected = noone
 						if !instance_exists(node_on_cursor.before) // 이전 노드가 없으면 처음 노드가 된다.
 							node_on_cursor.first = true
+						editor_check_modified()
 					} else {
 						node_modify_link_add = true
 						node_selected = node_on_cursor
@@ -283,10 +285,12 @@ if !view_mover_dragging {
 						node_last.next = node_selected
 						node_selected.before = node_last
 						node_selected.first = false // 새로 추가하는 노드는 기본적으로 연결되있으면서 처음 노드가 아니다.
+						editor_check_modified()
 					} else {
 						node_modify_link_add = true
 						node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
 						node_selected.first = true // 아무것도 없이 첫 노드를 놓는다.
+						editor_check_modified()
 					}
 				}
 			} else if cursor_right_pressed { // 노드 삭제
@@ -306,6 +310,7 @@ if !view_mover_dragging {
 						}
 					}
 					instance_destroy(node_on_cursor)
+					editor_check_modified()
 				}
 
 				// 선택 해제
@@ -319,6 +324,7 @@ if !view_mover_dragging {
 
 				if instance_exists(tile_on_cursor) {
 					instance_destroy(tile_on_cursor)
+					editor_check_modified()
 				}
 			} else { // 스프라이트 타일 배치
 				if cursor_left_check {
@@ -334,13 +340,15 @@ if !view_mover_dragging {
 							tile_on_cursor.sprite_index = tile_new_sprite
 							tile_on_cursor.image_index = tile_new_img_index
 							tile_on_cursor.image_speed = tile_new_img_speed
+							editor_check_modified()
 						}
 					} else {
-						 with instance_create_layer(cursor_node_x, cursor_node_y, "Tiles", oEditorTile) {
-							 sprite_index = tile_new_sprite
-							 image_index = tile_new_img_index
-							 image_speed = tile_new_img_speed
-						 }
+						with instance_create_layer(cursor_node_x, cursor_node_y, "Tiles", oEditorTile) {
+							sprite_index = tile_new_sprite
+							image_index = tile_new_img_index
+							image_speed = tile_new_img_speed
+						}
+						editor_check_modified()
 					}
 				}
 			}

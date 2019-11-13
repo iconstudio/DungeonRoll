@@ -1,4 +1,6 @@
 /// @description 지도 편집기 초기화
+window_set_caption("Dungeon Rolls Editor")
+
 #region external
 /*
 			지도 파일 구조
@@ -21,9 +23,20 @@
 		|  
 		|  eof
 		+------------------------------------------------------------------------------------------------------------------------------+
-		
 */
+map_buffer = -1
+map_filepath_current = ""
+map_filename_current = ""
+map_msg_save_from_new = -1
+map_msg_save_from_open = -1
+map_msg_load = -1
+map_msg_buffer_save = -1
+map_async_state = editor_buffer_state.none
+map_load_failed = false
+map_save_failed = false
 map_extension = ".rollmap"
+map_extension_filter = "지도 파일|" + map_extension
+map_modified = false
 #endregion
 
 width = global.resolutions_gui[0]
@@ -39,8 +52,6 @@ map_x_origin = floor((global.resolutions[0] - map_width) * 0.5)
 map_y_origin = floor((global.resolutions[1] - map_height) * 0.5)
 map_x = map_x_origin
 map_y = map_y_origin
-map_modified = false
-doubletap = false
 gui_begin_x = global.resolutions[0] - global.resolutions_gui[0] // 음수
 //gui_begin_y = global.resolutions_default[1] -  global.resolutions_gui[1]
 
@@ -63,7 +74,7 @@ editor_get_surface()
 // 주 메뉴: [0항목의 제목, 1제목 너비, 2설명, 3콜백, 4항목의 전체 너비, 5제목이 그려질 x 좌표]
 // 보조 메뉴: [0항목의 제목, 1아이콘, 2콜백, 3아이콘의 너비, 4항목의 전체 너비, 5항목의 x 좌표]
 menu_number = 0
-menu_mode = editor_menu.file
+menu_mode = editor_menu.node_modify
 menu_mode_previous = menu_mode
 menu_option = 0
 
@@ -181,6 +192,7 @@ for (var i = 0; i < sidepanel_item_count; ++i) {
 #endregion
 
 #region cursor
+cursor_doubletap = false
 cursor_editor_innered = false
 cursor_innered = true
 cursor_state = editor_cursor_state.normal

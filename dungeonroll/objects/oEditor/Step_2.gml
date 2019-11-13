@@ -1,2 +1,2 @@
 /// @description 입력 갱신
-doubletap = false
+cursor_doubletap = false

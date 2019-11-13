@@ -58,12 +58,17 @@ draw_sprite(sEditorMenuShadow, 0, 0, menu_frame_height + 1)
 draw_set_color(0)
 draw_set_halign(1)
 for (var i = 0; i < menu_number; ++i) {
+	var caption = ""
+	if i == 0 and map_modified
+		caption += "*"
+
 	var menu_data = menu_items[i]
+	caption += menu_data[0]
 	var is_selected = (i == menu_mode)
 
 	if is_selected
 		draw_set_font(fontEditorBold)
-	draw_text(menu_data[5], menu_frame_caption_y, menu_data[0])
+	draw_text(menu_data[5], menu_frame_caption_y, caption)
 	if is_selected
 		draw_set_font(fontEditor)
 }

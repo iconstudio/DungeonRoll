@@ -377,6 +377,14 @@
             }
         },
         {
+            "Key": "3cd08f8e-dd70-4cea-af42-0cd6780bcee5",
+            "Value": {
+                "id": "789abc5e-92a5-467e-b876-802d83492e54",
+                "resourcePath": "scripts\\editor_callback_open\\editor_callback_open.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3db7c188-ad9b-4cf7-ad18-5b073adff37e",
             "Value": {
                 "id": "d725c394-b4cb-41a3-b47b-fc55377cf47a",
@@ -406,6 +414,14 @@
                 "id": "d1b28cc2-244f-4b6e-a83d-215e94ceffa6",
                 "resourcePath": "objects\\oGlobal\\oGlobal.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "46b4db45-589f-4466-8e47-6a667d54c205",
+            "Value": {
+                "id": "6328f1cf-f033-4fed-b11b-85a5b900a691",
+                "resourcePath": "scripts\\editor_map_open\\editor_map_open.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -457,6 +473,14 @@
             }
         },
         {
+            "Key": "4a37e3da-8ab2-48de-9703-6f84df13cc39",
+            "Value": {
+                "id": "58be500d-108e-4c52-b39c-755c81c81f74",
+                "resourcePath": "scripts\\editor_map_open_process\\editor_map_open_process.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4ab28e3f-332b-4fb6-97b1-84b2253eb029",
             "Value": {
                 "id": "b099ea42-70a1-446f-87f3-0f7e9faa7479",
@@ -492,7 +516,7 @@
             "Key": "52fa1258-a469-4e39-a2bc-33e4725332e1",
             "Value": {
                 "id": "3c515777-4852-42da-9442-7210e0efdf3c",
-                "resourcePath": "scripts\\editor_save\\editor_save.yy",
+                "resourcePath": "scripts\\editor_map_save\\editor_map_save.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -697,6 +721,14 @@
             }
         },
         {
+            "Key": "8118a702-8fc0-45de-9a76-e82e0a7c24df",
+            "Value": {
+                "id": "1c0274a3-6e40-46f1-8713-622f9785b6f4",
+                "resourcePath": "scripts\\editor_callback_save\\editor_callback_save.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "82b6b6ab-0007-44e2-9da2-b455a9a07f9d",
             "Value": {
                 "id": "071a1427-efb0-43d4-87b6-f2ca3b0767a0",
@@ -725,6 +757,14 @@
             "Value": {
                 "id": "eec4ab8c-0825-4277-a0ec-f68350f47d97",
                 "resourcePath": "scripts\\editor_callback_grid_inverse\\editor_callback_grid_inverse.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8b0bf885-5f40-4ef0-a21b-37ef7f5b3754",
+            "Value": {
+                "id": "3989f24a-cae7-4a45-b3db-cefef7716adc",
+                "resourcePath": "scripts\\editor_map_close\\editor_map_close.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -854,6 +894,14 @@
                 "id": "9702badb-78a9-4a97-8489-cc157fe420b4",
                 "resourcePath": "options\\amazonfire\\options_amazonfire.yy",
                 "resourceType": "GMAmazonFireOptions"
+            }
+        },
+        {
+            "Key": "a2213b07-f349-464f-8580-176bee82de57",
+            "Value": {
+                "id": "aedb9c06-0875-498c-9f50-48f48b1255a1",
+                "resourcePath": "scripts\\editor_clear_objects\\editor_clear_objects.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1313,6 +1361,14 @@
             }
         },
         {
+            "Key": "f308dc34-0bf9-445f-bff2-0d98bd0e2a1d",
+            "Value": {
+                "id": "de93c733-8acd-4e7d-b886-236b57bf7749",
+                "resourcePath": "scripts\\editor_callback_new\\editor_callback_new.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
             "Value": {
                 "id": "c817c318-4b02-42fa-a99a-543cf8c47f16",
@@ -1385,6 +1441,14 @@
             }
         },
         {
+            "Key": "faf28cf1-b177-4179-89ef-ddcbcb6aa70b",
+            "Value": {
+                "id": "214b3e05-cd4d-4f7b-8413-9d1d8b2f624d",
+                "resourcePath": "scripts\\editor_map_save_process\\editor_map_save_process.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fb56816c-90ee-4123-baa1-9b2730976c55",
             "Value": {
                 "id": "69b9b6ef-639f-40f4-84b7-7dd26dd945a7",
@@ -1410,14 +1474,23 @@
         "ed563b40-dd96-4a39-9d1d-32d35d362268",
         "61291ac9-3b8b-457a-b246-317e9d85b8ef",
         "499011fb-ccc5-4a34-9119-89b7ac7478ab",
+        "a2213b07-f349-464f-8580-176bee82de57",
         "b9aeae02-1e78-492c-94ed-d95d9ebfa301",
         "e1a565cb-7e1f-4378-b1f9-ea29faaf4b54",
+        "4a37e3da-8ab2-48de-9703-6f84df13cc39",
+        "46b4db45-589f-4466-8e47-6a667d54c205",
+        "faf28cf1-b177-4179-89ef-ddcbcb6aa70b",
+        "52fa1258-a469-4e39-a2bc-33e4725332e1",
+        "8b0bf885-5f40-4ef0-a21b-37ef7f5b3754",
         "6bb1b472-52b0-449d-8324-f459c16b4e16",
         "337f68c2-45bb-4f53-820b-a8f97add0c82",
         "d5b97ff0-2661-4fb1-815d-b53b446efdf5",
         "82b6b6ab-0007-44e2-9da2-b455a9a07f9d",
         "b6caf1b5-de28-4553-bd80-0c707dc3b759",
         "c313af71-156e-4244-9998-6590f5b760f9",
+        "f308dc34-0bf9-445f-bff2-0d98bd0e2a1d",
+        "3cd08f8e-dd70-4cea-af42-0cd6780bcee5",
+        "8118a702-8fc0-45de-9a76-e82e0a7c24df",
         "4caa0e67-ce0d-4b0b-8132-91241da96279",
         "1fe76016-3845-41bc-8e29-49d7d5c0548d",
         "ca277266-854c-4154-b4b2-9858a625d6f2",
@@ -1427,7 +1500,6 @@
         "15888e26-6ad7-4b6e-85c9-872041edba92",
         "a32ae927-29c6-41e6-8b81-1636fab9c705",
         "24a97d7d-ee3e-4de4-8647-7fdc3579ace0",
-        "52fa1258-a469-4e39-a2bc-33e4725332e1",
         "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
         "dcf9dab8-d3b0-43ba-8c5f-645e02060bb1",
         "3cce70d0-15eb-4099-bcc3-5bac120668f4",

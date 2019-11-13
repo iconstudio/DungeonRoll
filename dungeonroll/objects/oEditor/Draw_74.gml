@@ -10,7 +10,7 @@ var texel_width = texture_get_texel_width(global.application_texture)
 var texel_height = texture_get_texel_height(global.application_texture)
 shader_set_uniform_f(global.shaderFXAA_texel, texel_width, texel_height)
 shader_set_uniform_f(global.shaderFXAA_strength, 10) // 0 ~ 10
-draw_surface_part_ext(application_surface, 0, 0, map_width, map_height, floor(map_x), floor(map_y), map_scale, map_scale, $ffffff, 1)
+draw_surface_part_ext(application_surface, 0, 0, map_real_width, map_real_height, floor(map_x), floor(map_y), map_scale, map_scale, $ffffff, 1)
 shader_reset()
 gpu_set_blendenable(true)
 
