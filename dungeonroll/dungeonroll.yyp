@@ -1257,6 +1257,14 @@
             }
         },
         {
+            "Key": "dc584192-9937-4ab5-a215-89b82a82d582",
+            "Value": {
+                "id": "40e0d71b-0973-4f9e-92eb-4d5ada58e51c",
+                "resourcePath": "scripts\\editor_map_write_crypto\\editor_map_write_crypto.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dc788d8f-75a0-4c51-a897-d46ad00dd453",
             "Value": {
                 "id": "bc445cd4-eeda-4d9a-b5cd-48bc2a9a4962",
@@ -1478,6 +1486,7 @@
         "b9aeae02-1e78-492c-94ed-d95d9ebfa301",
         "e1a565cb-7e1f-4378-b1f9-ea29faaf4b54",
         "4a37e3da-8ab2-48de-9703-6f84df13cc39",
+        "dc584192-9937-4ab5-a215-89b82a82d582",
         "46b4db45-589f-4466-8e47-6a667d54c205",
         "faf28cf1-b177-4179-89ef-ddcbcb6aa70b",
         "52fa1258-a469-4e39-a2bc-33e4725332e1",
