@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "oEditorDoodad",
     "eventList": [
-        
+        {
+            "id": "2d34e846-1677-4f9a-a348-eb74dcadb231",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "26d03a20-c3e4-4fd6-850a-b554cab29f48"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,

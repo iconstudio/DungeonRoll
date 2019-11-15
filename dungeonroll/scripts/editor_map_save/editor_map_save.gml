@@ -1,28 +1,6 @@
 /// @description editor_map_save(filename)
 /// @function editor_map_save
 /// @param filename { string }
-/*
-			지도 파일 구조
-			- *: if nothing than it is 0
-			- 노드는 서로 연결된 노드끼리만 엮인 노드 사슬 목록 안에 노드의 목록이 들어있는 구조이다.
-		+------------------------------------------------------------------------------------------------------------------------------+
-		|  version (string)
-		|  caption (string)
-		|  author (string)
-		|  date (string)
-		|  crypto key (hash string of author+date+number of tile+doodad+entity)
-		|  size of node chain list (integer)
-		|  size of tile list (integer)
-		|  size of doodad list (integer)
-		|  size of entity list (integer)
-		|  *node chain list [[size of node list (integer), *node list [[x, y, type (integer), level], [x, y, type, level], ...]], ...]
-		|  *tile list [[index0 from palette (integer, not a sprite), x, y, img_index], [index1, x, y, img_index], ...]
-		|  *doodad list [[index0 from palette (integer, not a sprite), x, y], [index1, x, y], ...]
-		|  *entity list [[index0 from palette (integer, not an object), x, y], [index1, x, y], ...]
-		|  
-		|  eof
-		+------------------------------------------------------------------------------------------------------------------------------+
-*/
 map_async_state = editor_buffer_state.saving
 map_buffer = buffer_create(1024, buffer_grow, 1)
 buffer_write(map_buffer, buffer_string, GM_version)
@@ -33,5 +11,62 @@ buffer_write(map_buffer, buffer_string, string(date_current_datetime()))
 //editor_map_write_crypto(map_buffer, key)
 buffer_write(map_buffer, buffer_string, "10")
 
+var node_number = instance_number(oEditorNode)
+var tile_number = instance_number(oEditorTile)
+var doodad_number = instance_number(oEditorDoodad)
+var entity_number = instance_number(oEditorEntity)
+
+if 0 < node_number {
+	var node_chain_list = ds_list_create()
+	ds_list_mark_as_list(node_chain_list, 0)
+
+	ds_list_destroy(node_chain_list)
+} else {
+	buffer_write(map_buffer, buffer_u16, 0) // size of node chain list
+	buffer_write(map_buffer, buffer_u16, 0) // node chain list
+}
+
+if 0 < tile_number {
+	var tile_list = ds_list_create()
+	with oEditorTile
+		ds_list_add(tile_list, string_link(palette_index, x, y, image_index, image_speed))
+
+	var data = ds_list_write(tile_list)
+	buffer_write(map_buffer, buffer_u16, tile_number)
+	buffer_write(map_buffer, buffer_string, data)
+	ds_list_destroy(tile_list)
+} else {
+	buffer_write(map_buffer, buffer_u16, 0) // size of tile list
+	buffer_write(map_buffer, buffer_u16, 0) // tile list
+}
+
+if 0 < doodad_number {
+	var doodad_list = ds_list_create()
+	with oEditorDoodad
+		ds_list_add(doodad_list, string_link(palette_index, x, y, image_index))
+
+	var data = ds_list_write(doodad_list)
+	buffer_write(map_buffer, buffer_u16, doodad_number)
+	buffer_write(map_buffer, buffer_string, data)
+	ds_list_destroy(doodad_list)
+} else {
+	buffer_write(map_buffer, buffer_u16, 0) // size of doodad list
+	buffer_write(map_buffer, buffer_u16, 0) // doodad list
+}
+
+if 0 < entity_number {
+	var entity_list = ds_list_create()
+	with oEditorEntity
+		ds_list_add(entity_list, string_link(palette_index, x, y))
+
+	var data = ds_list_write(entity_list)
+	buffer_write(map_buffer, buffer_u16, entity_number)
+	buffer_write(map_buffer, buffer_string, data)
+	ds_list_destroy(entity_list)
+} else {
+	buffer_write(map_buffer, buffer_u16, 0) // size of entity list
+	buffer_write(map_buffer, buffer_u16, 0) // entity list
+}
+buffer_write(map_buffer, buffer_string, "10")
 
 map_msg_buffer_save = buffer_save_async(map_buffer, argument0, 0, buffer_get_size(map_buffer))

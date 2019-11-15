@@ -12,7 +12,7 @@ if async_id == map_msg_save_from_open { // 다른 지도를 열때
 	map_msg_save_from_open = -1
 } else if async_id == map_msg_save_from_new { // 새 지도를 만들때
 	var answer = ds_map_find_value(async_load, "status")
-	var save_canceled = ""
+	var save_canceled = "."
 	if answer
 		save_canceled = editor_map_save_process()
 

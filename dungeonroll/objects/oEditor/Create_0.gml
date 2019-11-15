@@ -16,7 +16,8 @@ window_set_caption("Dungeon Rolls Editor")
 		|  size of doodad list (integer)
 		|  size of entity list (integer)
 		|  crypto key (hash string of author+date+all sizes)
-		|  *node chain list [[size of node list (integer), *node list [[x, y, type (integer), level], [x, y, type, level], ...]], ...]
+		|  *node chain list [[size of node list (integer), loop (boolean), *node list [[x, y, type (integer), level], [x, y, type, level], ...]]
+												, ...]
 		|  *tile list [[index0 from palette (integer, not a sprite), x, y, img_index], [index1, x, y, img_index], ...]
 		|  *doodad list [[index0 from palette (integer, not a sprite), x, y], [index1, x, y], ...]
 		|  *entity list [[index0 from palette (integer, not an object), x, y], [index1, x, y], ...]
@@ -30,6 +31,7 @@ map_filename_current = ""
 map_msg_save_from_new = -1
 map_msg_save_from_open = -1
 map_msg_load = -1
+map_msg_buffer_load = -1
 map_msg_buffer_save = -1
 map_async_state = editor_buffer_state.none
 map_load_failed = false
