@@ -4,7 +4,7 @@
 /// @param [...] { string }
 var result = ""
 for (var i = 0; i < argument_count; ++i) {
-	result += argument[i]
+	result += string(argument[i])
 	if i != argument_count - 1
 		result += ","
 }

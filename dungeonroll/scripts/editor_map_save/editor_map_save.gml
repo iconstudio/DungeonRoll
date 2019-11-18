@@ -69,4 +69,4 @@ if 0 < entity_number {
 }
 buffer_write(map_buffer, buffer_string, "10")
 
-map_msg_buffer_save = buffer_save_async(map_buffer, argument0, 0, buffer_get_size(map_buffer))
+map_msg_buffer_save = buffer_save(map_buffer, argument0)

@@ -7,7 +7,6 @@ draw_set_halign(1)
 draw_set_valign(1)
 if menu_frame_submenu_show {
 	draw_set_color(menu_frame_color)
-	//editor_draw_blured(0, menu_item_frame_height, 0, menu_item_frame_height, width, menu_frame_height - menu_item_frame_height)
 	draw_rectangle(0, menu_item_frame_height, width, menu_frame_height, false)
 
 	// 보조 메뉴 강조 사각형 그리기

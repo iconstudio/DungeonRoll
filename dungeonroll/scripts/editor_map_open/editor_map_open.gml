@@ -29,11 +29,22 @@ if 0 < node_chain_size {
 var tile_size = buffer_read(map_buffer, buffer_u16)
 if 0 < tile_size {
 	var list = ds_list_create()
-	var data = ds_list_read(list, buffer_read(map_buffer, buffer_string)) // (palette_index,x,y,img_index,img_speed)
+	ds_list_read(list, buffer_read(map_buffer, buffer_string)) // (palette_index,x,y,img_index,img_speed)
 
 	for (var i = 0; i < tile_size; ++i) {
-		
-	}	
+		var items = string_split(ds_list_find_value(list, i), ",")
+		var tile = items[0]
+
+		if is_array(tile) {
+			with instance_create_layer(tile[1], tile[2], "Tiles", oEditorTile) {
+				sprite_index = editor_item_tile_get_sprite(tile[0])
+				image_index = tile[2]
+				image_speed = tile[3]
+			}
+		} else {
+			show_error("편집기에서 타일 목록을 불러오는 중에 문제가 생겼습니다!", true)
+		}
+	}
 } else {
 	buffer_read(map_buffer, buffer_u16) // 0
 }
@@ -52,7 +63,11 @@ if 0 < entity_size {
 	buffer_read(map_buffer, buffer_u16) // 0
 }
 
+buffer_read(map_buffer, buffer_string) // "10"
+
 map_msg_buffer_load = -1
 map_async_state = editor_buffer_state.none
+editor_check_unmodified()
+buffer_delete(map_buffer)
 
 return true
