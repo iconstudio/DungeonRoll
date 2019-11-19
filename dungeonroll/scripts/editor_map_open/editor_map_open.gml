@@ -32,14 +32,15 @@ if 0 < tile_size {
 	ds_list_read(list, buffer_read(map_buffer, buffer_string)) // (palette_index,x,y,img_index,img_speed)
 
 	for (var i = 0; i < tile_size; ++i) {
-		var items = string_split(ds_list_find_value(list, i), ",")
-		var tile = items[0]
+		var item = ds_list_find_value(list, i)
+		var tile = string_split(item, ",")
 
 		if is_array(tile) {
 			with instance_create_layer(tile[1], tile[2], "Tiles", oEditorTile) {
-				sprite_index = editor_item_tile_get_sprite(tile[0])
-				image_index = tile[2]
-				image_speed = tile[3]
+				var tile_info = other.sidepanel_tiles[tile[0]]
+				sprite_index = tile_info[0]
+				image_index = tile[3]
+				image_speed = tile[4]
 			}
 		} else {
 			show_error("편집기에서 타일 목록을 불러오는 중에 문제가 생겼습니다!", true)

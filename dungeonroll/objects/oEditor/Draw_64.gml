@@ -72,10 +72,16 @@ for (var i = 0; i < menu_number; ++i) {
 		draw_set_font(fontEditor)
 }
 
-var y_bottom = floor(height - 16)
-// 주 메뉴 설명 그리기
-draw_set_color($ffffff)
+// 열린 파일 이름 표기하기
 draw_set_halign(2)
+if map_filename_current != "" {
+	draw_set_valign(0)
+	draw_text(width - 4, 4, map_filename_current)
+}
+
+// 주 메뉴 설명 그리기
+var y_bottom = floor(height - 16)
+draw_set_color($ffffff)
 draw_set_valign(2)
 draw_text(floor(width - 16), y_bottom, menu_mode_description)
 

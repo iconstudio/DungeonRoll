@@ -36,8 +36,8 @@ map_msg_buffer_save = -1
 map_async_state = editor_buffer_state.none
 map_load_failed = false
 map_save_failed = false
-map_extension = ".rollmap"
-map_extension_filter = "지도 파일|" + map_extension
+map_extension = "*.rollmap"
+map_extension_filter = "지도 파일 (*.rollmap)|" + map_extension
 map_modified = false
 #endregion
 

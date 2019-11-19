@@ -28,8 +28,11 @@ if 0 < node_number {
 
 if 0 < tile_number {
 	var tile_list = ds_list_create()
-	with oEditorTile
-		ds_list_add(tile_list, string_link(palette_index, x, y, image_index, image_speed))
+	with oEditorTile {
+		var content = string_link(palette_index, x, y, image_index, image_speed)
+		ds_list_add(tile_list, content)
+		show_debug_message(content)
+	}
 
 	var data = ds_list_write(tile_list)
 	buffer_write(map_buffer, buffer_u16, tile_number)
