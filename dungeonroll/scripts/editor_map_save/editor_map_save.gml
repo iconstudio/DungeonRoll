@@ -22,8 +22,8 @@ if 0 < node_number {
 
 	ds_list_destroy(node_chain_list)
 } else {
-	buffer_write(map_buffer, buffer_u16, 0) // size of node chain list
-	buffer_write(map_buffer, buffer_u16, 0) // node chain list
+	buffer_write(map_buffer, buffer_u16, 0) // size of node list
+	buffer_write(map_buffer, buffer_u16, 0) // node list
 }
 
 if 0 < tile_number {
