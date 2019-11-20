@@ -1,23 +1,22 @@
 /// @description 지도 편집기 초기화
 window_set_caption("Dungeon Rolls Editor")
-
+int64(1)
 #region external
 /*
 			지도 파일 구조
-			- *: if nothing than it is 0
-			- 노드는 서로 연결된 노드끼리만 엮인 노드 사슬 목록 안에 노드의 목록이 들어있는 구조이다.
+			- *: 배열이 비어있으면 0n
 		+------------------------------------------------------------------------------------------------------------------------------+
 		|  version (string)
 		|  caption (string)
 		|  author (string)
 		|  date (string)
-		|  size of node chain list (integer)
+		|  size of node list (integer)
 		|  size of tile list (integer)
 		|  size of doodad list (integer)
 		|  size of entity list (integer)
 		|  crypto key (hash string of author+date+all sizes)
-		|  *node chain list [[size of node list (integer), loop (boolean), *node list [[x, y, type (integer), level], [x, y, type, level], ...]]
-												, ...]
+		|  *node list [[serial_number (integer), x, y, type (integer), level], [x, y, type, level], ...]
+		|  *node map [[serial_0, serial_1], [serial_1, serial_2], [serial_3, serial_5, ...]
 		|  *tile list [[index0 from palette (integer, not a sprite), x, y, img_index], [index1, x, y, img_index], ...]
 		|  *doodad list [[index0 from palette (integer, not a sprite), x, y], [index1, x, y], ...]
 		|  *entity list [[index0 from palette (integer, not an object), x, y], [index1, x, y], ...]
