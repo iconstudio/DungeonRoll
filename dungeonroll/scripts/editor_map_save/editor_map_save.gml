@@ -16,13 +16,29 @@ var tile_number = instance_number(oEditorTile)
 var doodad_number = instance_number(oEditorDoodad)
 var entity_number = instance_number(oEditorEntity)
 
+show_debug_message("\n")
 if 0 < node_number {
-	var node_chain_list = ds_list_create()
-	ds_list_mark_as_list(node_chain_list, 0)
+	var node_list = ds_list_create()
+	var node_map = ds_map_create()
+	with oEditorNode {
+		var content = string_link(uid, x, y, first, type, data0, data1)
+		ds_list_add(node_list, content)
+		if instance_exists(next)
+			ds_map_add(node_map, uid, next.uid)
+		else
+			ds_map_add(node_map, uid, "-")
+		show_debug_message(content)
+	}
 
-	ds_list_destroy(node_chain_list)
+	buffer_write(map_buffer, buffer_u16, node_number)
+	buffer_write(map_buffer, buffer_string, ds_list_write(node_list))
+	buffer_write(map_buffer, buffer_string, ds_map_write(node_map))
+
+	ds_list_destroy(node_list)
+	ds_map_destroy(node_map)
 } else {
 	buffer_write(map_buffer, buffer_u16, 0) // size of node list
+	buffer_write(map_buffer, buffer_u16, 0) // node list
 	buffer_write(map_buffer, buffer_u16, 0) // node list
 }
 
@@ -34,9 +50,8 @@ if 0 < tile_number {
 		show_debug_message(content)
 	}
 
-	var data = ds_list_write(tile_list)
 	buffer_write(map_buffer, buffer_u16, tile_number)
-	buffer_write(map_buffer, buffer_string, data)
+	buffer_write(map_buffer, buffer_string, ds_list_write(tile_list))
 	ds_list_destroy(tile_list)
 } else {
 	buffer_write(map_buffer, buffer_u16, 0) // size of tile list
@@ -72,4 +87,4 @@ if 0 < entity_number {
 }
 buffer_write(map_buffer, buffer_string, "10")
 
-map_msg_buffer_save = buffer_save(map_buffer, argument0)
+buffer_save(map_buffer, argument0)

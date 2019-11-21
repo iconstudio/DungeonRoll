@@ -1,7 +1,8 @@
 /// @description 초기화
-global.flag_is_mobile = (os_type == os_android or os_type == os_ios)
+global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 global.network_available = os_is_network_connected()
+global.platformservice_available = false
 
 device_mouse_dbclick_enable(false)
 
@@ -29,14 +30,11 @@ if global.flag_is_mobile {
 	display_set_sleep_margin(20)
 }
 display_set_gui_maximize()
-var display_width = display_get_width()
-var display_height = display_get_height()
 var window_width = window_get_width()
 var window_height = window_get_height()
 var gui_width = display_get_gui_width()
 var gui_height = display_get_gui_height()
 
-global.resolutions_default = [default_width, default_height]
 global.resolutions = [window_width, window_height]
 global.resolutions_gui = [gui_width, gui_height]
 #endregion

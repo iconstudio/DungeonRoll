@@ -12,7 +12,7 @@ while string_length(str) != 0 {
 
 	if next {
 		if next != 1
-			result[token_number++] = string_copy(str , 1,next - 1)
+			result[token_number++] = string_copy(str, 1, next - 1)
 		str = string_copy(str, next + token_length, string_length(str))
   } else {
 		result[token_number++] = str

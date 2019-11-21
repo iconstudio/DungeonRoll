@@ -2,7 +2,8 @@
 /// @function editor_map_open
 /// @param filename { string }
 map_async_state = editor_buffer_state.loading
-map_buffer = buffer_load(argument0)
+var filename = argument[0]
+map_buffer = buffer_load(filename)
 if !buffer_exists(map_buffer) {
 	show_message_async("편집기에서 지도를 불러오는 도중에 문제가 발생했습니다! \n" + string(map_buffer))
 	map_load_failed = true
@@ -19,10 +20,50 @@ buffer_read(map_buffer, buffer_string) // author
 buffer_read(map_buffer, buffer_string) // date
 buffer_read(map_buffer, buffer_string) // crypto key
 
-var node_chain_size = buffer_read(map_buffer, buffer_u16)
-if 0 < node_chain_size {
-	
+var node_size = buffer_read(map_buffer, buffer_u16)
+if 0 < node_size {
+	var node_list = ds_list_create()
+	var node_map = ds_map_create(), node_id_map = ds_map_create()
+	ds_list_read(node_list, buffer_read(map_buffer, buffer_string))
+	ds_map_read(node_map, buffer_read(map_buffer, buffer_string))
+	if ds_map_size(node_map) < node_size
+		show_error("편집기에서 연결된 노드 쌍의 맵을 불러오는 중에 문제가 생겼습니다!", true)
+
+	for (var i = 0; i < node_size; ++i) {
+		var item = ds_list_find_value(node_list, i)
+		var node_info = string_split(item, ",")
+
+		if is_array(node_info) {
+			with editor_node_place(node_info[1], node_info[2]) {
+				uid = node_info[0] // 커스텀 직렬 번호
+				first = node_info[3]
+				type = node_info[4]
+				data0 = node_info[5]
+				data1 = node_info[6]
+				ds_map_add(node_id_map, uid, id)
+			}
+		} else {
+			show_error("편집기에서 노드 목록을 불러오는 중에 문제가 생겼습니다!", true)
+		}
+	}
+
+	with oEditorNode {
+		var linker = node_map[? uid] // 다음 노드
+		if linker != "-" {
+			if ds_map_exists(node_id_map, linker) {
+				var node_id = node_id_map[? linker] // 다음 노드의 번호
+				editor_node_link(id, node_id)
+			} else {
+				show_error("노드 직렬 번호 맵에서 다음 노드를 찾을 수 없습니다!", true)
+			}
+		}
+	}
+
+	ds_list_destroy(node_list)
+	ds_map_destroy(node_map)
+	ds_map_destroy(node_id_map)
 } else {
+	buffer_read(map_buffer, buffer_u16) // 0
 	buffer_read(map_buffer, buffer_u16) // 0
 }
 

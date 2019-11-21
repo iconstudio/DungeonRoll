@@ -263,10 +263,9 @@ if !view_mover_dragging {
 				if instance_exists(node_on_cursor) {
 					// 단방향 노드만 지원
 					if node_modify_link_add and instance_exists(node_selected) and !instance_exists(node_on_cursor.before) {
-						node_selected.next = node_on_cursor
+						editor_node_link(node_selected, node_on_cursor)
 						if node_on_cursor.first // 이을 다음 노드가 처음 노드라면 뒤에 올 선택한 노드는 처음 노드가 아니다.
 							node_selected.first = false
-						node_on_cursor.before = node_selected
 						editor_check_modified()
 					} else if instance_exists(node_on_cursor.next) {
 						node_modify_link_add = false
@@ -281,14 +280,13 @@ if !view_mover_dragging {
 				} else {
 					if node_modify_link_add and instance_exists(node_selected) { // 노드를 새로 추가하면서 자동으로 연결
 						var node_last = node_selected
-						node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
-						node_last.next = node_selected
-						node_selected.before = node_last
+						node_selected = editor_node_place(cursor_node_x, cursor_node_y)
+						editor_node_link(node_last, node_selected)
 						node_selected.first = false // 새로 추가하는 노드는 기본적으로 연결되있으면서 처음 노드가 아니다.
 						editor_check_modified()
 					} else {
 						node_modify_link_add = true
-						node_selected = instance_create_layer(cursor_node_x, cursor_node_y, "Nodes", oEditorNode)
+						node_selected = editor_node_place(cursor_node_x, cursor_node_y)
 						node_selected.first = true // 아무것도 없이 첫 노드를 놓는다.
 						editor_check_modified()
 					}

@@ -1,6 +1,6 @@
 /// @description 지도 편집기 초기화
 window_set_caption("Dungeon Rolls Editor")
-int64(1)
+
 #region external
 /*
 			지도 파일 구조
@@ -15,7 +15,7 @@ int64(1)
 		|  size of doodad list (integer)
 		|  size of entity list (integer)
 		|  crypto key (hash string of author+date+all sizes)
-		|  *node list [[serial_number (integer), x, y, type (integer), level], [x, y, type, level], ...]
+		|  *node list [[serial_number (integer), x, y, first (boolean), type (integer), data0, data1], [x, y, first, type, data0, data1], ...]
 		|  *node map [[serial_0, serial_1], [serial_1, serial_2], [serial_3, serial_5, ...]
 		|  *tile list [[index0 from palette (integer, not a sprite), x, y, img_index], [index1, x, y, img_index], ...]
 		|  *doodad list [[index0 from palette (integer, not a sprite), x, y], [index1, x, y], ...]
@@ -29,12 +29,12 @@ map_filepath_current = ""
 map_filename_current = ""
 map_msg_save_from_new = -1
 map_msg_save_from_open = -1
-map_msg_load = -1
+//map_msg_load = -1
 map_msg_buffer_load = -1
-map_msg_buffer_save = -1
+//map_msg_buffer_save = -1
 map_async_state = editor_buffer_state.none
 map_load_failed = false
-map_save_failed = false
+//map_save_failed = false
 map_extension = "*.rollmap"
 map_extension_filter = "지도 파일 (*.rollmap)|" + map_extension
 map_modified = false

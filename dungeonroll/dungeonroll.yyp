@@ -161,6 +161,14 @@
             }
         },
         {
+            "Key": "1703edd1-cba6-48cf-be62-e81e68e71393",
+            "Value": {
+                "id": "c1457f27-a0dd-4281-acec-d7476dcffaba",
+                "resourcePath": "rooms\\roomLogo\\roomLogo.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "17fc76d6-3382-4462-85f9-4ba5fa22ee8e",
             "Value": {
                 "id": "32fcacbb-ecc2-4fc6-9af2-1082b27d3150",
@@ -574,6 +582,14 @@
                 "id": "a4791ca1-f1de-47db-8453-b005281564d4",
                 "resourcePath": "objects\\oGameGlobal\\oGameGlobal.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "5d318ddb-2d15-4c89-bf23-0727d263adda",
+            "Value": {
+                "id": "3b573b0e-7fb7-4b63-8d0c-9c45f0dbd834",
+                "resourcePath": "scripts\\editor_node_link\\editor_node_link.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1273,6 +1289,14 @@
             }
         },
         {
+            "Key": "d9335e58-4646-433b-aa00-aa17bfa5b4b9",
+            "Value": {
+                "id": "231774d7-ca88-44fa-851d-0ef2b5c51c5b",
+                "resourcePath": "objects\\oLogo\\oLogo.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "db9105fb-421a-46fa-ac04-0cd2492be4c0",
             "Value": {
                 "id": "506974e3-6628-4af0-9dcb-a2d95bc3e81f",
@@ -1505,6 +1529,7 @@
         "c196703f-1ed7-4e0d-85de-db283fcdbc4d",
         "5e119ef9-bcce-4108-b8e9-9fbca029d8ec",
         "37b27cf4-2b51-4a6c-b12e-addbd1cb8308",
+        "5d318ddb-2d15-4c89-bf23-0727d263adda",
         "58fca663-d271-4d56-b0fc-b15970e8f863",
         "91bf05bf-64a9-42e1-8c54-e99b3db1734c",
         "51227e2f-8d76-4863-bc95-54b4a9ff0ff4",
