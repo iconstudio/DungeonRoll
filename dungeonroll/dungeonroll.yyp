@@ -377,14 +377,6 @@
             }
         },
         {
-            "Key": "3b72c1a9-c00c-4f7a-9164-324f7245fae5",
-            "Value": {
-                "id": "c0be449c-a011-453b-950a-9136a14f238b",
-                "resourcePath": "datafiles_yy\\Google Mobile Ads Manual.pdf.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "3cce70d0-15eb-4099-bcc3-5bac120668f4",
             "Value": {
                 "id": "0e8e8614-3de4-42e3-af7b-7ece33cc4498",
@@ -454,14 +446,6 @@
                 "id": "3dcd98a8-6f7a-498a-a4e3-1adc615f2a1f",
                 "resourcePath": "views\\487d9284-74b2-4dd9-b21d-1c5a270b2980.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "48c3a145-5e30-4300-900e-d8e3ea2e93f7",
-            "Value": {
-                "id": "8658c22e-e54c-4392-a0c2-b0b6651b69a3",
-                "resourcePath": "datafiles_yy\\Google Play Billing Manual.pdf.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -649,19 +633,19 @@
             }
         },
         {
-            "Key": "653885e1-ee1f-44e0-af08-131b4bcc758b",
-            "Value": {
-                "id": "a95da170-c02f-4477-b529-0ad99fbafb4b",
-                "resourcePath": "datafiles_yy\\Google Services Manual.pdf.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "662ec9c3-e209-493e-a6b1-ad6a133d2df7",
             "Value": {
                 "id": "09de4266-cc2c-4b77-a713-232588be221f",
                 "resourcePath": "scripts\\editor_check_unmodified\\editor_check_unmodified.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6ba38ae8-05f9-4e18-8b12-e8622bf184cd",
+            "Value": {
+                "id": "d5eb7360-57aa-4d5c-abf5-3e5c21e1a477",
+                "resourcePath": "datafiles_yy\\Google Mobile Ads Manual.pdf.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -766,6 +750,14 @@
                 "id": "1c0274a3-6e40-46f1-8713-622f9785b6f4",
                 "resourcePath": "scripts\\editor_callback_save\\editor_callback_save.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "81263390-6430-4301-b5ac-a3cff348cc67",
+            "Value": {
+                "id": "b57e35dd-662d-4fcf-ac15-a663832552b0",
+                "resourcePath": "datafiles_yy\\Google Services Manual.pdf.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1374,6 +1366,14 @@
                 "id": "7201b765-3bc2-4c43-89bc-ff57fb186e5a",
                 "resourcePath": "options\\android\\options_android.yy",
                 "resourceType": "GMAndroidOptions"
+            }
+        },
+        {
+            "Key": "e7bd639d-ac16-430f-96fb-907319b1f934",
+            "Value": {
+                "id": "3eb44e6e-2079-4f67-bb45-8ce8022905d8",
+                "resourcePath": "datafiles_yy\\Google Play Billing Manual.pdf.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

@@ -1,9 +1,9 @@
 {
-    "id": "653885e1-ee1f-44e0-af08-131b4bcc758b",
+    "id": "81263390-6430-4301-b5ac-a3cff348cc67",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "Google Services Manual.pdf",
-    "CopyToMask": 0,
+    "CopyToMask": -1,
     "exists": false,
     "exportAction": 0,
     "exportDir": "",

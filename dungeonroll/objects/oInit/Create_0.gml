@@ -1,8 +1,6 @@
 /// @description 초기화
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser == browser_not_a_browser)
-global.network_available = os_is_network_connected()
-global.platformservice_available = false
 
 device_mouse_dbclick_enable(false)
 
@@ -64,7 +62,6 @@ enum editor_menu {
 	entity,
 	setting
 }
-
 global.editor_menu_last = editor_menu.setting
 
 enum editor_cursor_state {
@@ -118,6 +115,70 @@ enum node_type {
 	campaign_encounter // uses variety attributes
 }
 
-instance_create_layer(0, 0, layer, oGlobal)
+enum theme {
+	ruins,
+	desert,
+	wasteland, // 황무지
+	wasteland_,
+	plains_lava, // 용암 지대
+	mountain_volcano, // 화산 지대
+	plains, // 
+	forest,
+	mountain,
+	forest_darker,
+	forest_autumn,
+	cold,
+	coldest
+}
 
+#region 네트워크
+// 네트워크 초기화와 클라우드 로그인
+global.network_available = os_is_network_connected()
+global.platformservice_available = false
+loading_interrupt_msg = -1
+loading_continues = true
+
+if !global.network_available {
+	loading_interrupt_msg = show_message_async("네트워크가 연결되지 않았습니다. 연결 상태를 확인해주세요.")
+	loading_continues = false
+} else if global.flag_is_mobile {
+	if GooglePlayServices_Status() != GooglePlayServices_SUCCESS
+		GooglePlayServices_Init()
+
+	var google_available = GooglePlayServices_Status()
+	switch google_available {
+		case GooglePlayServices_SERVICE_VERSION_UPDATE_REQUIRED:
+			loading_interrupt_msg = show_message_async("Google Player Service의 업데이트가 필요합니다.\nPlay Store에서 업데이트 해주세요.")
+			loading_continues = false
+		break
+
+		case GooglePlayServices_SERVICE_DISABLED:
+			loading_interrupt_msg = show_message_async("Google Player Service가 비활성화 돼있습니다.")
+			loading_continues = false
+		break
+
+		case GooglePlayServices_SERVICE_MISSING:
+			loading_interrupt_msg = show_message_async("Google Player Service API를 찾을 수 없습니다.")
+			loading_continues = false
+		break
+
+		case GooglePlayServices_SERVICE_INVALID:
+			loading_interrupt_msg = show_message_async("설치된 Google Player Service의 버전이 올바르지 않습니다.")
+			loading_continues = false
+		break
+
+		case GooglePlayServices_SUCCESS:
+			achievement_login()
+
+			global.platformservice_available = achievement_login_status()
+		break
+
+		default:
+		break
+	}
+}
+#endregion
+
+instance_create_layer(0, 0, layer, oGlobal)
 alarm[0] = 1
+

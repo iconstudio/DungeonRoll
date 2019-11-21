@@ -1,9 +1,9 @@
 {
-    "id": "3b72c1a9-c00c-4f7a-9164-324f7245fae5",
+    "id": "6ba38ae8-05f9-4e18-8b12-e8622bf184cd",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "Google Mobile Ads Manual.pdf",
-    "CopyToMask": 0,
+    "CopyToMask": -1,
     "exists": false,
     "exportAction": 0,
     "exportDir": "",

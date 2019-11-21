@@ -5,6 +5,6 @@ if map_modified {
 } else {
 	if map_filepath_current != "" {
 		editor_map_close()
-		editor_menu_select(editor_menu.node_modify)
+		//editor_menu_select(editor_menu.node_modify)
 	}
 }
