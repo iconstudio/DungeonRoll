@@ -7,6 +7,7 @@ var cursor_left_check = device_mouse_check_button(0, mb_left)
 var cursor_right_check = device_mouse_check_button(0, mb_right)
 var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
 var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right) // 모바일에선 길게 터치
+var cursor_left_released = device_mouse_check_button_released(0, mb_left)
 cursor_editor_innered = point_in_rectangle_fixed(cursor_x, cursor_y, 0, 0, map_width, map_height)
 cursor_innered = point_in_rectangle_fixed(cursor_gui_x, cursor_gui_y, 0, 0, global.resolutions_gui[0], global.resolutions_gui[1])
 
@@ -325,7 +326,7 @@ if !view_mover_dragging {
 					editor_check_modified()
 				}
 			} else { // 스프라이트 타일 배치
-				if cursor_left_check {
+				if (cursor_left_check and !global.flag_is_mobile) or (cursor_left_released and global.flag_is_mobile) {
 					var tile_on_cursor = instance_place(cursor_node_x + 8, cursor_node_y + 8, oEditorTile)
 					var tile_new_sprite = editor_item_tile_get_sprite(sidepanel_tile_index)
 					var tile_new_img_index = editor_item_tile_get_img_index(sidepanel_tile_index)
