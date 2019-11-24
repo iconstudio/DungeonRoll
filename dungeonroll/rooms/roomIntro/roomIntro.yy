@@ -1,6 +1,6 @@
 
 {
-    "name": "roomLogo",
+    "name": "roomIntro",
     "id": "1703edd1-cba6-48cf-be62-e81e68e71393",
     "creationCodeFile": "",
     "inheritCode": true,

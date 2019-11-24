@@ -2,7 +2,7 @@
     "id": "ca80211a-315d-4309-ba15-2891607ce7cb",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "sLogo",
+    "name": "sTrademark",
     "For3D": false,
     "HTile": false,
     "VTile": false,
