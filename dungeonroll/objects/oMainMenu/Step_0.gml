@@ -1,25 +1,17 @@
 /// @description 메뉴 처리
-/*
-	 menu_mode에 따라 메뉴의 작동 방식을 달리합니다.
-*/
 if menu_mode == MODE_NONE {
 	// 아직 아무것도 구현되지 않았습니다.
-
 	
 } else {
 	switch menu_mode {
 		case MODE_EXAMPLE:
-			image_alpha = fade_time / fade_period
-
-			if fade_time < fade_period
-				fade_time++
+			if menu_extension_time < menu_extension_period
+				menu_extension_time++
 		break
 
 		case MODE_EXIT:
-			image_alpha = ease_in_expo(1 - fade_time / fade_period)
-
-			if fade_time < fade_period
-				fade_time++
+			if closing_time < closing_period
+				closing_time++
 			else
 				game_end()
 		break

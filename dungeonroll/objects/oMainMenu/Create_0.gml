@@ -17,6 +17,10 @@ menu_rotation_begin = menu_rotation_target
 menu_rotation = menu_rotation_target
 menu_rotate_period = seconds(0.4)
 menu_rotate_time = menu_rotate_period
+menu_extension_time = 0
+menu_extension_period = seconds(0.6)
+closing_time = 0
+closing_period = seconds(0.9)
 
 menu_items = []
 menu_items_number = []
