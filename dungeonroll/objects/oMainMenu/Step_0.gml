@@ -18,6 +18,8 @@ if menu_mode == MODE_NONE {
 	}
 }
 
+//menu_rotation += 0.1
+
 /*
 if menu_draw_y_transition_time < menu_draw_y_transition_period {
 	menu_draw_y_transition_time++

@@ -41,6 +41,21 @@
                     "mipsToGenerate": 0,
                     "scaled": false
                 }
+            },
+            {
+                "Key": 3,
+                "Value": {
+                    "id": "32516796-af1a-453f-a794-b3c4107747f3",
+                    "modelName": "GMTextureGroup",
+                    "mvc": "1.0",
+                    "groupName": "MainMenu",
+                    "targets": 461609314234257646,
+                    "autocrop": true,
+                    "border": 2,
+                    "groupParent": "00000000-0000-0000-0000-000000000000",
+                    "mipsToGenerate": 0,
+                    "scaled": true
+                }
             }
         ],
         "Checksum": "ࢺ懜璙ᓆ锯翋꤯맫",
@@ -53,7 +68,8 @@
     }
 }←1225f6b0-ac20-43bd-a82e-be73fa0b6f4f|{
     "targets": 461609314234257646,
-    "scaled": false
+    "scaled": false,
+    "groupParent": "00000000-0000-0000-0000-000000000000"
 }←7b2c4976-1e09-44e5-8256-c527145e03bb|{
     "targets": 461609314234257646
 }
