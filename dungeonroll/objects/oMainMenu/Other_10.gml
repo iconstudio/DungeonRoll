@@ -26,3 +26,7 @@ dodecahedron_point[16] = [-golden_ratio_reverse, 0, golden_ratio] // blue
 dodecahedron_point[17] = [-1, 1, -1]
 dodecahedron_point[18] = [0, golden_ratio, -golden_ratio_reverse] // green
 dodecahedron_point[19] = [0, golden_ratio, golden_ratio_reverse] // green
+
+dodecahedron_pipeline = [[0, 1, 2, 3, 4, 0], [4, 5, 6, 7, 3], [6, 8, 9, 10, 7], [10, 11, 2], [9, 12, 13, 11], [13, 16, 1], [12, 14, 17, 8], [14, 15, 16], [8, 17, 18, 5], [18, 19, 0], [19, 15]]
+dodecahedron_pipeline_size = array_length_1d(dodecahedron_pipeline)
+

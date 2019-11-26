@@ -16,12 +16,23 @@ pentagon_tilt_angle = 90
 event_user(0)
 
 menu_perspective_distance = 600
-menu_rotation_basic = 0
-menu_rotation_target = menu_rotation_basic
-menu_rotation_begin = menu_rotation_target
-menu_rotation = menu_rotation_target
-menu_rotate_period = seconds(0.4)
-menu_rotate_time = menu_rotate_period
+menu_rotating_angle = 90
+menu_rotating_angle_vertical = 180
+menu_rotating = false
+menu_rotate_period = seconds(0.2)
+//
+menu_rotation_basic_horizontal = 0
+menu_rotation_target_horizontal = menu_rotation_basic_horizontal
+menu_rotation_begin_horizontal = menu_rotation_target_horizontal
+menu_rotation_horizontal = menu_rotation_begin_horizontal
+menu_rotate_time_horizontal = menu_rotate_period
+//
+menu_rotation_basic_vertical = 0
+menu_rotation_target_vertical = menu_rotation_basic_vertical
+menu_rotation_begin_vertical = menu_rotation_target_vertical
+menu_rotation_vertical = menu_rotation_begin_vertical
+menu_rotate_time_vertical = menu_rotate_period
+
 menu_extension_time = 0
 menu_extension_period = seconds(0.6)
 closing_time = 0

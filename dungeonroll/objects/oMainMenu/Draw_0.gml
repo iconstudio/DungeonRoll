@@ -1,6 +1,6 @@
 /// @description 메뉴 그리기
 var alpha_overall = image_alpha
-draw_set_alpha(image_alpha)
+draw_set_alpha(alpha_overall)
 draw_set_color(c_fuchsia)
 
 draw_stack_push()
@@ -14,8 +14,24 @@ var projection_y = 0//lengthdir_y(menu_perspective_distance, menu_rotation)
 draw_set_projection(0, 0, -1600, 0, 0, 0, 0, 1, 0)
 draw_transform_add_scaling(pentagon_edge_length, pentagon_edge_length, pentagon_edge_length)
 draw_transform_add_rotation_z(pentagon_tilt_angle)
-draw_transform_add_rotation_y(menu_rotation)
+draw_transform_add_rotation_y(menu_rotation_horizontal)
+draw_transform_add_rotation_x(menu_rotation_vertical)
 
+for (var i = 0; i < dodecahedron_pipeline_size; ++i) {
+	var points_set = dodecahedron_pipeline[i]
+	var points_number = array_length_1d(points_set)
+
+	draw_primitive_3d_begin(pr_linestrip)
+	for (var j = 0; j < points_number; ++j) {
+		var point = dodecahedron_point[points_set[j]]
+		draw_vertex_3d(point[0], point[1], point[2])
+	}
+	draw_primitive_3d_end()
+}
+draw_stack_pop()
+draw_transform_set_identity()
+
+/*
 draw_primitive_3d_begin(pr_linestrip)
 var point = dodecahedron_point[00]
 draw_vertex_3d(point[0], point[1], point[2])
@@ -132,6 +148,7 @@ draw_vertex_3d(point[0], point[1], point[2])
 point = dodecahedron_point[15]
 draw_vertex_3d(point[0], point[1], point[2])
 draw_primitive_3d_end()
+//*/
 
 /*
 draw_transform_add_scaling(1 / pentagon_edge_length, 1 / pentagon_edge_length, 1 / pentagon_edge_length)
@@ -155,8 +172,6 @@ for (var i = 0; i < 20; ++i) {
 	draw_transform_add_translation(-ptx, -pty, -ptz)
 }
 */
-draw_stack_pop()
-draw_transform_set_identity()
 
 /*
 var menu_item_alpha, menu_items_alpha_ratio, menu_item_string, menu_item = ["", noone, 1]
