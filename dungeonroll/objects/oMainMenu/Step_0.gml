@@ -19,8 +19,10 @@ if menu_mode == MODE_NONE {
 }
 
 menu_rotating = false
+
+var menu_ratio_horizontal = menu_rotate_time_horizontal / menu_rotate_period
 if menu_rotate_time_horizontal < menu_rotate_period {
-	menu_rotation_horizontal = menu_rotation_basic_horizontal + lerp(menu_rotation_begin_horizontal, menu_rotation_target_horizontal, menu_rotate_time_horizontal / menu_rotate_period)
+	menu_rotation_horizontal = menu_rotation_basic_horizontal + lerp(menu_rotation_begin_horizontal, menu_rotation_target_horizontal, menu_ratio_horizontal)
 	menu_rotating = true
 
 	menu_rotate_time_horizontal++
@@ -30,8 +32,9 @@ if menu_rotate_time_horizontal < menu_rotate_period {
 	menu_rotate_time_horizontal = menu_rotate_period
 }
 
+var menu_ratio_vertical = menu_rotate_time_vertical / menu_rotate_period
 if menu_rotate_time_vertical < menu_rotate_period {
-	menu_rotation_vertical = menu_rotation_basic_vertical + lerp(menu_rotation_begin_vertical, menu_rotation_target_vertical, menu_rotate_time_vertical / menu_rotate_period)
+	menu_rotation_vertical = menu_rotation_basic_vertical + lerp(menu_rotation_begin_vertical, menu_rotation_target_vertical, menu_ratio_vertical)
 	menu_rotating = true
 
 	menu_rotate_time_vertical++
@@ -43,7 +46,7 @@ if menu_rotate_time_vertical < menu_rotate_period {
 
 var key_left = keyboard_check_pressed(vk_left)
 var key_right = keyboard_check_pressed(vk_right)
-if menu_rotate_time_horizontal == menu_rotate_period and (key_left xor key_right) {
+if !menu_rotating and (key_left xor key_right) {
 	if key_left {
 		menu_rotate_horizontal(-menu_rotating_angle)
 	} else if key_right {
@@ -53,7 +56,7 @@ if menu_rotate_time_horizontal == menu_rotate_period and (key_left xor key_right
 
 var key_up = keyboard_check_pressed(vk_up)
 var key_down = keyboard_check_pressed(vk_down)
-if menu_rotate_time_vertical == menu_rotate_period and (key_up xor key_down) {
+if !menu_rotating and (key_up xor key_down) {
 	if key_up {
 		menu_rotate_vertical(-menu_rotating_angle_vertical)
 	} else if key_down {

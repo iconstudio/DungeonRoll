@@ -11,7 +11,7 @@ draw_stack_push()
 var projection_x = 0 //lengthdir_x(menu_perspective_distance, menu_rotation)
 var projection_y = 0//lengthdir_y(menu_perspective_distance, menu_rotation)
 
-draw_set_projection(0, 0, -1600, 0, 0, 0, 0, 1, 0)
+draw_set_projection(0, 0, -700, 0, 0, 0, 0, 1, 0)
 draw_transform_add_scaling(pentagon_edge_length, pentagon_edge_length, pentagon_edge_length)
 draw_transform_add_rotation_z(pentagon_tilt_angle)
 draw_transform_add_rotation_y(menu_rotation_horizontal)
