@@ -11,7 +11,7 @@ draw_stack_push()
 var projection_x = 0 //lengthdir_x(menu_perspective_distance, menu_rotation)
 var projection_y = 0//lengthdir_y(menu_perspective_distance, menu_rotation)
 
-draw_set_projection(0, 0, -700, 0, 0, 0, 0, 1, 0)
+var project_origin = draw_set_projection(0, 0, -700, 0, 0, 0, 0, 1, 0)
 draw_transform_add_scaling(pentagon_edge_length, pentagon_edge_length, pentagon_edge_length)
 draw_transform_add_rotation_z(pentagon_tilt_angle)
 draw_transform_add_rotation_y(menu_rotation_horizontal)
@@ -30,6 +30,9 @@ for (var i = 0; i < dodecahedron_pipeline_size; ++i) {
 }
 draw_stack_pop()
 draw_transform_set_identity()
+
+camera_set_view_mat(project_origin[0], project_origin[1])
+camera_apply(project_origin[0])
 
 /*
 draw_primitive_3d_begin(pr_linestrip)

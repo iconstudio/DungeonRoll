@@ -11,5 +11,8 @@
 /// @param zup { real }
 var matrix_project = matrix_build_lookat(argument0, argument1, argument2, argument3, argument4, argument5,argument6, argument7, argument8)
 var acamera = camera_get_active()
+var amatrix = camera_get_view_mat(acamera)
 camera_set_view_mat(acamera, matrix_project)
 camera_apply(acamera)
+
+return [acamera, amatrix]

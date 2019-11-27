@@ -40,18 +40,27 @@ closing_period = seconds(0.9)
 
 menu_items = []
 menu_items_number = []
+/*
+	 real menu_items_position_y[depth]
+	 int menu_item_selected[depth]
+	 int menu_item_selected_previous[depth]
+*/
+menu_items_position_y = []
 menu_item_selected = []
 menu_item_selected_previous = []
 
 
-
-//menu_item_clear(0, 1)
-//menu_item_add(0, "멀티 플레이", menu_callback_multiplay, "", 0.5)
-//menu_item_add(0, "싱글 플레이", menu_callback_singleplay)
-//menu_item_add(0, "게임 불러오기", menu_callback_loadsaved)
-//menu_item_add(0, "달성 과제", menu_callback_achievements)
-//menu_item_add(0, "설정", menu_callback_setting)
-//menu_item_add(0, "게임 종료", menu_callback_exit)
+/*
+	 메뉴 위치
+			[2]
+		[1] [0]
+			[3]
+*/
+menu_item_clear(0, 1)
+menu_item_add(0, "게임", -1) // 오른쪽
+menu_item_add(0, "도전", -1) // 왼쪽
+menu_item_add(0, "설정", -1) // 위쪽
+menu_item_add(0, "종료", -1) // 아래쪽
 
 draw_set_color($ffffff)
 draw_set_halign(0)
