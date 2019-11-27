@@ -53,7 +53,7 @@ if !menu_rotating and (key_left xor key_right) {
 		menu_rotate_horizontal(menu_rotating_angle)
 	}
 }
-
+/*
 var key_up = keyboard_check_pressed(vk_up)
 var key_down = keyboard_check_pressed(vk_down)
 if !menu_rotating and (key_up xor key_down) {
@@ -63,15 +63,15 @@ if !menu_rotating and (key_up xor key_down) {
 		menu_rotate_vertical(menu_rotating_angle_vertical)
 	}
 }
-
+*/
 if menu_rotation_target_horizontal < 0
 	menu_rotation_target_horizontal += 360
-else if 360 < menu_rotation_target_horizontal
+else if 540 <= menu_rotation_target_horizontal
 	menu_rotation_target_horizontal -= 360
 
 if menu_rotation_target_vertical < 0
 	menu_rotation_target_vertical += 360
-else if 360 < menu_rotation_target_vertical
+else if 540 <= menu_rotation_target_vertical
 	menu_rotation_target_vertical -= 360
 
 
