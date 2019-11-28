@@ -9,7 +9,7 @@ if menu_depth_max < mdepth
 
 menu_items_number[mdepth] = 0
 menu_items[mdepth, 0] = []
-menu_items_position_y[mdepth] = 0
+menu_items_position[mdepth] = 0
 
 menu_item_selected[mdepth] = mselect
 menu_item_selected_previous[mdepth] = mselect

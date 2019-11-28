@@ -7,6 +7,7 @@ MODE_EXIT = 99
 menu_mode = MODE_NONE
 menu_depth_max = 0
 menu_depth = 0
+menu_depth_previous = 0
 
 golden_ratio = (1 + sqrt(5)) * 0.5
 golden_ratio_reverse = 1 / golden_ratio
@@ -22,6 +23,7 @@ menu_rotating = false
 menu_rotate_period = seconds(0.2)
 //
 menu_rotation_basic_horizontal = 0
+menu_rotation_basic_horizontal_push = 0
 menu_rotation_target_horizontal = menu_rotation_basic_horizontal
 menu_rotation_begin_horizontal = menu_rotation_target_horizontal
 menu_rotation_horizontal = menu_rotation_begin_horizontal
@@ -38,6 +40,8 @@ menu_extension_period = seconds(0.6)
 closing_time = 0
 closing_period = seconds(0.9)
 
+menu_item_render_distance_s = pentagon_edge_length + 20
+menu_item_render_distance_l = pentagon_edge_length + 60
 menu_items = []
 menu_items_number = []
 /*
@@ -45,10 +49,9 @@ menu_items_number = []
 	 int menu_item_selected[depth]
 	 int menu_item_selected_previous[depth]
 */
-menu_items_position_y = []
+menu_items_position = []
 menu_item_selected = []
 menu_item_selected_previous = []
-
 
 /*
 	 메뉴 위치
@@ -56,12 +59,9 @@ menu_item_selected_previous = []
 		[1] [0]
 			[3]
 */
+draw_set_font(fontMenu)
 menu_item_clear(0, 1)
-menu_item_add(0, "게임", -1) // 오른쪽
-menu_item_add(0, "도전", -1) // 왼쪽
+menu_item_add(0, "도전", -1) // 오른쪽
+menu_item_add(0, "게임", -1) // 왼쪽
 menu_item_add(0, "설정", -1) // 위쪽
 menu_item_add(0, "종료", -1) // 아래쪽
-
-draw_set_color($ffffff)
-draw_set_halign(0)
-draw_set_valign(0)

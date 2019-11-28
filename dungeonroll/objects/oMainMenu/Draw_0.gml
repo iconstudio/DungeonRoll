@@ -28,9 +28,44 @@ for (var i = 0; i < dodecahedron_pipeline_size; ++i) {
 	}
 	draw_primitive_3d_end()
 }
-draw_stack_pop()
 draw_transform_set_identity()
 
+draw_set_color($ffffff)
+draw_set_font(fontMenu)
+draw_set_halign(1)
+draw_set_valign(1)
+
+var menu_info_right = menu_items[menu_depth, 0]
+var menu_info_left = menu_items[menu_depth, 1]
+var menu_info_up = menu_items[menu_depth, 2]
+var menu_info_down = menu_items[menu_depth, 3]
+var menu_item_angle = menu_rotation_horizontal + menu_rotation_basic_horizontal_push
+
+draw_transform_set_translation(0, 0, -menu_item_render_distance_s)
+draw_transform_add_rotation_y(315) //-45
+draw_transform_add_rotation_y(menu_item_angle)
+draw_text(0, 0, menu_info_right[0])
+draw_transform_set_identity()
+
+draw_transform_set_translation(0, 0, -menu_item_render_distance_s)
+draw_transform_add_rotation_y(45)
+draw_transform_add_rotation_y(menu_item_angle)
+draw_text(0, 0, menu_info_left[0])
+draw_transform_set_identity()
+
+draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
+draw_transform_add_rotation_x(45)
+draw_transform_add_rotation_y(menu_item_angle)
+draw_text(0, 0, menu_info_up[0])
+draw_transform_set_identity()
+
+draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
+draw_transform_add_rotation_x(315) // -45
+draw_transform_add_rotation_y(menu_item_angle)
+draw_text(0, 0, menu_info_down[0])
+draw_transform_set_identity()
+
+draw_stack_pop()
 camera_set_view_mat(project_origin[0], project_origin[1])
 camera_apply(project_origin[0])
 
