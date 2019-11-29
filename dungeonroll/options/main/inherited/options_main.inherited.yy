@@ -20,7 +20,7 @@
                     "mvc": "1.0",
                     "groupName": "Editor",
                     "targets": 461609314234257646,
-                    "autocrop": false,
+                    "autocrop": true,
                     "border": 4,
                     "groupParent": "00000000-0000-0000-0000-000000000000",
                     "mipsToGenerate": -1,
@@ -51,10 +51,10 @@
                     "groupName": "MainMenu",
                     "targets": 461609314234257646,
                     "autocrop": true,
-                    "border": 2,
+                    "border": 4,
                     "groupParent": "00000000-0000-0000-0000-000000000000",
-                    "mipsToGenerate": 0,
-                    "scaled": true
+                    "mipsToGenerate": -1,
+                    "scaled": false
                 }
             }
         ],

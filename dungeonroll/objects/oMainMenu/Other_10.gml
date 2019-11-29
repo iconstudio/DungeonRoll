@@ -1,5 +1,6 @@
 /// @description 정십이면체 좌표
-dodecahedron_dihedral_angle = arccos(-1 / sqrt(5)) + 30
+dodecahedron_dihedral_angle = 116.56505 // arccos(-1 / sqrt(5))
+dodecahedron_dihedral_angle_reverse = 180 - dodecahedron_dihedral_angle
 dodecahedron_point = array_create(20, [])
 dodecahedron_point[00] = [1, 1, 1]
 dodecahedron_point[01] = [golden_ratio_reverse, 0, golden_ratio] // blue

@@ -20,26 +20,26 @@ if menu_mode == MODE_NONE {
 
 menu_rotating = false
 
-var menu_ratio_horizontal = menu_rotate_time_horizontal / menu_rotate_period
-if menu_rotate_time_horizontal < menu_rotate_period {
-	menu_rotation_horizontal = menu_rotation_basic_horizontal + lerp(menu_rotation_begin_horizontal, menu_rotation_target_horizontal, menu_ratio_horizontal)
+var menu_ratio_horizontal = menu_rotate_time / menu_rotate_period
+if menu_rotate_time < menu_rotate_period {
+	menu_rotation_push = lerp(menu_rotation_push_begin, 0, menu_ratio_horizontal)
 	menu_rotating = true
 
-	menu_rotate_time_horizontal++
+	menu_rotate_time++
 } else {
-	menu_rotation_horizontal = menu_rotation_target_horizontal
+	menu_rotation_push = 0
 
-	menu_rotate_time_horizontal = menu_rotate_period
+	menu_rotate_time = menu_rotate_period
 }
 
 var menu_ratio_vertical = menu_rotate_time_vertical / menu_rotate_period
 if menu_rotate_time_vertical < menu_rotate_period {
-	menu_rotation_vertical = menu_rotation_basic_vertical + lerp(menu_rotation_begin_vertical, menu_rotation_target_vertical, menu_ratio_vertical)
+	menu_rotation_vertical = lerp(menu_rotation_push_begin_vertical, menu_rotation_push_target_vertical, menu_ratio_vertical)
 	menu_rotating = true
 
 	menu_rotate_time_vertical++
 } else {
-	menu_rotation_vertical = menu_rotation_target_vertical
+	menu_rotation_vertical = menu_rotation_push_target_vertical
 
 	menu_rotate_time_vertical = menu_rotate_period
 }
@@ -48,9 +48,9 @@ var key_left = keyboard_check_pressed(vk_left)
 var key_right = keyboard_check_pressed(vk_right)
 if !menu_rotating and (key_left xor key_right) {
 	if key_left {
-		menu_rotate_horizontal(-menu_rotating_angle)
+		menu_rotate_horizontal(menu_rotate_angle)
 	} else if key_right {
-		menu_rotate_horizontal(menu_rotating_angle)
+		menu_rotate_horizontal(-menu_rotate_angle)
 	}
 }
 /*
@@ -58,24 +58,21 @@ var key_up = keyboard_check_pressed(vk_up)
 var key_down = keyboard_check_pressed(vk_down)
 if !menu_rotating and (key_up xor key_down) {
 	if key_up {
-		menu_rotate_vertical(-menu_rotating_angle_vertical)
+		menu_rotate_vertical(-menu_rotate_angle_vertical)
 	} else if key_down {
-		menu_rotate_vertical(menu_rotating_angle_vertical)
+		menu_rotate_vertical(menu_rotate_angle_vertical)
 	}
 }
-*/
-if menu_rotation_target_horizontal < 0
-	menu_rotation_target_horizontal += 360
-else if 540 <= menu_rotation_target_horizontal
-	menu_rotation_target_horizontal -= 360
+//
+if menu_rotation_push_target < 0
+	menu_rotation_push_target += 360
+else if 360 < menu_rotation_push_target
+	menu_rotation_push_target -= 360
 
-if menu_rotation_target_vertical < 0
-	menu_rotation_target_vertical += 360
-else if 540 <= menu_rotation_target_vertical
-	menu_rotation_target_vertical -= 360
-
-
-//menu_rotation += 0.1
+if menu_rotation_push_target_vertical < 0
+	menu_rotation_push_target_vertical += 360
+else if 360 < menu_rotation_push_target_vertical
+	menu_rotation_push_target_vertical -= 360
 
 /*
 if menu_draw_y_transition_time < menu_draw_y_transition_period {

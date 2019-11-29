@@ -11,10 +11,11 @@ draw_stack_push()
 var projection_x = 0 //lengthdir_x(menu_perspective_distance, menu_rotation)
 var projection_y = 0//lengthdir_y(menu_perspective_distance, menu_rotation)
 
-var project_origin = draw_set_projection(0, 0, -700, 0, 0, 0, 0, 1, 0)
+var project_origin = draw_set_projection(0, 0, menu_perspective_distance, 0, 0, 0, 0, 1, 0)
+var dodecahedron_angle = menu_rotation + menu_rotation_push
 draw_transform_add_scaling(pentagon_edge_length, pentagon_edge_length, pentagon_edge_length)
 draw_transform_add_rotation_z(pentagon_tilt_angle)
-draw_transform_add_rotation_y(menu_rotation_horizontal)
+draw_transform_add_rotation_y(dodecahedron_angle)
 draw_transform_add_rotation_x(menu_rotation_vertical)
 
 for (var i = 0; i < dodecahedron_pipeline_size; ++i) {
@@ -39,31 +40,65 @@ var menu_info_right = menu_items[menu_depth, 0]
 var menu_info_left = menu_items[menu_depth, 1]
 var menu_info_up = menu_items[menu_depth, 2]
 var menu_info_down = menu_items[menu_depth, 3]
-var menu_item_angle = menu_rotation_horizontal + menu_rotation_basic_horizontal_push
+var menu_render_angle = menu_rotation + menu_rotation_push
+var menu_render_distance_horizontal = abs(dsin(menu_render_angle)) * menu_item_render_distance_gab + menu_item_render_distance_s
 
-draw_transform_set_translation(0, 0, -menu_item_render_distance_s)
-draw_transform_add_rotation_y(315) //-45
-draw_transform_add_rotation_y(menu_item_angle)
+draw_transform_set_translation(0, 0, -menu_render_distance_horizontal)
+draw_transform_add_rotation_y(360 - menu_perspective_angle) //-45
+draw_transform_add_rotation_y(menu_render_angle)
 draw_text(0, 0, menu_info_right[0])
 draw_transform_set_identity()
 
-draw_transform_set_translation(0, 0, -menu_item_render_distance_s)
-draw_transform_add_rotation_y(45)
-draw_transform_add_rotation_y(menu_item_angle)
+draw_transform_set_translation(0, 0, -menu_render_distance_horizontal)
+draw_transform_add_rotation_y(menu_perspective_angle)
+draw_transform_add_rotation_y(menu_render_angle)
 draw_text(0, 0, menu_info_left[0])
 draw_transform_set_identity()
 
 draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
-draw_transform_add_rotation_x(45)
-draw_transform_add_rotation_y(menu_item_angle)
+draw_transform_add_rotation_x(menu_perspective_angle)
+draw_transform_add_rotation_y(menu_render_angle)
 draw_text(0, 0, menu_info_up[0])
 draw_transform_set_identity()
 
 draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
-draw_transform_add_rotation_x(315) // -45
-draw_transform_add_rotation_y(menu_item_angle)
+draw_transform_add_rotation_x(360 - menu_perspective_angle) // -45
+draw_transform_add_rotation_y(menu_render_angle)
 draw_text(0, 0, menu_info_down[0])
 draw_transform_set_identity()
+
+if menu_depth != menu_depth_previous and menu_rotation_push != 0 {
+	var menup_info_right = menu_items[menu_depth_previous, 0]
+	var menup_info_left = menu_items[menu_depth_previous, 1]
+	var menup_info_up = menu_items[menu_depth_previous, 2]
+	var menup_info_down = menu_items[menu_depth_previous, 3]
+	var menup_render_angle = menu_rotation + menu_rotation_push - menu_rotate_angle
+	var menup_item_render_distance_horizontal = abs(dsin(menup_render_angle)) * menu_item_render_distance_gab + menu_item_render_distance_s
+
+	draw_transform_set_translation(0, 0, -meni_item_render_distance_horizontal)
+	draw_transform_add_rotation_y(360 - menu_perspective_angle) //-45
+	draw_transform_add_rotation_y(menup_render_angle)
+	draw_text(0, 0, menup_info_right[0])
+	draw_transform_set_identity()
+
+	draw_transform_set_translation(0, 0, -meni_item_render_distance_horizontal)
+	draw_transform_add_rotation_y(menu_perspective_angle)
+	draw_transform_add_rotation_y(menup_render_angle)
+	draw_text(0, 0, menup_info_left[0])
+	draw_transform_set_identity()
+
+	draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
+	draw_transform_add_rotation_x(menu_perspective_angle)
+	draw_transform_add_rotation_y(menup_render_angle)
+	draw_text(0, 0, menup_info_up[0])
+	draw_transform_set_identity()
+
+	draw_transform_set_translation(0, 0, -menu_item_render_distance_l)
+	draw_transform_add_rotation_x(360 - menu_perspective_angle) // -45
+	draw_transform_add_rotation_y(menup_render_angle)
+	draw_text(0, 0, menup_info_down[0])
+	draw_transform_set_identity()
+}
 
 draw_stack_pop()
 camera_set_view_mat(project_origin[0], project_origin[1])
