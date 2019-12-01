@@ -75,13 +75,13 @@ if menu_depth != menu_depth_previous and menu_rotation_push != 0 {
 	var menup_render_angle = menu_rotation + menu_rotation_push - menu_rotate_angle
 	var menup_item_render_distance_horizontal = abs(dsin(menup_render_angle)) * menu_item_render_distance_gab + menu_item_render_distance_s
 
-	draw_transform_set_translation(0, 0, -meni_item_render_distance_horizontal)
+	draw_transform_set_translation(0, 0, -menup_item_render_distance_horizontal)
 	draw_transform_add_rotation_y(360 - menu_perspective_angle) //-45
 	draw_transform_add_rotation_y(menup_render_angle)
 	draw_text(0, 0, menup_info_right[0])
 	draw_transform_set_identity()
 
-	draw_transform_set_translation(0, 0, -meni_item_render_distance_horizontal)
+	draw_transform_set_translation(0, 0, -menup_item_render_distance_horizontal)
 	draw_transform_add_rotation_y(menu_perspective_angle)
 	draw_transform_add_rotation_y(menup_render_angle)
 	draw_text(0, 0, menup_info_left[0])

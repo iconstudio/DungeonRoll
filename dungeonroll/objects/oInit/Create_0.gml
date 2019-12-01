@@ -175,6 +175,7 @@ enum e__YYMKIND {
 
 #endregion
 
+#region 게임
 enum node_type {
 	normal = 0,
 	monster_spawner, // uses data (integer)
@@ -207,6 +208,7 @@ enum theme {
 	cold,
 	coldest
 }
+#endregion
 
 #region 네트워크
 // 네트워크 초기화와 클라우드 로그인
@@ -256,6 +258,11 @@ if !global.network_available {
 }
 #endregion
 
+#macro gamepad_type_xbox 0
+#macro gamepad_type_playstation 1
+#macro gamepad_type_other 2
+
 instance_create_layer(0, 0, layer, oGlobal)
+instance_create_layer(0, 0, layer, oGamepad)
 alarm[0] = 1
 

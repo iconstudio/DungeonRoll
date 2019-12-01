@@ -43,6 +43,12 @@ menu_items_number = []
 menu_items_position = []
 menu_item_selected = []
 menu_item_selected_previous = []
+NONE = -1
+LEFT = 1
+RIGHT = 0
+UP = 2
+DOWN = 3
+menu_selection = NONE
 
 //
 menu_rotation_push_target_vertical = 0
@@ -64,6 +70,6 @@ closing_period = seconds(0.9)
 draw_set_font(fontMenu)
 menu_item_clear(0, 1)
 menu_item_add(0, "도전", -1) // 오른쪽
-menu_item_add(0, "게임", -1) // 왼쪽
+menu_item_add(0, "게임", menu_callback_play) // 왼쪽
 menu_item_add(0, "설정", -1) // 위쪽
 menu_item_add(0, "종료", -1) // 아래쪽

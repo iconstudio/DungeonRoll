@@ -44,15 +44,41 @@ if menu_rotate_time_vertical < menu_rotate_period {
 	menu_rotate_time_vertical = menu_rotate_period
 }
 
-var key_left = keyboard_check_pressed(vk_left)
-var key_right = keyboard_check_pressed(vk_right)
-if !menu_rotating and (key_left xor key_right) {
-	if key_left {
-		menu_rotate_horizontal(menu_rotate_angle)
-	} else if key_right {
-		menu_rotate_horizontal(-menu_rotate_angle)
+if !menu_rotating {
+	var key_left = keyboard_check_pressed(vk_left) or keyboard_check_pressed(vk_numpad4)
+	var key_right = keyboard_check_pressed(vk_right) or keyboard_check_pressed(vk_numpad6)
+
+	if key_left xor key_right {
+		if key_left {
+			menu_selection = LEFT
+		} else if key_right {
+			menu_selection = RIGHT
+		}
+	}
+	
+	switch menu_selection {
+		case LEFT:
+			var menu_data = menu_items[menu_depth, menu_selection]
+			if script_exists(menu_data[1])
+				script_execute(menu_data[1])
+
+			menu_rotate_horizontal(menu_rotate_angle)
+		break
+
+		case RIGHT:
+			var menu_data = menu_items[menu_depth, menu_selection]
+			if script_exists(menu_data[1])
+				script_execute(menu_data[1])
+
+			menu_rotate_horizontal(-menu_rotate_angle)
+		break
+
+		default:
+		break
 	}
 }
+menu_selection = NONE
+
 /*
 var key_up = keyboard_check_pressed(vk_up)
 var key_down = keyboard_check_pressed(vk_down)
