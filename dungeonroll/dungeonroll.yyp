@@ -1769,6 +1769,14 @@
             }
         },
         {
+            "Key": "daf574a6-d700-47f9-b8fb-d2d5d7c305a1",
+            "Value": {
+                "id": "280a64d9-d6d2-4ac6-b167-0cd781f43a69",
+                "resourcePath": "scripts\\menu_callback_challenge\\menu_callback_challenge.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "db9105fb-421a-46fa-ac04-0cd2492be4c0",
             "Value": {
                 "id": "506974e3-6628-4af0-9dcb-a2d95bc3e81f",
@@ -2069,6 +2077,7 @@
         "1c93e26b-2546-4950-bf4b-9d4a7136c2d1",
         "d839895d-778d-41da-9494-f22b1ea53ee1",
         "e3443674-0fbf-457c-9d46-2237b57a0852",
+        "daf574a6-d700-47f9-b8fb-d2d5d7c305a1",
         "67ea1fce-c885-45f6-99b8-b905bbaa3ec0",
         "144b071a-1af3-4157-a0c4-7391ea8a4146",
         "662ec9c3-e209-493e-a6b1-ad6a133d2df7",

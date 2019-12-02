@@ -19,7 +19,9 @@ pentagon_tilt_angle = 90
 event_user(0)
 
 menu_perspective_distance = -600
-menu_perspective_angle = 45
+menu_perspective_angle_l = dodecahedron_dihedral_angle_reverse
+menu_perspective_angle_s = 35
+menu_perspective_angle_gap = menu_perspective_angle_l - menu_perspective_angle_s
 //
 menu_rotate_angle = 90
 menu_rotate_angle_vertical = 180
@@ -30,15 +32,16 @@ menu_rotation_push = menu_rotation_push_begin
 menu_rotation = menu_rotation_push
 menu_rotate_time = menu_rotate_period
 //
-menu_item_render_distance_s = pentagon_edge_length + 20
-menu_item_render_distance_l = pentagon_edge_length + 70
-menu_item_render_distance_gab = menu_item_render_distance_l - menu_item_render_distance_s
+menu_item_render_distance_s = pentagon_edge_length + 10
+menu_item_render_distance_l = pentagon_edge_length + 50
+menu_item_render_distance_gap = menu_item_render_distance_l - menu_item_render_distance_s
 menu_items = []
 menu_items_number = []
 /*
 	 real menu_items_position_y[depth]
 	 int menu_item_selected[depth]
 	 int menu_item_selected_previous[depth]
+	 int menu_item_sign
 */
 menu_items_position = []
 menu_item_selected = []
@@ -49,6 +52,7 @@ RIGHT = 0
 UP = 2
 DOWN = 3
 menu_selection = NONE
+menu_item_sign = LEFT
 
 //
 menu_rotation_push_target_vertical = 0
@@ -69,7 +73,7 @@ closing_period = seconds(0.9)
 */
 draw_set_font(fontMenu)
 menu_item_clear(0, 1)
-menu_item_add(0, "도전", -1) // 오른쪽
+menu_item_add(0, "도전", menu_callback_challenge) // 오른쪽
 menu_item_add(0, "게임", menu_callback_play) // 왼쪽
 menu_item_add(0, "설정", -1) // 위쪽
 menu_item_add(0, "종료", -1) // 아래쪽

@@ -62,7 +62,7 @@ if !menu_rotating {
 			if script_exists(menu_data[1])
 				script_execute(menu_data[1])
 
-			menu_rotate_horizontal(menu_rotate_angle)
+			menu_rotate_horizontal(-menu_rotate_angle)
 		break
 
 		case RIGHT:
@@ -70,7 +70,7 @@ if !menu_rotating {
 			if script_exists(menu_data[1])
 				script_execute(menu_data[1])
 
-			menu_rotate_horizontal(-menu_rotate_angle)
+			menu_rotate_horizontal(menu_rotate_angle)
 		break
 
 		default:
