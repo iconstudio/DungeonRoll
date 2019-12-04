@@ -273,14 +273,6 @@
             }
         },
         {
-            "Key": "1eb3e516-da2f-43f1-9422-ba0b522d1b27",
-            "Value": {
-                "id": "740ef164-b1d6-4e0f-8f99-9970f4b79473",
-                "resourcePath": "fonts\\fontMenuDebug\\fontMenuDebug.yy",
-                "resourceType": "GMFont"
-            }
-        },
-        {
             "Key": "1fe76016-3845-41bc-8e29-49d7d5c0548d",
             "Value": {
                 "id": "39ea26c3-54e2-4bc5-ad6a-03b74ab23046",
@@ -585,14 +577,6 @@
             }
         },
         {
-            "Key": "44a94ce8-8f0e-4fa0-9588-35ad3406ab15",
-            "Value": {
-                "id": "1b1aca57-c1ac-4627-bfef-ef1299216a1e",
-                "resourcePath": "fonts\\fontPentagon\\fontPentagon.yy",
-                "resourceType": "GMFont"
-            }
-        },
-        {
             "Key": "464f312e-74a1-45a6-ace0-353aa8a40ce6",
             "Value": {
                 "id": "ea7ee4aa-abc1-4b29-8385-87d4e9840115",
@@ -628,7 +612,7 @@
             "Key": "49510267-c55a-479f-b048-a1b73dab5261",
             "Value": {
                 "id": "5c66e745-d948-4e63-a993-4fcc78a5e0fd",
-                "resourcePath": "scripts\\menu_item_clear\\menu_item_clear.yy",
+                "resourcePath": "scripts\\menu_create\\menu_create.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1037,6 +1021,14 @@
             "Value": {
                 "id": "064098ac-5f4b-41cd-8b47-5c06ba142367",
                 "resourcePath": "scripts\\io_check_down\\io_check_down.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7aef7535-65ce-449d-a002-0a61809fb99e",
+            "Value": {
+                "id": "ce7fa311-19d8-42e0-936a-a0cd6c6c4ba1",
+                "resourcePath": "scripts\\menu_select\\menu_select.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2086,8 +2078,9 @@
         "7591aa58-7a89-4457-a8fa-5c3eee858578",
         "4d1c4ed3-d64f-48fe-a1c0-aca52c983c21",
         "aef0a237-2d91-42e7-89b8-49d05b8faa57",
-        "c1ceb439-b651-4334-9fea-566162b7f1d7",
         "49510267-c55a-479f-b048-a1b73dab5261",
+        "7aef7535-65ce-449d-a002-0a61809fb99e",
+        "c1ceb439-b651-4334-9fea-566162b7f1d7",
         "5e3f87b3-648f-4dbc-ac10-903d29fceeed",
         "267962a8-c8a0-41db-a099-e8bcdeefe37d",
         "1c93e26b-2546-4950-bf4b-9d4a7136c2d1",

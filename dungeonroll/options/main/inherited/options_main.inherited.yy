@@ -50,8 +50,8 @@
                     "mvc": "1.0",
                     "groupName": "MainMenu",
                     "targets": 461609314234257646,
-                    "autocrop": true,
-                    "border": 4,
+                    "autocrop": false,
+                    "border": 2,
                     "groupParent": "00000000-0000-0000-0000-000000000000",
                     "mipsToGenerate": -1,
                     "scaled": false
