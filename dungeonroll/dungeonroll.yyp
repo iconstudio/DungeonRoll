@@ -281,14 +281,6 @@
             }
         },
         {
-            "Key": "1ef46919-9930-498a-a8f5-edbbd72c1532",
-            "Value": {
-                "id": "f237073e-cdbd-4d19-b8c1-e9697db4fdbd",
-                "resourcePath": "objects\\_oMainMenuHedron\\_oMainMenuHedron.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "1fe76016-3845-41bc-8e29-49d7d5c0548d",
             "Value": {
                 "id": "39ea26c3-54e2-4bc5-ad6a-03b74ab23046",
@@ -1049,14 +1041,6 @@
             }
         },
         {
-            "Key": "7a81114c-95c5-44ca-acca-5ce42d60c214",
-            "Value": {
-                "id": "be63e3f3-dd43-4691-bc82-755388d46c60",
-                "resourcePath": "objects\\_oMainMenu\\_oMainMenu.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "7bc824f9-4f10-4102-804c-138a11f195cc",
             "Value": {
                 "id": "8f53f900-7e4f-4a46-bf8d-fc28250695e5",
@@ -1670,14 +1654,6 @@
                 "id": "6b29e14a-c12a-4f2e-8110-665894a4fb28",
                 "resourcePath": "sprites\\sprite121\\sprite121.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c83d7be8-7b40-4be6-b92f-889f8935ce46",
-            "Value": {
-                "id": "51771c4a-9caa-475f-87a3-cc4b0664f011",
-                "resourcePath": "objects\\_oMainMenuItem\\_oMainMenuItem.yy",
-                "resourceType": "GMObject"
             }
         },
         {
