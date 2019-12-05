@@ -5,7 +5,7 @@ var key_left_pressed = keyboard_check_pressed(vk_left)
 var key_right_pressed = keyboard_check_pressed(vk_right)
 
 if menu_pushing {
-	menu_scroll = lerp(menu_scroll_begin, menu_index * menu_item_gap, script_execute(menu_scroll_easer, menu_push_time / menu_push_period))
+	menu_scroll = lerp(menu_scroll_begin, menu_scroll_target, script_execute(menu_scroll_easer, menu_push_time / menu_push_period))
 
 	if menu_push_time < menu_push_period {
 		menu_push_time++
@@ -36,6 +36,7 @@ if menu_pushing {
 
 			if push {
 				menu_scroll_begin = menu_scroll
+				menu_scroll_target = menu_index * menu_item_gap
 				menu_pushing = true
 				menu_push_time = 0
 			}
