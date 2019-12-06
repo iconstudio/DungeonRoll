@@ -9,5 +9,5 @@ var mdepth = argument[0]
 var mcallback = argument_count > 3 ? argument[3] : -1
 var mavailable = argument_count > 4 ? argument[4] : true
 
-menu_items[mdepth, menu_items_number[mdepth]] = [argument[1], menu_coordinates[argument[2]], mcallback, mavailable]
+menu_items[mdepth, menu_items_number[mdepth]] = [argument[1], menu_coordinates[argument[2]], argument[2], mcallback, mavailable]
 return menu_items_number[mdepth]++

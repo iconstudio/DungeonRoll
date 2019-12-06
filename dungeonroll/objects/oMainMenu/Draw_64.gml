@@ -28,10 +28,9 @@ for (var i = 0; i < menu_number; ++i) {
 					menu_alpha = push_ratio
 			} else if menu_dragging { // 터치
 				
-			} else {
-				if i == menu_index or (800 - menu_item_gap <= menu_dx or menu_dx < 800 + menu_item_gap) {
-						menu_alpha = 1
-				}
+			}
+			if i == menu_index or j == menu_item_selected[i] {
+				menu_alpha = 1
 			}
 
 			draw_set_alpha(image_alpha * menu_alpha)

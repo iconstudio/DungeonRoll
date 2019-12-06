@@ -34,7 +34,7 @@ menu_item_add(menu_challange, "새로 시작", DOWN, -1)
 
 menu_main = menu_create()
 menu_item_add(menu_main, "도전", LEFT, -1)
-menu_item_add(menu_main, "게임", RIGHT, -1)
+menu_item_add(menu_main, "게임", RIGHT, menu_callback_game)
 menu_item_add(menu_main, "설정", UP, -1)
 menu_item_add(menu_main, "종료", DOWN, -1)
 menu_center = menu_main
@@ -48,6 +48,9 @@ menu_campaign = menu_create()
 menu_item_add(menu_campaign, "시작", RIGHT, -1)
 menu_item_add(menu_campaign, "정보", UP, -1)
 menu_item_add(menu_campaign, "다시 시작", DOWN, -1)
+
+// 
+menu_item_extend_period = seconds(0.72)
 
 // 
 menu_index = menu_center
