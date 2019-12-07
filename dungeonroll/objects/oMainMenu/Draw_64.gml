@@ -10,33 +10,42 @@ draw_set_color($ffffff)
 draw_set_halign(1)
 draw_set_valign(1)
 for (var i = 0; i < menu_number; ++i) {
-	var submenu_number = menu_items_number[i]
+	var submenu_number = ds_list_size(menu_items[i])
 	if 0 < submenu_number {
 		for (var j = 0; j < submenu_number; ++j) {
-			var menu_info = menu_items[i, j]
-			var menu_position = menu_info[1]
-			var menu_dx = lengthdir_x(menu_position[0], menu_position[1]) + 800 - menu_scroll + i * menu_item_gap
+			var menu_item = ds_list_find_value(menu_items[i], j)
+			if !instance_exists(menu_item)
+				show_error("메뉴 항목을 생성할 때 문제가 발생했습니다.", true)
+
+			var menu_ox = 800 - menu_scroll + i * menu_item_gap
+			var menu_dx = menu_ox + menu_item.x
 			if menu_dx + menu_item_size_half <= 0 or 1600 < menu_dx - menu_item_size_half
 				continue
 
 			var menu_alpha = 0
+			if i == menu_index
+				menu_alpha = 1 - abs(menu_ox - 800) / menu_fade_size
+			else 
+				menu_alpha = 1 - abs(menu_dx - 800) / menu_fade_size
+
+			/*
 			if menu_pushing { // 방향키
 				var push_ratio = menu_push_time / menu_push_period
 				if i == menu_index_previous
 					menu_alpha = 1 - push_ratio
 				else if i == menu_index
 					menu_alpha = push_ratio
-			} else if menu_dragging { // 터치
-				
-			}
-			if i == menu_index or j == menu_item_selected[i] {
-				menu_alpha = 1
+			}*/
+
+			if menu_index != menu_index_previous and menu_index_previous == i {
+				if j == menu_item_selected[i]
+					menu_alpha = 1
 			}
 
 			draw_set_alpha(image_alpha * menu_alpha)
-			var menu_dy = lengthdir_y(menu_position[0], menu_position[1]) + 450
+			var menu_dy = menu_item.y + 450
 			draw_sprite(sMenuPanel, 0, menu_dx, menu_dy)
-			draw_text(menu_dx, menu_dy, menu_info[0])
+			draw_text(menu_dx, menu_dy, menu_item.caption)
 		}
 	}
 
