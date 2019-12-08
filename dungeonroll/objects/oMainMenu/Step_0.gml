@@ -54,7 +54,7 @@ if menu_pushing {
 			, menu_drag_begin[0] - (cursor_gui_x - menu_drag_mover_coord_begin[0])
 			, menu_index == menu_number - 1 ? menu_scroll_target + menu_drag_lesseraway : menu_scroll_target + menu_drag_faraway)
 
-			menu_scroll_vertical = menu_drag_begin[1] - (cursor_gui_y - menu_drag_mover_coord_begin[1])
+			menu_scroll_vertical = menu_drag_begin[1] + (cursor_gui_y - menu_drag_mover_coord_begin[1])
 		}
 	}
 
@@ -86,14 +86,14 @@ if menu_pushing {
 			var scroll_horizontal_gap = menu_scroll_target - menu_scroll
 			if cursor_fast_threshold <= cursor_fast_count {
 				// 일정 빠르기 이상이면 메뉴 전환
-				if 0 < menu_scroll_target { // 왼쪽
+				if 0 < scroll_horizontal_gap { // 왼쪽
 					menu_choice = LEFT
 				} else { // 오른쪽
 					menu_choice = RIGHT
 				}
 			} else if menu_drag_threshold <= abs(scroll_horizontal_gap) {
 				// 일정 거리 이상 옮기면 메뉴 전환
-				if 0 < menu_scroll_target { // 왼쪽
+				if 0 < scroll_horizontal_gap { // 왼쪽
 					menu_choice = LEFT
 				} else { // 오른쪽
 					menu_choice = RIGHT
@@ -106,42 +106,44 @@ if menu_pushing {
 		menu_scroll_vertical = 0
 	}
 
+	// 스크롤 부드럽게
+	//if menu_dragging {
+	//	if menu_scroll != menu_scroll_pre or menu_scroll_vertical != menu_scroll_vertical_pre {
+	//		menu_scroll += (menu_scroll_pre - menu_scroll) * 0.6
+	//		menu_scroll_vertical += (menu_scroll_vertical_pre - menu_scroll_vertical) * 0.6
+	//	}
+	//}
+
 	// 키를 통한 메뉴 전환
 	if !menu_dragging and !menu_pushing {
-		if (key_left_pressed xor key_right_pressed) and (key_left_pressed or key_right_pressed) {
-			var push = false
+		if key_left_pressed xor key_right_pressed {
 			if key_left_pressed {
 				if 0 < menu_index {
 					menu_choice = LEFT
-					menu_select(menu_index - 1)
-					push = true
-				} else {
-					
 				}
 			} else if key_right_pressed {
 				if menu_index < menu_number - 1 {
 					menu_choice = RIGHT
-					menu_select(menu_index + 1)
-					push = true
-				} else {
-					
 				}
-			}
-
-			if push {
-				menu_transition(menu_index)
 			}
 		}
 	}
 
 	// 메뉴 실행
-	switch menu_choice {
-		case LEFT:
-			
-		break
+	if menu_choice != -1 {
+		var submenu_number = ds_list_size(menu_items[menu_index])
+		if 0 < submenu_number {
+			for (var i = 0; i < submenu_number; ++i) {
+				var menu_item = ds_list_find_value(menu_items[menu_index], i)
+				if !instance_exists(menu_item)
+					show_error("메뉴 항목을 생성할 때 문제가 발생했습니다.", true)
 
-		default:
-			
-		break
+				if menu_item.position == menu_choice and script_exists(menu_item.callback) {
+					menu_item_selected[menu_number] = i
+					script_execute(menu_item.callback, menu_item)
+					break
+				}
+			}
+		}
 	}
 }

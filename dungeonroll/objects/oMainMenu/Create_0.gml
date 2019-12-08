@@ -32,13 +32,15 @@ menu_challange_continue = menu_create()
 menu_item_add(menu_challange_continue, "시작", LEFT, -1)
 menu_item_add(menu_challange_continue, "정보", UP, -1)
 menu_item_add(menu_challange_continue, "다시 시작", DOWN, -1)
+menu_item_add(menu_challange_continue, "", RIGHT, menu_callback_back_to_right, false)
 
 menu_challange = menu_create()
 menu_item_add(menu_challange, "계속", LEFT, -1)
 menu_item_add(menu_challange, "기록", UP, -1)
+menu_item_add(menu_challange, "", RIGHT, menu_callback_back_to_right, false)
 
 menu_main = menu_create()
-menu_item_add(menu_main, "도전", LEFT, -1)
+menu_item_add(menu_main, "도전", LEFT, menu_callback_challenge)
 menu_item_add(menu_main, "게임", RIGHT, menu_callback_game)
 menu_item_add(menu_main, "설정", UP, -1)
 menu_item_add(menu_main, "종료", DOWN, -1)
@@ -47,12 +49,14 @@ menu_center = menu_main
 menu_game = menu_create()
 menu_item_add(menu_game, "캠페인", RIGHT, -1)
 menu_item_add(menu_game, "무한", UP, -1)
-menu_item_add(menu_game, "대전", DOWN, -1, false)
+menu_item_add(menu_game, "대전", DOWN, -1, true, false)
+menu_item_add(menu_game, "", LEFT, menu_callback_back_to_left, false)
 
 menu_campaign = menu_create()
 menu_item_add(menu_campaign, "시작", RIGHT, -1)
 menu_item_add(menu_campaign, "정보", UP, -1)
 menu_item_add(menu_campaign, "다시 시작", DOWN, -1)
+menu_item_add(menu_campaign, "", LEFT, menu_callback_back_to_left, false)
 
 // 
 menu_pushing = false // 방향키로 메뉴 전환 중 여부
@@ -71,6 +75,8 @@ menu_scroll_target = menu_index * menu_item_gap
 menu_scroll_begin = menu_scroll_target
 menu_scroll = menu_scroll_begin
 menu_scroll_vertical = 0
+menu_scroll_pre = menu_scroll_begin
+menu_scroll_vertical_pre = 0
 
 //
 menu_drag_threshold = menu_item_gap * 0.5

@@ -16,6 +16,8 @@ for (var i = 0; i < menu_number; ++i) {
 			var menu_item = ds_list_find_value(menu_items[i], j)
 			if !instance_exists(menu_item)
 				show_error("메뉴 항목을 생성할 때 문제가 발생했습니다.", true)
+			if !menu_item.shown
+				continue
 
 			var menu_ox = 800 - menu_scroll + i * menu_item_gap
 			var menu_dx = menu_ox + menu_item.x
@@ -27,23 +29,13 @@ for (var i = 0; i < menu_number; ++i) {
 				menu_alpha = 1 - abs(menu_ox - 800) / menu_fade_size
 			else 
 				menu_alpha = 1 - abs(menu_dx - 800) / menu_fade_size
-
-			/*
-			if menu_pushing { // 방향키
-				var push_ratio = menu_push_time / menu_push_period
-				if i == menu_index_previous
-					menu_alpha = 1 - push_ratio
-				else if i == menu_index
-					menu_alpha = push_ratio
-			}*/
-
 			if menu_index != menu_index_previous and menu_index_previous == i {
 				if j == menu_item_selected[i]
-					menu_alpha = 1
+					menu_alpha = 1 - abs(menu_ox - 800) / menu_fade_size
 			}
 
 			draw_set_alpha(image_alpha * menu_alpha)
-			var menu_dy = menu_item.y + 450
+			var menu_dy = menu_item.y + 450// + menu_scroll_vertical
 			draw_sprite(sMenuPanel, 0, menu_dx, menu_dy)
 			draw_text(menu_dx, menu_dy, menu_item.caption)
 		}
