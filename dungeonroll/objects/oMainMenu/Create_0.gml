@@ -28,27 +28,28 @@ menu_number = 0
 menu_items = 0
 menu_items_number = 0
 menu_item_selected = 0
-menu_challange_continue = menu_create()
-menu_item_add(menu_challange_continue, "시작", LEFT, -1)
-menu_item_add(menu_challange_continue, "정보", UP, -1)
-menu_item_add(menu_challange_continue, "다시 시작", DOWN, -1)
-menu_item_add(menu_challange_continue, "", RIGHT, menu_callback_back_to_right, false)
+//menu_challange_continue = menu_create()
+//menu_item_add(menu_challange_continue, "시작", LEFT, -1)
+//menu_item_add(menu_challange_continue, "정보", UP, -1)
+//menu_item_add(menu_challange_continue, "다시 시작", DOWN, -1)
+//menu_item_add(menu_challange_continue, "", RIGHT, menu_callback_back_to_right, false)
 
-menu_challange = menu_create()
+menu_challange = menu_create() // 무한 모드
 menu_item_add(menu_challange, "계속", LEFT, -1)
 menu_item_add(menu_challange, "기록", UP, -1)
+menu_item_add(menu_challange, "다시 시작", DOWN, -1)
 menu_item_add(menu_challange, "", RIGHT, menu_callback_back_to_right, false)
 
-menu_main = menu_create()
+menu_main = menu_create() // 메인
 menu_item_add(menu_main, "도전", LEFT, menu_callback_challenge)
-menu_item_add(menu_main, "게임", RIGHT, menu_callback_game)
+menu_item_add(menu_main, "플레이", RIGHT, menu_callback_game)
 menu_item_add(menu_main, "설정", UP, -1)
 menu_item_add(menu_main, "종료", DOWN, -1)
 menu_center = menu_main
 
-menu_game = menu_create()
+menu_game = menu_create() // 플레이
 menu_item_add(menu_game, "캠페인", RIGHT, -1)
-menu_item_add(menu_game, "무한", UP, -1)
+menu_item_add(menu_game, "튜토리얼", UP, -1)
 menu_item_add(menu_game, "대전", DOWN, -1, true, false)
 menu_item_add(menu_game, "", LEFT, menu_callback_back_to_left, false)
 
