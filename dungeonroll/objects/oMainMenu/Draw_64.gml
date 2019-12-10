@@ -20,7 +20,7 @@ for (var i = 0; i < menu_number; ++i) {
 				continue
 
 			var menu_ox = 800 - menu_scroll + i * menu_item_gap
-			var menu_dx = menu_ox + menu_item.x
+			var menu_dx = menu_ox + menu_item.x - 800
 			if menu_dx + menu_item_size_half <= 0 or 1600 < menu_dx - menu_item_size_half
 				continue
 
@@ -35,7 +35,7 @@ for (var i = 0; i < menu_number; ++i) {
 			}
 
 			draw_set_alpha(image_alpha * menu_alpha)
-			var menu_dy = menu_item.y + 450// + menu_scroll_vertical
+			var menu_dy = menu_item.y// + menu_scroll_vertical
 			draw_sprite(sMenuPanel, 0, menu_dx, menu_dy)
 			draw_text(menu_dx, menu_dy, menu_item.caption)
 		}
