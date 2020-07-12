@@ -15,11 +15,11 @@ if cursor_gui_x == cursor_gui_x_previous {
 		cursor_fast_count++
 }
 
-var cursor_left = device_mouse_check_button(0, mb_left)
-var cursor_right = device_mouse_check_button(0, mb_right)
-var cursor_left_pressed = device_mouse_check_button_pressed(0, mb_left)
-var cursor_right_pressed = device_mouse_check_button_pressed(0, mb_right)
-var cursor_left_released = device_mouse_check_button_released(0, mb_left)
+var cursor_left = mouse_check_button(mb_left) //device_mouse_check_button(0, mb_left)
+var cursor_right = mouse_check_button(mb_right) //device_mouse_check_button(0, mb_right)
+var cursor_left_pressed = mouse_check_button_pressed(mb_left) //device_mouse_check_button_pressed(0, mb_left)
+var cursor_right_pressed = mouse_check_button_pressed(mb_right) //device_mouse_check_button_pressed(0, mb_right)
+var cursor_left_released = mouse_check_button_released(mb_left) //device_mouse_check_button_released(0, mb_left)
 var key_left = keyboard_check(vk_left)
 var key_right = keyboard_check(vk_right)
 var key_left_pressed = keyboard_check_pressed(vk_left)
