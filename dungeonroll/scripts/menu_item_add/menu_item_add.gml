@@ -15,8 +15,8 @@ var mitem = instance_create_layer(0, 0, layer, oMainMenuItem)
 ds_list_add(menu_items[mdepth], mitem)
 
 with mitem {
-	x = lengthdir_x(mposition[0], mposition[1])
-	y = lengthdir_y(mposition[0], mposition[1])
+	x = 800 + lengthdir_x(mposition[0], mposition[1])
+	y = 450 + lengthdir_y(mposition[0], mposition[1])
 	visible = false
 
 	index = argument[0]
